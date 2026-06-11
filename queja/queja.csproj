@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC5323D9-7F7D-40B2-B3CE-142B4643D655}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>queja</RootNamespace>
+    <AssemblyName>queja</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\SQLServer_Export_Excel\Bin\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\..\Downloads\SQLServer_Export_Excel\Bin\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\Downloads\itextsharp\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.UI.WebControls, Version=1.0.2.226, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Web.UI.WebControls.1.0.2.226\lib\Microsoft.Web.UI.WebControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfSharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfSharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DataVisualization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="accion.aspx" />
+    <Content Include="accioncorrectiva.aspx" />
+    <Content Include="areas_sem.aspx" />
+    <Content Include="cant_quejas.aspx" />
+    <Content Include="cant_semana.aspx" />
+    <Content Include="causas.aspx" />
+    <Content Include="clientes.aspx" />
+    <Content Include="clientes_sem.aspx" />
+    <Content Include="consulta.aspx" />
+    <Content Include="contenido.aspx" />
+    <Content Include="css\bootstrap-datepicker.css" />
+    <Content Include="css\bootstrap-datepicker.min.css" />
+    <Content Include="css\bootstrap-datepicker3.css" />
+    <Content Include="css\bootstrap-datepicker3.min.css" />
+    <Content Include="css\bootstrap-multiselect.css" />
+    <Content Include="css\bootstrap-multiselect.js" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\bootstrap.min2.css" />
+    <Content Include="css\fileinput.css" />
+    <Content Include="css\fileinput.min.css" />
+    <Content Include="css\jasny-bootstrap.css" />
+    <Content Include="css\jquery.treegrid.css" />
+    <Content Include="css\uploadify.css" />
+    <Content Include="default.aspx" />
+    <Content Include="descargar.aspx" />
+    <Content Include="editar_queja.aspx" />
+    <Content Include="editar_queja_exp.aspx" />
+    <Content Include="efectividad.aspx" />
+    <Content Include="estadistica.aspx" />
+    <Content Include="excel\Blob.min.js" />
+    <Content Include="excel\css\tableexport.css" />
+    <Content Include="excel\FileSaver.min.js" />
+    <Content Include="excel\img\csv.svg" />
+    <Content Include="excel\img\txt.svg" />
+    <Content Include="excel\img\xls.svg" />
+    <Content Include="excel\img\xlsx.svg" />
+    <Content Include="excel\js\tableexport.js" />
+    <Content Include="excel\xls.core.min.js" />
+    <Content Include="fumigaciones.aspx" />
+    <Content Include="grafica_rechazo.aspx" />
+    <Content Include="graphics.aspx" />
+    <Content Include="imagenes\1473881847_magnifier.png" />
+    <Content Include="imagenes\1473881872_Settings-5.png" />
+    <Content Include="imagenes\1473881879_Checklist.png" />
+    <Content Include="imagenes\1473882254_compose.png" />
+    <Content Include="imagenes\1473882257_check.png" />
+    <Content Include="imagenes\1473882341_profle.png" />
+    <Content Include="imagenes\1475810288_Report.png" />
+    <Content Include="imagenes\1478220216_analytics.png" />
+    <Content Include="imagenes\1478220457_graphs.png" />
+    <Content Include="imagenes\1481166816_locked.png" />
+    <Content Include="imagenes\Analytics-128.png" />
+    <Content Include="imagenes\appbar.chevron.left.png" />
+    <Content Include="imagenes\appbar.chevron.right.png" />
+    <Content Include="imagenes\arrow_up.png" />
+    <Content Include="imagenes\Excel-2-icon.png" />
+    <Content Include="imagenes\excel-xls-icon.png" />
+    <Content Include="imagenes\Excel.png" />
+    <Content Include="imagenes\fondo.jpg" />
+    <Content Include="imagenes\fondo_2.jpg" />
+    <Content Include="imagenes\fondo_3.jpg" />
+    <Content Include="imagenes\fondo_4.jpg" />
+    <Content Include="imagenes\fondo_7.png" />
+    <Content Include="imagenes\GrupoU.png" />
+    <Content Include="imagenes\loadinganimation.gif" />
+    <Content Include="imagenes\Logo grupo U.png" />
+    <Content Include="imagenes\logo.png" />
+    <Content Include="imagenes\Microsoft-Excel-circular.png" />
+    <Content Include="imagenes\pngwing.com.png" />
+    <Content Include="imagenes\printer-128 %281%29.png" />
+    <Content Include="imagenes\printer-128.png" />
+    <Content Include="imagenes\soporte.png" />
+    <Content Include="imagenes\Tablet-Chart-128.png" />
+    <Content Include="imagenes\uploadify-cancel.png" />
+    <Content Include="investigadores.aspx" />
+    <Content Include="jqueryui\datepicker-es.js" />
+    <Content Include="jqueryui\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="jqueryui\images\ui-bg_highlight-hard_20_0972a5_1x100.png" />
+    <Content Include="jqueryui\images\ui-bg_highlight-soft_33_003147_1x100.png" />
+    <Content Include="jqueryui\images\ui-bg_highlight-soft_35_222222_1x100.png" />
+    <Content Include="jqueryui\images\ui-bg_highlight-soft_44_444444_1x100.png" />
+    <Content Include="jqueryui\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="jqueryui\images\ui-bg_loop_25_000000_21x21.png" />
+    <Content Include="jqueryui\images\ui-icons_222222_256x240.png" />
+    <Content Include="jqueryui\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="jqueryui\images\ui-icons_a83300_256x240.png" />
+    <Content Include="jqueryui\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="jqueryui\jquery-ui.css" />
+    <Content Include="jqueryui\jquery-ui.js" />
+    <Content Include="jquery_ui\jquery-ui.css" />
+    <Content Include="jquery_ui\jquery-ui.js" />
+    <Content Include="notascredito.aspx" />
+    <Content Include="notas_credito.aspx" />
+    <Content Include="principal.aspx" />
+    <Content Include="principalexp.aspx" />
+    <Content Include="principalexpnew.aspx" />
+    <Content Include="principalnew.aspx" />
+    <Content Include="procesos.asmx" />
+    <Content Include="producidas.aspx" />
+    <Content Include="quejas.aspx" />
+    <Content Include="quejas_fumigacion.aspx" />
+    <Content Include="quejas_serv.aspx" />
+    <Content Include="rechazadas.aspx" />
+    <Content Include="reg_efectividad.aspx" />
+    <Content Include="report.aspx" />
+    <Content Include="reporte.aspx" />
+    <Content Include="reportes.aspx" />
+    <Content Include="scorecard.aspx" />
+    <Content Include="Scripts\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-filestyle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min2.js" />
+    <Content Include="Scripts\dark-unica.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput.min.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
+    <Content Include="Scripts\jquery-3.1.0.js" />
+    <Content Include="Scripts\jquery.base64.js" />
+    <Content Include="Scripts\jquery.tabletojson.js" />
+    <Content Include="Scripts\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Scripts\jquery.treegrid.js" />
+    <Content Include="Scripts\jquery.uploadify.js" />
+    <Content Include="Scripts\jquery.uploadify.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
+    <Content Include="Scripts\tableExport.js" />
+    <Content Include="Scripts\uploadify.swf" />
+    <Content Include="servicios.aspx" />
+    <Content Include="serviciosnew.aspx" />
+    <Content Include="soporte.aspx" />
+    <Content Include="tarima.aspx" />
+    <Content Include="tarimas.aspx" />
+    <Content Include="upload.aspx" />
+    <Content Include="upload_serv.aspx" />
+    <Content Include="upload_ver.aspx" />
+    <Content Include="verificacion.aspx" />
+    <Content Include="verificar.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="WebService.aspx" />
+    <Content Include="xlsx\FileSaver.min.js" />
+    <Content Include="xlsx\xlsx.full.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="accion.aspx.cs">
+      <DependentUpon>accion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accion.aspx.designer.cs">
+      <DependentUpon>accion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="accioncorrectiva.aspx.cs">
+      <DependentUpon>accioncorrectiva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accioncorrectiva.aspx.designer.cs">
+      <DependentUpon>accioncorrectiva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="areas_sem.aspx.cs">
+      <DependentUpon>areas_sem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="areas_sem.aspx.designer.cs">
+      <DependentUpon>areas_sem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cant_quejas.aspx.cs">
+      <DependentUpon>cant_quejas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cant_quejas.aspx.designer.cs">
+      <DependentUpon>cant_quejas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cant_semana.aspx.cs">
+      <DependentUpon>cant_semana.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cant_semana.aspx.designer.cs">
+      <DependentUpon>cant_semana.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="causas.aspx.cs">
+      <DependentUpon>causas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="causas.aspx.designer.cs">
+      <DependentUpon>causas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="clientes.aspx.cs">
+      <DependentUpon>clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="clientes.aspx.designer.cs">
+      <DependentUpon>clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="clientes_sem.aspx.cs">
+      <DependentUpon>clientes_sem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="clientes_sem.aspx.designer.cs">
+      <DependentUpon>clientes_sem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="conectasql.cs" />
+    <Compile Include="consulta.aspx.cs">
+      <DependentUpon>consulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="consulta.aspx.designer.cs">
+      <DependentUpon>consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contenido.aspx.cs">
+      <DependentUpon>contenido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contenido.aspx.designer.cs">
+      <DependentUpon>contenido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="descargar.aspx.cs">
+      <DependentUpon>descargar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="descargar.aspx.designer.cs">
+      <DependentUpon>descargar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editar_queja.aspx.cs">
+      <DependentUpon>editar_queja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editar_queja.aspx.designer.cs">
+      <DependentUpon>editar_queja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editar_queja_exp.aspx.cs">
+      <DependentUpon>editar_queja_exp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editar_queja_exp.aspx.designer.cs">
+      <DependentUpon>editar_queja_exp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="efectividad.aspx.cs">
+      <DependentUpon>efectividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="efectividad.aspx.designer.cs">
+      <DependentUpon>efectividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estadistica.aspx.cs">
+      <DependentUpon>estadistica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estadistica.aspx.designer.cs">
+      <DependentUpon>estadistica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="fumigaciones.aspx.cs">
+      <DependentUpon>fumigaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="fumigaciones.aspx.designer.cs">
+      <DependentUpon>fumigaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="grafica_rechazo.aspx.cs">
+      <DependentUpon>grafica_rechazo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="grafica_rechazo.aspx.designer.cs">
+      <DependentUpon>grafica_rechazo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="graphics.aspx.cs">
+      <DependentUpon>graphics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="graphics.aspx.designer.cs">
+      <DependentUpon>graphics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="investigadores.aspx.cs">
+      <DependentUpon>investigadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="investigadores.aspx.designer.cs">
+      <DependentUpon>investigadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notascredito.aspx.cs">
+      <DependentUpon>notascredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notascredito.aspx.designer.cs">
+      <DependentUpon>notascredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notas_credito.aspx.cs">
+      <DependentUpon>notas_credito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="notas_credito.aspx.designer.cs">
+      <DependentUpon>notas_credito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="principal.aspx.cs">
+      <DependentUpon>principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="principal.aspx.designer.cs">
+      <DependentUpon>principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="principalexp.aspx.cs">
+      <DependentUpon>principalexp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="principalexp.aspx.designer.cs">
+      <DependentUpon>principalexp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="principalexpnew.aspx.cs">
+      <DependentUpon>principalexpnew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="principalexpnew.aspx.designer.cs">
+      <DependentUpon>principalexpnew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="principalnew.aspx.cs">
+      <DependentUpon>principalnew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="principalnew.aspx.designer.cs">
+      <DependentUpon>principalnew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="procesos.asmx.cs">
+      <DependentUpon>procesos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="producidas.aspx.cs">
+      <DependentUpon>producidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="producidas.aspx.designer.cs">
+      <DependentUpon>producidas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quejas.aspx.cs">
+      <DependentUpon>quejas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quejas.aspx.designer.cs">
+      <DependentUpon>quejas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="quejas_fumigacion.aspx.cs">
+      <DependentUpon>quejas_fumigacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quejas_fumigacion.aspx.designer.cs">
+      <DependentUpon>quejas_fumigacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="quejas_serv.aspx.cs">
+      <DependentUpon>quejas_serv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="quejas_serv.aspx.designer.cs">
+      <DependentUpon>quejas_serv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rechazadas.aspx.cs">
+      <DependentUpon>rechazadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rechazadas.aspx.designer.cs">
+      <DependentUpon>rechazadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reg_efectividad.aspx.cs">
+      <DependentUpon>reg_efectividad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reg_efectividad.aspx.designer.cs">
+      <DependentUpon>reg_efectividad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report.aspx.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report.aspx.designer.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reporte.aspx.cs">
+      <DependentUpon>reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reporte.aspx.designer.cs">
+      <DependentUpon>reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reportes.aspx.cs">
+      <DependentUpon>reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reportes.aspx.designer.cs">
+      <DependentUpon>reportes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="scorecard.aspx.cs">
+      <DependentUpon>scorecard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="scorecard.aspx.designer.cs">
+      <DependentUpon>scorecard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="servicios.aspx.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="servicios.aspx.designer.cs">
+      <DependentUpon>servicios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="serviciosnew.aspx.cs">
+      <DependentUpon>serviciosnew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="serviciosnew.aspx.designer.cs">
+      <DependentUpon>serviciosnew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="soporte.aspx.cs">
+      <DependentUpon>soporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="soporte.aspx.designer.cs">
+      <DependentUpon>soporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tarima.aspx.cs">
+      <DependentUpon>tarima.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tarima.aspx.designer.cs">
+      <DependentUpon>tarima.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tarimas.aspx.cs">
+      <DependentUpon>tarimas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tarimas.aspx.designer.cs">
+      <DependentUpon>tarimas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload_serv.aspx.cs">
+      <DependentUpon>upload_serv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload_serv.aspx.designer.cs">
+      <DependentUpon>upload_serv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload_ver.aspx.cs">
+      <DependentUpon>upload_ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload_ver.aspx.designer.cs">
+      <DependentUpon>upload_ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verificacion.aspx.cs">
+      <DependentUpon>verificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verificacion.aspx.designer.cs">
+      <DependentUpon>verificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verificar.aspx.cs">
+      <DependentUpon>verificar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verificar.aspx.designer.cs">
+      <DependentUpon>verificar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebService.aspx.cs">
+      <DependentUpon>WebService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebService.aspx.designer.cs">
+      <DependentUpon>WebService.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="css\Manual Nuevo Sistema de Quejas.pdf" />
+    <None Include="imagenes\Thumbs.db" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="fuentes\" />
+    <Folder Include="repserv\" />
+    <Folder Include="rep\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63923</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
