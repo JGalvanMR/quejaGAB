@@ -52,7 +52,8 @@
             if (str.indexOf("189.206.160.206") != -1) {
                 web();
             }*/
-            window.open("http://189.206.160.206:81/quejas/rechazos/quejas_dashboard.html", "_black"); 
+            window.open("http://www.lucky.web:82/rechazos/quejas_dashboard.html", "_blank"); 
+
         }
 
         function lan() {
