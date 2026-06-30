@@ -73,7 +73,7 @@ namespace queja
             }
             if (this.con.queja_finalizada(this.lblQueja.Text) == "1")
             {
-                this.btnEdicion.Enabled = true;
+                this.btnEdicion.Enabled = false;
                 this.uplConsulta.Update();
                 this.btnInvestigacion.Enabled = false;
                 this.uplInvestigacion.Update();
@@ -159,7 +159,7 @@ namespace queja
             }
             else
             {
-                this.btnEdicion.Enabled = true;
+                this.btnEdicion.Enabled = false;
                 this.uplConsulta.Update();
                 this.btnCausas.Enabled = false;
                 this.uplCausas.Update();

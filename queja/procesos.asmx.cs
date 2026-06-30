@@ -1,16 +1,16 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
-using System.Data.SqlClient;
 using System.Data;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Web;
 using System.Web.Script.Services;
-using System.IO;
+using System.Web.Services;
 
 namespace queja
 {
@@ -168,9 +168,9 @@ namespace queja
             reader.Dispose();
             cmd.Dispose();
             conn.Close();
-            
+
             List<ItemCombo> lista = new List<ItemCombo>();
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 lista.Add(new ItemCombo
                 {
@@ -312,7 +312,7 @@ namespace queja
             }
 
             return lista;
-            
+
         }
 
         [WebMethod]
@@ -536,7 +536,7 @@ namespace queja
             {
                 Variedad = variedad
             });
-            
+
 
             return lista;
         }
@@ -549,7 +549,7 @@ namespace queja
             {
                 cajas_prod = cajas_producidas_folio(folio, prod);
             }
-            if (tipo =="PTP")
+            if (tipo == "PTP")
             {
                 cajas_prod = cajas_producidas_folio2(folio, prod, "");
             }
@@ -560,7 +560,7 @@ namespace queja
             {
                 Producidas = cajas_prod
             });
-            
+
             return lista;
         }
 
@@ -850,7 +850,7 @@ namespace queja
         }
 
         [WebMethod]
-        public string GuardarQueja(string folio, string semana, string fecha, string mes, string cliprim, string cliente, string sucursal, string reporto, string recibio, 
+        public string GuardarQueja(string folio, string semana, string fecha, string mes, string cliprim, string cliente, string sucursal, string reporto, string recibio,
             string cedis, string usuario, string tipo, string subclifolio, string pedido, string observaciones, string costo, string consumidor, string producto, string problema, string ordprod, string area,
             string responsable, string cantrecha, string cantreci, string unidad, string devolucion, string moneda, string cveprov, string cverch, string cvetbl, string variedad,
             string lote, string nomprod, string fechacad, string ptcptp, string cjsprod, string porcen, string merma, string bonificacion, string rechazo, string noaplica,
@@ -862,7 +862,7 @@ namespace queja
             string fechainv = "";
             string area_queja = "";
             string cnte = "";
-            string sememb = ""; 
+            string sememb = "";
             string fechaemb = "";
 
             string consu = (consumidor == "True") ? "1" : "0";
@@ -889,7 +889,7 @@ namespace queja
                 cnte = BuscarClientePedido(pedido, tipo, cedis, usuario);
                 //fechaemb = fecha_embarque(pedido, tipo, usuario);
                 sememb = SemanaEmb(fchf).ToString();
-                
+
             }
 
             SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
@@ -916,7 +916,7 @@ namespace queja
                 }
                 else
                 {
-                    
+
                     cuerpo = "INSERT INTO tb_mstr_quejas(que_semana, que_fecha, que_mes, que_cliprim, que_cliente, que_sucursal, que_reporto, que_recibio, que_status, cedis, resp_usuario, que_tipo, que_fechainv, area_queja, " +
                     "subcli_folio, que_pedido, que_observacion, que_costo, que_cnte, que_consumidor) " +
                     "VALUES('" + semana + "', '" + fecha + "', '" + mes + "', '" + cliprim + "', '" + cliente + "', '" + sucursal + "', '" + reporto.ToUpper() + "', '" + recibio + "', 'A', '" + cedis + "', " +
@@ -1158,7 +1158,7 @@ namespace queja
                             cmd.CommandText = "SELECT A.fcn_folio, A.pdn_folio, FORMAT(A.fcn_fecha, 'dd-MM-yyyy') As fecha FROM tb_mstr_facturas_nal A JOIN tb_det_facturas B " +
                                 "ON A.fcn_folio = B.fcn_folio AND A.fcn_lugar = B.fcn_tipo " +
                                 "WHERE A.pdn_folio = '" + pedido + "' /*AND A.fcn_lugar <> '" + val_tipo + "' AND B.fcn_tipo = '" + val_tipo + "'*/ AND B.prod_clave = '" + producto + "'";
-                            
+
                         else if (expnal == "E")
                             cmd.CommandText = "SELECT A.fcn_folio, A.pdn_folio, FORMAT(A.fcn_fecha, 'dd-MM-yyyy') As fecha FROM tb_mstr_facturas_nal A JOIN tb_det_facturas B " +
                                 "ON A.fcn_folio = B.fcn_folio AND A.fcn_lugar = B.fcn_tipo " +
@@ -1417,10 +1417,10 @@ namespace queja
         {
             string str1 = "http://189.206.160.206:81/quejas/";
             string str2 = "http://gabira1:81/quejas/";
-            string cuerpo = "<table border='2'><tr><td align='center'><h2>Registro de Queja</h2></td></tr><tr><td>Registro de queja realizado por: " + nombre + 
-                "</td></tr><tr><td>CEDIS: " + cedis + "</td></tr><tr><td>Fecha: " + fecha + 
-                "</td></tr><tr><td>Queja: No. " + queja + "</td></tr><tr><td>Clave y nombre producto: " + cveprod + " " + nomprod + 
-                "</td></tr><tr><td>Problema: " + problema + "</td></tr><tr><td>Cliente: " + cliente + 
+            string cuerpo = "<table border='2'><tr><td align='center'><h2>Registro de Queja</h2></td></tr><tr><td>Registro de queja realizado por: " + nombre +
+                "</td></tr><tr><td>CEDIS: " + cedis + "</td></tr><tr><td>Fecha: " + fecha +
+                "</td></tr><tr><td>Queja: No. " + queja + "</td></tr><tr><td>Clave y nombre producto: " + cveprod + " " + nomprod +
+                "</td></tr><tr><td>Problema: " + problema + "</td></tr><tr><td>Cliente: " + cliente +
                 "</td></tr><tr><td>Pedido: " + pedido + "</td></tr><tr><td>Costo: " + costo + "</td></tr></table><br />" +
                 "<p><h4>Ir a la seccion de Editar Queja para asignaci&oacute; de &Aacute;rea</h4></p><br /><p>Entrar al sistema de quejas</p>" +
                 "<br />Enlace dentro de instalaciónes de Comercializadora GAB: " + str2 + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + str1;
@@ -1699,19 +1699,14 @@ namespace queja
         [WebMethod]
         public List<RowDetalleEmbarque> DetalleEmbarqueDetalle(string folio, string prod, string cnte, string rechazo)
         {
-            DataTable dataTable1 = new DataTable();
-            DataTable dataTable2 = new DataTable();
-
-            dataTable2 = detalle_embarque_detalle(folio, prod, rechazo);
-
-
-
+            DataTable dt = detalle_embarque_detalle(folio, prod, rechazo);
             List<RowDetalleEmbarque> lista = new List<RowDetalleEmbarque>();
-            foreach (DataRow row in dataTable2.Rows)
+
+            foreach (DataRow row in dt.Rows)
             {
                 lista.Add(new RowDetalleEmbarque
                 {
-                    Pedido = row["pedido"].ToString(),
+                    Pedido = folio,
                     IdProducto = row["prod_clave"].ToString(),
                     OrdProd = row["recibo"].ToString(),
                     Area = row["qud_area"].ToString(),
@@ -1739,12 +1734,12 @@ namespace queja
                     Porcentaje = row["Porcentaje"].ToString()
                 });
             }
-
             return lista;
-
-
-
         }
+
+        // 🔒 Helpers: nunca truena con null/""/"S/F", devuelve 0
+        private static int SafeInt(object v) => int.TryParse(v?.ToString().Trim(), out int n) ? n : 0;
+        private static decimal SafeDec(object v) => decimal.TryParse(v?.ToString().Trim(), out decimal n) ? n : 0m;
 
         public DataTable detalle_embarque_detalle(string folio, string prod_clave, string CantRech)
         {
@@ -1831,16 +1826,13 @@ namespace queja
                 if (read.HasRows)
                 {
                     while (read.Read())
-                    {
-                        fol_campo = Convert.ToInt32(read["inicio_campo"].ToString().Trim());
-                        fol_campo = 0;
-                    }
+                        fol_campo = SafeInt(read["inicio_campo"]); // 🔒 antes: Convert.ToInt32(...); fol_campo = 0; (anulaba el valor)
                 }
                 read.Close();
                 read.Dispose();
                 com.Dispose();
 
-                if (Convert.ToInt32(row["recibo"].ToString()) > fol_campo) //folio de campo
+                if (SafeInt(row["recibo"]) > fol_campo) //folio de campo
                 {
                     //validar combo de problema
                     com = conn.CreateCommand();
@@ -1851,8 +1843,9 @@ namespace queja
                     {
                         while (read.Read())
                         {
-                            if (read["rpt_flete"].ToString().Trim() != "" && read["rpt_flete"].ToString().Trim() != "S/F" && read["rpt_flete"].ToString().Trim() != "AJUSTE")
-                                flete_campo = Convert.ToInt32(read["rpt_flete"].ToString().Trim());
+                            string rptFlete = read["rpt_flete"].ToString().Trim();
+                            if (!string.IsNullOrEmpty(rptFlete) && rptFlete != "S/F" && rptFlete != "AJUSTE" && rptFlete != "N.CRED")
+                                flete_campo = SafeInt(rptFlete); // 🔒
                             else
                                 flete_campo = 0;
                         }
@@ -1862,7 +1855,6 @@ namespace queja
                     com.Dispose();
 
                     //buscar flete
-
                     string responsable_flete = "";
                     if (flete_campo > 0)
                     {
@@ -1892,12 +1884,6 @@ namespace queja
                         row["qud_area"] = "";
                         row["qud_responsable"] = responsable_flete;
                     }
-
-
-                    //DataRow row = dataTable.NewRow();
-                    //row["ordp_linea"] = "CAMPO";
-                    //row["ordp_responsable"] = responsable_flete;
-                    //dataTable.Rows.Add(row);
                 }
                 else
                 {
@@ -1941,10 +1927,7 @@ namespace queja
                         read.Dispose();
                         com.Dispose();
                     }
-
                 }
-
-
             }
 
             conn.Close();
@@ -1977,16 +1960,15 @@ namespace queja
                 }
             }
 
-            int num1 = Convert.ToInt32(CantRech);
+            int num1 = SafeInt(CantRech); // 🔒 antes: Convert.ToInt32(CantRech); reventaba si CantRech llegaba vacío
             int num2 = 0;
             int num3 = 0;
-            //DataTable dataTable4 = dataTable2;
-            //string filterExpression = "id_producto = '" + prod_clave + "' AND pedido = '" + folio.PadLeft(6, '0').ToString() + "'";
-            //foreach (DataRow dataRow2 in dataTable4.Select(filterExpression))
             foreach (DataRow dataRow2 in dataTable.Rows)
             {
-                num2 += Convert.ToInt32(dataRow2["cajas"].ToString());
-                int num4 = num1 - Convert.ToInt32(dataRow2["cajas"].ToString());
+                int cajas = SafeInt(dataRow2["cajas"]); // 🔒
+                num2 += cajas;
+
+                int num4 = num1 - cajas;
                 if (num4 <= 0)
                     ++num3;
                 if (num4 > 0)
@@ -1996,9 +1978,9 @@ namespace queja
                 }
                 else if (num3 == 1)
                 {
-                    int num5 = num4 + Convert.ToInt32(dataRow2["cajas"].ToString());
+                    int num5 = num4 + cajas;
                     dataRow2["rechazadas"] = (object)num5;
-                    num1 = num5 - Convert.ToInt32(dataRow2["cajas"].ToString());
+                    num1 = num5 - cajas;
                 }
                 else
                     dataRow2["rechazadas"] = (object)"0";
@@ -2006,31 +1988,25 @@ namespace queja
 
             foreach (DataRow row2 in (InternalDataCollectionBase)dataTable.Rows)
             {
-                Decimal num4;
                 if (row2["tipo_rec"].ToString() == "PTP")
                 {
                     string str3 = row2["rechazadas"].ToString();
                     row2["producidas"] = this.cajas_producidas_folio2(row2["recibo"].ToString(), row2["prod_clave"].ToString(), row2["tarima"].ToString());
-                    DataRow dataRow2 = row2;
-                    num4 = Convert.ToDecimal(str3) * new Decimal(100) / Convert.ToDecimal(row2["producidas"].ToString());
-                    string str4 = num4.ToString("0.00");
-                    dataRow2["porcentaje"] = (object)str4;
+                    decimal num4 = SafeDec(str3) * 100m / SafeDec(row2["producidas"]); // 🔒
+                    row2["porcentaje"] = (object)num4.ToString("0.00");
                 }
                 if (row2["tipo_rec"].ToString() == "PTC")
                 {
                     string str3 = row2["rechazadas"].ToString();
                     row2["producidas"] = this.cajas_producidas_folio(row2["recibo"].ToString(), row2["prod_clave"].ToString());
-                    DataRow dataRow2 = row2;
-                    num4 = Convert.ToDecimal(str3) * new Decimal(100) / Convert.ToDecimal(row2["producidas"].ToString());
-                    string str4 = num4.ToString("0.00");
-                    dataRow2["porcentaje"] = (object)str4;
+                    decimal num4 = SafeDec(str3) * 100m / SafeDec(row2["producidas"]); // 🔒
+                    row2["porcentaje"] = (object)num4.ToString("0.00");
                 }
             }
 
-
             return dataTable;
         }
-        
+
         //[ScriptMethod(UseHttpGet = false, ResponseFormat = ResponseFormat.Json)]
         [WebMethod(EnableSession = true)]
         public void SubirArchivos()
@@ -2249,7 +2225,7 @@ namespace queja
             public string Cons { get; set; }
         }
 
-        public class ListaFacturas 
+        public class ListaFacturas
         {
             public string FolFact { get; set; }
             public string CanFact { get; set; }
