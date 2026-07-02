@@ -1283,11 +1283,11 @@
             });
             return;
         }
-        /*!p.Caus!p.Merm!p.Boni!p.Noap*/
+        /*!p.Caus!p.Merm!p.Boni!p.Noap!p.Fecha!p.Responsable!p.Area!p.Devo*/
         let invalidItems = product.filter(p =>
-            !p.Pedido || !p.ProdCve || !p.Producto || !p.OrdProd || !p.Tarima || !p.Lote || !p.Fecha || !p.CveProv || !p.Proveedor || !p.CveRch
-            || !p.Rancho || !p.CveTbl || !p.Tabla || !p.Responsable || !p.Area || !p.Recibido || !p.Rechazadas || !p.Producidas || !p.Porcentaje
-            || !p.Unidad || !p.Tipo || !p.Variedad || !p.CNTE || !p.Foli || !p.Prob || !p.Devo
+            !p.Pedido || !p.ProdCve || !p.Producto || !p.OrdProd || !p.Tarima || !p.Lote || !p.CveProv || !p.Proveedor || !p.CveRch
+            || !p.Rancho || !p.CveTbl || !p.Tabla || !p.Recibido || !p.Rechazadas || !p.Producidas || !p.Porcentaje
+            || !p.Unidad || !p.Tipo || !p.Variedad || !p.CNTE || !p.Foli || !p.Prob
             || !p.Mone || !p.Cons
         );
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.37131.7
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37411.7 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "queja", "queja\queja.csproj", "{AC5323D9-7F7D-40B2-B3CE-142B4643D655}"
 EndProject
