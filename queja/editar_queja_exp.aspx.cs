@@ -54,8 +54,8 @@ namespace queja
                 this.ddlAreaQueja.DataTextField = "area_nombre";
                 this.ddlAreaQueja.DataValueField = "id_area";
                 this.ddlAreaQueja.DataBind();
-                
-                
+
+
                 this.dtMstrQueja = this.con.consultaqueja(str1);
                 this.txtFolio.Text = this.dtMstrQueja.Rows[0]["que_folio"].ToString();
                 this.txtSemana.Text = this.dtMstrQueja.Rows[0]["que_semana"].ToString();
@@ -109,9 +109,9 @@ namespace queja
                         rbtList.SelectedValue = "NA";
                     }
                 }
-                
+
             }
-            
+
 
             string carpeta = "~/fotos_ant/";
             carpeta = Server.MapPath(carpeta);
@@ -124,7 +124,7 @@ namespace queja
             string[] files = Directory.GetFiles(this.Server.MapPath("~/fotos_ant/"));
             List<ListItem> listItemList = new List<ListItem>();
             List<ListItem> listItemListImage = new List<ListItem>();
-            
+
             foreach (string path in files)
             {
                 if (Path.GetFileName(path).Contains("_" + this.lblQueja.Text + ".pdf"))

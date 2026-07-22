@@ -173,7 +173,7 @@ namespace queja
             }
         }
 
-        public void enviarcorreo_accion(
+        public void enviarcorreo_accionLEGACY(
           string correo,
           string responsable,
           string cve_queja,
@@ -188,7 +188,7 @@ namespace queja
             MailMessage message = new MailMessage();
             message.To.Add(correo);
             message.CC.Add("msamano@mrlucky.com.mx");
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja no.: " + cve_queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = str4;
@@ -207,6 +207,105 @@ namespace queja
             catch (Exception ex)
             {
                 this.Response.Write("<script>alert('No fue enviado el correo electronico')</script>");
+            }
+        }
+
+
+        public void enviarcorreo_accion(
+  string correo,
+  string responsable,
+  string cve_queja,
+  DataTable table)
+        {
+            // Validación previa del destinatario
+            if (string.IsNullOrEmpty(correo))
+            {
+                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "QuejaAccion", "alert('El correo del destinatario está vacío.');", true);
+                return;
+            }
+
+            // Construcción del HTML
+            string str1 = "http://189.206.160.206:81/quejas/";
+            string str2 = "http://gabira1:81/quejas/";
+            string str3 = "";
+
+            if (table != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    str3 += "<tr><td>Acción: " + row["accion"].ToString() + " Fecha Entrega: " + row["fecha"].ToString() + "</td></tr>";
+                }
+            }
+
+            string str4 = "<table border='2'><tr><td align='center'><h2>Registro de Acciones Correctivas</h2></td></tr><tr><td>Registrado por: " + this.lblNombre.Text + "</td></tr><tr><td>Fecha:</td></tr><tr><td>Queja no.: " + this.lblQueja.Text + "</td></tr><tr><td>Producto: " + this.txtProducto.Text + "</td></tr><tr><td>Problema: " + this.txtProblema.Text + "</td></tr><tr><td>Causa: " + this.txtCausa.Text.ToUpper() + "</td></tr>" + str3 + "</table><p>Entrar al sistema de quejas</p><br />Enlace dentro de instalaciónes de Comercializadora GAB: " + str2 + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + str1;
+
+            // Configuración del Mensaje
+            MailMessage message = new MailMessage();
+            message.To.Add(correo);
+            message.CC.Add("msamano@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
+            message.Subject = "Queja no.: " + cve_queja;
+            message.SubjectEncoding = Encoding.UTF8;
+            message.Body = str4;
+            message.BodyEncoding = Encoding.UTF8;
+            message.IsBodyHtml = true;
+            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+            // Configuración del Cliente SMTP
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Credentials = new NetworkCredential("sistemas@mrlucky.com.mx", "sisgab");
+            smtpClient.Port = 587;
+            smtpClient.EnableSsl = true;
+            smtpClient.Host = "mail1.mrlucky.com.mx";
+            smtpClient.Timeout = 30000;
+
+            // Forzar protocolos TLS (3072 = Tls12, 768 = Tls11, 192 = Tls)
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+            // Validación de certificados SSL (soporte Mono/Ubuntu)
+            ServicePointManager.ServerCertificateValidationCallback =
+                (sender, certificate, chain, sslPolicyErrors) =>
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Certificate: {certificate?.Subject ?? "null"}, Issuer: {certificate?.Issuer ?? "null"}");
+
+                    if (certificate != null && certificate.Issuer.Contains("SSL.com"))
+                    {
+                        return true;
+                    }
+
+                    return sslPolicyErrors == System.Net.Security.SslPolicyErrors.None;
+                };
+
+            try
+            {
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                // Log específico para errores SMTP
+                string errorDetalle = $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}\n" +
+                    $"StatusCode: {ex.StatusCode}\n" +
+                    $"Host: {smtpClient.Host}\n" +
+                    $"Port: {smtpClient.Port}\n" +
+                    $"SSL: {smtpClient.EnableSsl}";
+
+                System.Diagnostics.Debug.WriteLine(errorDetalle);
+                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "QuejaAccion", "alert('No fue enviado el correo electrónico.');", true);
+            }
+            catch (Exception ex)
+            {
+                // Log para cualquier otro tipo de error de ejecución
+                System.Diagnostics.Debug.WriteLine($"Error general al enviar correo: {ex.Message}\n{ex.StackTrace}");
+                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "QuejaAccion", "alert('Ocurrió un error inesperado al enviar el correo.');", true);
+            }
+            finally
+            {
+                // Liberación garantizada de recursos
+                message.Dispose();
+                smtpClient.Dispose();
             }
         }
 
@@ -308,7 +407,7 @@ namespace queja
 
         protected void gvwAcciones_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string vaeda = this.con.verifica_acciones_en_det_acciones(this.lblQueja.Text, this.Server.HtmlDecode(this.gvwAcciones.Rows[Convert.ToInt32(e.RowIndex)].Cells[0].Text)); 
+            string vaeda = this.con.verifica_acciones_en_det_acciones(this.lblQueja.Text, this.Server.HtmlDecode(this.gvwAcciones.Rows[Convert.ToInt32(e.RowIndex)].Cells[0].Text));
             if (vaeda != "")
             {
                 if (vaeda == "X")
@@ -335,7 +434,7 @@ namespace queja
                 else
                     this.lblWarningAcc.Visible = true;
             }
-            
+
         }
 
         protected void Timer1_Tick(object sender, EventArgs e)

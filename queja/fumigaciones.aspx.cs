@@ -358,7 +358,7 @@ namespace queja
                         string str5 = "http://189.206.160.206:81/quejas/accion.aspx?key=" + strArray[0].ToString();
                         string str6 = "http://gabira1:81/quejas/accion.aspx?key=" + strArray[0].ToString();
                         string cuerpo = "<table border='2'><tr><td align='center'><h2>Registro de Queja de Fumigacion</h2></td></tr><tr><td>Registro de queja realizado por: " + this.lblNombre.Text + "</td></tr><tr><td>CEDIS: " + this.lblCedis.Text + "</td></tr><tr><td>Fecha: " + this.txtFecha.Text + "</td></tr><tr><td>Queja: No. " + strArray[0].ToString() + "</td></tr><tr><td>Transportista: " + text6 + "</td></tr><tr><td>Caja: " + text7 + "</td></tr><tr><td>Pedido: " + text4.ToString() + "</td></tr><tr><td>Tipo: " + tipo + "</td></tr>" + str2 + "</table><br /><p><h4>Entrar al sistema de quejas<br />Enlace dentro de instalaciónes de Comercializadora GAB: " + str4 + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + str3 + "</h4></p><p><h4>Registrar accion correctiva<br />Enlace dentro de instalaciónes de Comercializadora GAB: " + str5 + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + str6 + "</h4></p>";
-                        this.enviarcorreo("aescamilla@mrlucky.com.mx", strArray[0].ToString(), cuerpo);
+                        this.enviarcorreo("jgalvan@mrlucky.com.mx", strArray[0].ToString(), cuerpo);
                     }
                     else if (!source.Contains<char>('.'))
                         this.lblParcial.Visible = true;
@@ -368,12 +368,12 @@ namespace queja
             }
         }
 
-        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        public void enviarcorreoLEGACY(string correo, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
             message.To.Add(correo);
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja no.: " + cve_queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = cuerpo;
@@ -392,6 +392,108 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        {
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Destinatario principal
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    throw new Exception("El correo del destinatario está vacío");
+                }
+
+                message.To.Add(correo);
+
+                // Copia oculta
+                message.Bcc.Add("jgalvan@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + cve_queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = cuerpo;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP');",
+                    true
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('No fue enviado el correo electrónico');",
+                    true
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 

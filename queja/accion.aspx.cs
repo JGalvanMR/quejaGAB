@@ -17,7 +17,7 @@ namespace queja
         private conectasql con = new conectasql();
         private DataTable dtDatos = new DataTable();
         private DataTable dtInsec = new DataTable();
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,12 +82,12 @@ namespace queja
             }
         }
 
-        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        public void enviarcorreoLEGACY(string correo, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
             message.To.Add(correo);
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja de fumigacion no.: " + cve_queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = cuerpo;
@@ -106,6 +106,78 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        {
+            // Validación previa para asegurar que exista un destinatario
+            if (string.IsNullOrEmpty(correo))
+            {
+                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('El correo del destinatario está vacío.');", true);
+                return;
+            }
+
+            MailMessage message = new MailMessage();
+            message.To.Add(correo);
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
+            message.Subject = "Queja de fumigacion no.: " + cve_queja;
+            message.SubjectEncoding = Encoding.UTF8;
+            message.Body = cuerpo;
+            message.BodyEncoding = Encoding.UTF8;
+            message.IsBodyHtml = true;
+            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+            SmtpClient smtpClient = new SmtpClient();
+
+            // CORRECCIÓN 1: Usar NetworkCredential con correo completo
+            smtpClient.Credentials = new NetworkCredential("sistemas@mrlucky.com.mx", "sisgab");
+            smtpClient.Port = 587;
+            smtpClient.EnableSsl = true;
+            smtpClient.Host = "mail1.mrlucky.com.mx";
+            smtpClient.Timeout = 30000;
+
+            // CORRECCIÓN 2: Forzar protocolos TLS
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+            // CORRECCIÓN 3: Ignorar/validar certificados SSL (soporte Mono/Ubuntu)
+            ServicePointManager.ServerCertificateValidationCallback =
+                (sender, certificate, chain, sslPolicyErrors) =>
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        $"Certificate: {certificate?.Subject ?? "null"}, Issuer: {certificate?.Issuer ?? "null"}");
+
+                    if (certificate != null && certificate.Issuer.Contains("SSL.com"))
+                    {
+                        return true;
+                    }
+
+                    return sslPolicyErrors == System.Net.Security.SslPolicyErrors.None;
+                };
+
+            try
+            {
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                // Log de depuración
+                string errorDetalle = $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}\n" +
+                    $"StatusCode: {ex.StatusCode}\n" +
+                    $"Host: {smtpClient.Host}\n" +
+                    $"Port: {smtpClient.Port}\n" +
+                    $"SSL: {smtpClient.EnableSsl}";
+
+                System.Diagnostics.Debug.WriteLine(errorDetalle);
+
+                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico.');", true);
+            }
+            finally
+            {
+                // Liberación de recursos
+                message.Dispose();
+                smtpClient.Dispose();
             }
         }
     }

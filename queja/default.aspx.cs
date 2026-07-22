@@ -15,7 +15,7 @@ namespace queja
     public partial class _default : System.Web.UI.Page
     {
         private conectasql con = new conectasql();
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Session.Clear();
@@ -33,7 +33,7 @@ namespace queja
             }//"Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240"
             else
             {
-                
+
                 string str1 = con.validarusuario(txtUsuario.Text, txtPassword.Text.ToUpper());
                 if (str1 == "")
                 {
@@ -88,20 +88,20 @@ namespace queja
             }
         }
 
-        public void enviarcorreo_accion()
+        public void enviarcorreo_accionLEGACY()
         {
             string str = "<table border='2'><tr><td align='center'><h2>Prueba de correo</h2></td></tr></table><p>Entrar al sistema de quejas</p><br />Enlace dentro de instalaciónes de Comercializadora GAB: " + "http://gabira1:81/quejas/" + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + "http://189.206.160.206:81/quejas/";
             MailMessage message = new MailMessage();
-            message.To.Add("dmunoz@mrlucky.com.mx");
-            message.CC.Add("aescamilla@mrlucky.com.mx");
+            message.To.Add("jgalvan@mrlucky.com.mx");
+            message.CC.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Prueba";
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = str;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("aescamilla@mrlucky.com.mx");
+            message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("aescamilla", "atrejo");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -112,6 +112,108 @@ namespace queja
             catch (Exception ex)
             {
                 this.Response.Write("<script>alert('No fue enviado el correo electronico')</script>");
+            }
+        }
+        public void enviarcorreo_accion()
+        {
+            string str =
+                "<table border='2'>" +
+                "<tr><td align='center'><h2>Prueba de correo</h2></td></tr>" +
+                "</table>" +
+                "<p>Entrar al sistema de quejas</p>" +
+                "<br />Enlace dentro de instalaciónes de Comercializadora GAB: " +
+                "http://gabira1:81/quejas/" +
+                "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " +
+                "http://189.206.160.206:81/quejas/";
+
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Destinatario
+                message.To.Add("jgalvan@mrlucky.com.mx");
+
+                // Copia
+                message.CC.Add("jgalvan@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Prueba";
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = str;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                // Usar el correo completo como usuario
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        // Aceptar certificados emitidos por SSL.com
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        // Validar normalmente cualquier otro certificado
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                this.Response.Write(
+                    "<script>alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP')</script>"
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                this.Response.Write(
+                    "<script>alert('No fue enviado el correo electrónico')</script>"
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
     }

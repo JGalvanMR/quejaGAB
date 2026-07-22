@@ -181,9 +181,9 @@ namespace queja
                     }
                 }
             }
-                
-            
-            
+
+
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace queja
             //    //ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('pasa');", true);
             //}
 
-            
+
 
             this.dtPlacas.Clear();
             this.dtPlacas = con.comboplacas_serv(this.txtFechaEmb.Text);
@@ -217,8 +217,8 @@ namespace queja
             this.ddlTransporte.DataTextField = "no_trailer";
             this.ddlTransporte.DataValueField = "pdn_folio";
             this.ddlTransporte.DataBind();
-            
-            
+
+
             this.udpPlacas.Update();
         }
 
@@ -275,8 +275,8 @@ namespace queja
                     this.txtTransportista.Text = ddlTransporte.SelectedValue.ToString() + "_" + ddlTransporte.SelectedItem.ToString();
                     this.upnTrans.Update();
                 }
-                
-                
+
+
             }
         }
 
@@ -527,7 +527,7 @@ namespace queja
                         }
                     }
                 }
-                
+
             }
             else if (this.con.modifica_servicio(this.lblQueja.Text, this.txtComentario.Text.ToUpper(), this.txtPerdidaMn.Text, this.txtPerdidaUsd.Text, this.ddlArea.SelectedValue.ToString()) == "1")
                 this.lblSuccess.Visible = true;
@@ -535,7 +535,7 @@ namespace queja
                 this.lblWarning.Visible = true;
         }
 
-        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        public void enviarcorreoLEGACY(string correo, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
@@ -559,6 +559,109 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo(string correo, string cve_queja, string cuerpo)
+        {
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Validar destinatario
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    throw new Exception("El correo del destinatario está vacío");
+                }
+
+                // Destinatario principal
+                message.To.Add(correo);
+
+                // Copia oculta
+                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + cve_queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = cuerpo;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP');",
+                    true
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('No fue enviado el correo electrónico');",
+                    true
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 
@@ -713,7 +816,7 @@ namespace queja
                 this.ddlTransporte.DataBind();
                 this.udpPlacas.Update();
             }
-            
+
         }
 
         protected void btnPDF_Click(object sender, EventArgs e)
@@ -1018,7 +1121,7 @@ namespace queja
 
                 cb.EndText();
             }
-            
+
 
             doc.Close();
 

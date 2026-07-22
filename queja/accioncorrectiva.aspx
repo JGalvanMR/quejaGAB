@@ -66,22 +66,20 @@
         }
     </script>
     <style type="text/css">
-    body
-        {
+        body {
             background-image: url(imagenes/fondo_7.png);
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             background-color: #464646;
-            
-            }
-    .tamano
-        {
+        }
+
+        .tamano {
             resize: none;
         }
-    .hiddencol
-        {
+
+        .hiddencol {
             display: none;
         }
     </style>
@@ -93,7 +91,9 @@
                 °°<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <center><h3><strong class="">Acciones Correctivas</strong></h3></center>
+                        <center>
+                            <h3><strong class="">Acciones Correctivas</strong></h3>
+                        </center>
                     </div>
                     <div class="panel-body">
                         <div class="panel panel-primary">
@@ -116,8 +116,8 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-8">
-                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a menú" 
-                                                CssClass="btn btn-primary" onclick="btnVolver_Click"/>
+                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a menú"
+                                                CssClass="btn btn-primary" OnClick="btnVolver_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -126,8 +126,7 @@
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                                    Datos producto
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Datos producto
                                                 </a>
                                             </h4>
                                         </div>
@@ -136,33 +135,33 @@
                                                 <div class="form-group">
                                                     <asp:UpdatePanel ID="uplDetalle" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:GridView ID="grvDetalle" runat="server" AutoGenerateColumns="false" 
-                                                                Width="100%" CssClass="table table-bordered table-hover" 
-                                                                EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" >
+                                                            <asp:GridView ID="grvDetalle" runat="server" AutoGenerateColumns="false"
+                                                                Width="100%" CssClass="table table-bordered table-hover"
+                                                                EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center">
                                                                 <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                                 <Columns>
-                                                                    <asp:BoundField HeaderText="ProdCve" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="id_producto"/>
-                                                                    <asp:BoundField HeaderText="Producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="nom_producto"/>
-                                                                    <asp:BoundField HeaderText="Ord Prod" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_ordprod"/>
-                                                                    <asp:BoundField HeaderText="Tarima" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_tarima"/>
-                                                                    <asp:BoundField HeaderText="Lote" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_lote"/>
-                                                                    <asp:BoundField HeaderText="Fecha Cad" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="fecha_cad"/>
-                                                                    <asp:BoundField HeaderText="CveProv" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="prov_clave"/>
-                                                                    <asp:BoundField HeaderText="Proveedor" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="prov_nombre"/>
-                                                                    <asp:BoundField HeaderText="CveRch" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="rch_clave"/>
-                                                                    <asp:BoundField HeaderText="Rancho" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="rch_nombre"/>
-                                                                    <asp:BoundField HeaderText="CveTbl" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="tbl_clave"/>
-                                                                    <asp:BoundField HeaderText="Tabla" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="tbl_nombre"/>
-                                                                    <asp:BoundField HeaderText="Responsable" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_responsable"/>
-                                                                    <asp:BoundField HeaderText="Area" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_area"/>
-                                                                    <asp:BoundField HeaderText="Recibido" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_cantreci"/>
-                                                                    <asp:BoundField HeaderText="Rechazado" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_cantrecha"/>
-                                                                    <asp:BoundField HeaderText="Unidad" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_unidad"/>
+                                                                    <asp:BoundField HeaderText="ProdCve" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="id_producto" />
+                                                                    <asp:BoundField HeaderText="Producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="nom_producto" />
+                                                                    <asp:BoundField HeaderText="Ord Prod" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_ordprod" />
+                                                                    <asp:BoundField HeaderText="Tarima" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_tarima" />
+                                                                    <asp:BoundField HeaderText="Lote" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_lote" />
+                                                                    <asp:BoundField HeaderText="Fecha Cad" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="fecha_cad" />
+                                                                    <asp:BoundField HeaderText="CveProv" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="prov_clave" />
+                                                                    <asp:BoundField HeaderText="Proveedor" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="prov_nombre" />
+                                                                    <asp:BoundField HeaderText="CveRch" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="rch_clave" />
+                                                                    <asp:BoundField HeaderText="Rancho" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="rch_nombre" />
+                                                                    <asp:BoundField HeaderText="CveTbl" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="tbl_clave" />
+                                                                    <asp:BoundField HeaderText="Tabla" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="tbl_nombre" />
+                                                                    <asp:BoundField HeaderText="Responsable" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_responsable" />
+                                                                    <asp:BoundField HeaderText="Area" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_area" />
+                                                                    <asp:BoundField HeaderText="Recibido" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_cantreci" />
+                                                                    <asp:BoundField HeaderText="Rechazado" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="qud_cantrecha" />
+                                                                    <asp:BoundField HeaderText="Unidad" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_unidad" />
                                                                 </Columns>
                                                             </asp:GridView>
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
-                                                </div>            
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +169,7 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txtProducto" MaxLength="300" runat="server" 
+                                            <asp:TextBox ID="txtProducto" MaxLength="300" runat="server"
                                                 CssClass="form-control tamano" Rows="5" Style="text-transform: uppercase" ReadOnly="true" Visible="false"></asp:TextBox>
                                         </div>
                                     </div>
@@ -179,7 +178,7 @@
                                     <div class="form-group">
                                         <label for="txtProblema" class="col-sm-2 control-label">Problema</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txtProblema" MaxLength="300" runat="server" 
+                                            <asp:TextBox ID="txtProblema" MaxLength="300" runat="server"
                                                 CssClass="form-control tamano" Rows="5" Style="text-transform: uppercase" ReadOnly="true"></asp:TextBox>
                                         </div>
                                     </div>
@@ -190,17 +189,17 @@
                                         <div class="form-group">
                                             <asp:UpdatePanel ID="upnResponsables" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwResponsable" runat="server" AutoGenerateColumns="false" 
-                                                        Width="95%" CssClass="table table-striped table-bordered table-hover" 
-                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" 
-                                                        onrowcommand="gvwResponsable_RowCommand" >
+                                                    <asp:GridView ID="gvwResponsable" runat="server" AutoGenerateColumns="false"
+                                                        Width="95%" CssClass="table table-striped table-bordered table-hover"
+                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true"
+                                                        OnRowCommand="gvwResponsable_RowCommand">
                                                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Folio" DataField="acc_folio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol"/>
-                                                            <asp:BoundField HeaderText="Cve. Resp." DataField="acc_responsable"/>
-                                                            <asp:BoundField HeaderText="Nombre" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="resp_nombre"/>
-                                                            <asp:BoundField HeaderText="Causa" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_causa"/>
-                                                            <asp:ButtonField HeaderText="Acciones" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="btn btn-primary visible-xs visible-md visible-lg visible-sm" ItemStyle-ForeColor="White" Text="Acciones" CommandName="muestradatos"/> 
+                                                            <asp:BoundField HeaderText="Folio" DataField="acc_folio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" />
+                                                            <asp:BoundField HeaderText="Cve. Resp." DataField="acc_responsable" />
+                                                            <asp:BoundField HeaderText="Nombre" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="resp_nombre" />
+                                                            <asp:BoundField HeaderText="Causa" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_causa" />
+                                                            <asp:ButtonField HeaderText="Acciones" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="btn btn-primary visible-xs visible-md visible-lg visible-sm" ItemStyle-ForeColor="White" Text="Acciones" CommandName="muestradatos" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </ContentTemplate>
@@ -230,7 +229,7 @@
                                             <div class="form-group">
                                                 <label for="txtCausa" class="col-sm-2 control-label">Causa</label>
                                                 <div class="col-sm-9">
-                                                    <asp:TextBox ID="txtCausa" MaxLength="300" TextMode="MultiLine" runat="server" 
+                                                    <asp:TextBox ID="txtCausa" MaxLength="300" TextMode="MultiLine" runat="server"
                                                         CssClass="form-control tamano" Rows="5" Style="text-transform: uppercase" ReadOnly="true"></asp:TextBox>
                                                 </div>
                                             </div>
@@ -243,10 +242,10 @@
                                             <div class="form-group">
                                                 <label for="txtAccion" class="col-sm-2 control-label">Acción</label>
                                                 <div class="col-sm-9">
-                                                    <asp:TextBox ID="txtAccion" MaxLength="150" TextMode="MultiLine" runat="server" 
-                                                        CssClass="form-control tamano" Rows="5" Style="text-transform: uppercase" ></asp:TextBox>
+                                                    <asp:TextBox ID="txtAccion" MaxLength="150" TextMode="MultiLine" runat="server"
+                                                        CssClass="form-control tamano" Rows="5" Style="text-transform: uppercase"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfvCausa" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtAccion" ForeColor="Red" ValidationGroup="grupo1"></asp:RequiredFieldValidator>
-                                                    <asp:RegularExpressionValidator runat="server" ID="valInput" ControlToValidate="txtAccion" ValidationExpression="^[\s\S]{0,150}$" ErrorMessage="Máximo 150 caracteres" Display="Dynamic" ForeColor="Red" ValidationGroup="grupo1"></asp:RegularExpressionValidator>   
+                                                    <asp:RegularExpressionValidator runat="server" ID="valInput" ControlToValidate="txtAccion" ValidationExpression="^[\s\S]{0,150}$" ErrorMessage="Máximo 150 caracteres" Display="Dynamic" ForeColor="Red" ValidationGroup="grupo1"></asp:RegularExpressionValidator>
                                                 </div>
                                             </div>
                                         </div>
@@ -257,7 +256,7 @@
                                     <div class="form-group">
                                         <label for="txtFechaEntrega" class="col-sm-2 control-label">Fecha entrega</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txtFechaEntrega" MaxLength="10" runat="server" data-provide="datepicker" 
+                                            <asp:TextBox ID="txtFechaEntrega" MaxLength="10" runat="server" data-provide="datepicker"
                                                 CssClass="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvFechaEntrega" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtAccion" ForeColor="Red" ValidationGroup="grupo1"></asp:RequiredFieldValidator>
                                             <%--onkeydown = "return (event.keyCode!=13)"<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato de fecha invalida. (ej.: dd/mm/yyyy)" 
@@ -266,19 +265,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                    
-                                
+
+
                                 <div class="row">
                                     <div class="form-group">
                                         <center>
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                 <asp:UpdatePanel ID="upnAdd" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:Button runat="server" ID="btnAdd" Text="Añadir" CssClass="btn btn-primary" 
-                                                            ValidationGroup="grupo1" onclick="btnAdd_Click"   />
+                                                        <asp:Button runat="server" ID="btnAdd" Text="Añadir" CssClass="btn btn-primary"
+                                                            ValidationGroup="grupo1" OnClick="btnAdd_Click" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
-                                                
+
                                             </div>
                                         </center>
                                     </div>
@@ -288,15 +287,15 @@
                                         <div class="form-group">
                                             <asp:UpdatePanel ID="uplAgregar" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwAgregar" runat="server" AutoGenerateColumns="false" 
-                                                        Width="95%" CssClass="table table-striped table-bordered table-hover" 
-                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" 
-                                                        onrowcommand="gvwAgregar_RowCommand" EmptyDataRowStyle-HorizontalAlign="Center" >
+                                                    <asp:GridView ID="gvwAgregar" runat="server" AutoGenerateColumns="false"
+                                                        Width="95%" CssClass="table table-striped table-bordered table-hover"
+                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true"
+                                                        OnRowCommand="gvwAgregar_RowCommand" EmptyDataRowStyle-HorizontalAlign="Center">
                                                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Acción" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="accion"/>
-                                                            <asp:BoundField HeaderText="Fecha" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="fecha"/>
-                                                            <asp:ButtonField HeaderText="Quitar" Text="Quitar" ItemStyle-CssClass="form-control btn btn-primary" ItemStyle-ForeColor="White" CommandName="quitar"/>
+                                                            <asp:BoundField HeaderText="Acción" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="accion" />
+                                                            <asp:BoundField HeaderText="Fecha" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="fecha" />
+                                                            <asp:ButtonField HeaderText="Quitar" Text="Quitar" ItemStyle-CssClass="form-control btn btn-primary" ItemStyle-ForeColor="White" CommandName="quitar" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </ContentTemplate>
@@ -313,16 +312,17 @@
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                 <asp:UpdatePanel ID="upnGuardar" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:Button runat="server" ID="btnGuardar" Text="Guardar" 
-                                                            CssClass="btn btn-primary" 
-                                                            onclick="btnGuardar_Click" Enabled="False"  />
+                                                        <asp:Button runat="server" ID="btnGuardar" Text="Guardar"
+                                                            CssClass="btn btn-primary"
+                                                            OnClick="btnGuardar_Click" Enabled="False" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
-                                                <br /><br />
+                                                <br />
+                                                <br />
                                                 <asp:UpdatePanel ID="upnCancelar" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
                                                         <asp:Button runat="server" ID="btnCancelar" Text="Limpiar"
-                                                        CssClass="btn btn-primary" Visible="False" onclick="btnCancelar_Click"  />
+                                                            CssClass="btn btn-primary" Visible="False" OnClick="btnCancelar_Click" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
@@ -335,16 +335,16 @@
                                             <div class="col-sm-12">
                                                 <asp:UpdatePanel ID="upnMensajes" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:Label ID="lblSuccess" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="Acción guardada y correo(s) enviado(s)" runat="server" Visible = "false" />
-                                                        <asp:Label ID="lblWarning" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="Acción no guardada, intentelo nuevamente" 
-                                                            runat="server" Visible = "False"/>
-                                                        <asp:Label ID="lblSuccessAcc" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="Accion correctiva eliminada" runat="server" Visible = "false" />
-                                                        <asp:Label ID="lblWarningAcc" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="Acción correctiva no eliminada, intentelo nuevamente" 
-                                                            runat="server" Visible = "False"/>
+                                                        <asp:Label ID="lblSuccess" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="Acción guardada y correo(s) enviado(s)" runat="server" Visible="false" />
+                                                        <asp:Label ID="lblWarning" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="Acción no guardada, intentelo nuevamente"
+                                                            runat="server" Visible="False" />
+                                                        <asp:Label ID="lblSuccessAcc" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="Accion correctiva eliminada" runat="server" Visible="false" />
+                                                        <asp:Label ID="lblWarningAcc" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="Acción correctiva no eliminada, intentelo nuevamente"
+                                                            runat="server" Visible="False" />
                                                     </ContentTemplate>
                                                     <Triggers>
                                                         <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
@@ -353,7 +353,7 @@
                                                 <asp:UpdateProgress ID="UpdateProgress2" runat="server">
                                                     <ProgressTemplate>
                                                         <div class="alert alert-info">
-                                                          <strong>PROCESANDO...</strong>Se esta registrando la informaci&oacute;n
+                                                            <strong>PROCESANDO...</strong>Se esta registrando la informaci&oacute;n
                                                         </div>
                                                     </ProgressTemplate>
                                                 </asp:UpdateProgress>
@@ -377,22 +377,22 @@
                                         <div class="form-group">
                                             <asp:UpdatePanel ID="upnAcciones" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:GridView ID="gvwAcciones" runat="server" AutoGenerateColumns="false" 
-                                                        Width="95%" CssClass="table table-striped table-bordered table-hover" 
-                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" 
-                                                        EmptyDataRowStyle-HorizontalAlign="Center" 
-                                                        onrowcommand="gvwAcciones_RowCommand" 
-                                                        onrowdatabound="gvwAcciones_RowDataBound" 
-                                                        onrowdeleting="gvwAcciones_RowDeleting" >
+                                                    <asp:GridView ID="gvwAcciones" runat="server" AutoGenerateColumns="false"
+                                                        Width="95%" CssClass="table table-striped table-bordered table-hover"
+                                                        EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true"
+                                                        EmptyDataRowStyle-HorizontalAlign="Center"
+                                                        OnRowCommand="gvwAcciones_RowCommand"
+                                                        OnRowDataBound="gvwAcciones_RowDataBound"
+                                                        OnRowDeleting="gvwAcciones_RowDeleting">
                                                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                         <Columns>
                                                             <asp:BoundField HeaderText="Clave" DataField="acc_clave" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" />
-                                                            <asp:BoundField HeaderText="Folio" DataField="acc_folio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol"/>
-                                                            <asp:BoundField HeaderText="Resp." HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="acc_responsable"/>
-                                                            <asp:BoundField HeaderText="Accion" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_accion"/>
-                                                            <asp:BoundField HeaderText="Finaliza" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_fechatermino"/>
-                                                            <asp:ButtonField HeaderText="Editar" Text="Editar" ItemStyle-CssClass="form-control btn btn-primary" ItemStyle-ForeColor="White" CommandName="editar"/>
-                                                            <asp:CommandField ShowDeleteButton="true" HeaderText="Borrar" ButtonType="Button" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ControlStyle-CssClass="btn btn-primary visible-xs visible-md visible-lg visible-sm" ItemStyle-ForeColor="White"/>
+                                                            <asp:BoundField HeaderText="Folio" DataField="acc_folio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" />
+                                                            <asp:BoundField HeaderText="Resp." HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-xs visible-md visible-lg visible-sm" DataField="acc_responsable" />
+                                                            <asp:BoundField HeaderText="Accion" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_accion" />
+                                                            <asp:BoundField HeaderText="Finaliza" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ItemStyle-CssClass="hidden-xs visible-md visible-lg hidden-sm" DataField="acc_fechatermino" />
+                                                            <asp:ButtonField HeaderText="Editar" Text="Editar" ItemStyle-CssClass="form-control btn btn-primary" ItemStyle-ForeColor="White" CommandName="editar" />
+                                                            <asp:CommandField ShowDeleteButton="true" HeaderText="Borrar" ButtonType="Button" HeaderStyle-CssClass="visible-lg visible-md hidden-sm hidden-xs" ControlStyle-CssClass="btn btn-primary visible-xs visible-md visible-lg visible-sm" ItemStyle-ForeColor="White" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </ContentTemplate>

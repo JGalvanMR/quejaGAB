@@ -150,7 +150,7 @@ namespace queja
             //        this.txtArea.Text = "";
             //        this.upnDatos.Update();
             //    }
-                
+
             //}
         }
 
@@ -209,9 +209,9 @@ namespace queja
             }
             else
             {
-                
 
-                string text1 = this.txtFolio.Text; 
+
+                string text1 = this.txtFolio.Text;
                 string text2 = this.txtSemana.Text; //mstr que_semana
                 string text3 = this.txtFecha.Text; //mstr que_fecha
                 string text4 = this.txtMes.Text; //mstr que_mes
@@ -238,7 +238,7 @@ namespace queja
                 string text18 = this.txt_lote.Text; //det
                 string text19 = this.txt_nom.Text; //det
                 string text20 = this.txt_fechacad.Text; //det
-                string causa = ""; 
+                string causa = "";
                 string selectedValue4 = this.ddlTipo.SelectedValue; //mstr 29
                 string area_queja = ""; //mstr
                 string text21 = this.txtTipo.Text; //det
@@ -248,7 +248,7 @@ namespace queja
                 string text25 = this.txtObservaciones.Text.Replace("'", ""); //mstr
                 string text26 = this.lblClave.Text;
                 string text27 = this.txtPedido.Text; //mstr
-                string text28 = this.lblNombre.Text; 
+                string text28 = this.lblNombre.Text;
                 string text29 = this.txtCosto.Text; //mstr 40
                 string text30 = this.chkMerma.Checked ? "1" : "0";
                 string text31 = this.chkConsumidor.Checked ? "1" : "0";
@@ -266,16 +266,16 @@ namespace queja
                 {
                     if (selectedValue3 == "DOLARES")//Validacion de la moneda por si se seleccionó otro
                     {
-                        ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No coincide la moneda en dolares con el tipo Nacional de la queja, favor de verificar');", true); 
+                        ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No coincide la moneda en dolares con el tipo Nacional de la queja, favor de verificar');", true);
                         return;
                     }
-                       
+
                 }
                 else //Validacion para saber si el tipo es Nacional
                 {
                     if (selectedValue3 == "PESOS")//Validacion de la moneda por si se seleccionó otro
                     {
-                        ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No coincide la moneda en pesos con el tipo Exportacion de la queja, favor de verificar');", true); 
+                        ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No coincide la moneda en pesos con el tipo Exportacion de la queja, favor de verificar');", true);
                         return;
                     }
                 }
@@ -292,7 +292,7 @@ namespace queja
                     {
                         //con.correo_error("validacion de pedido");
                         ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('El pedido ingresado no existe, corrigir e intente nuevamente');", true);
-                        
+
                     }
                     else
                     {
@@ -435,7 +435,7 @@ namespace queja
                         }
                     }
                 }
-                
+
             }
         }
 
@@ -452,7 +452,7 @@ namespace queja
             this.UpdatePanel1.Update();
         }
 
-        public void enviarcorreo(string correo, string responsable, string cve_queja, string cuerpo)
+        public void enviarcorreoLEGACY(string correo, string responsable, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
@@ -476,6 +476,109 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo(string correo, string responsable, string cve_queja, string cuerpo)
+        {
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Validar destinatario
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    throw new Exception("El correo del destinatario está vacío");
+                }
+
+                // Destinatario principal
+                message.To.Add(correo);
+
+                // Copia oculta
+                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + cve_queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = cuerpo;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP');",
+                    true
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('No fue enviado el correo electrónico');",
+                    true
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 
@@ -561,6 +664,6 @@ namespace queja
             this.upnReci.Update();
         }
 
-        
+
     }
 }

@@ -129,8 +129,8 @@ namespace queja
                 uplFacturas.Update();
             }
 
-            
-            
+
+
         }
 
         protected void btnBuscaOrden_Click(object sender, EventArgs e)
@@ -501,7 +501,7 @@ namespace queja
             {
                 this.ddlMoneda.SelectedValue = "PESOS";
             }
-            
+
             if (this.ddlTipo.SelectedValue == "E")
             {
                 this.ddlMoneda.SelectedValue = "DOLARES";
@@ -564,7 +564,7 @@ namespace queja
             }
             else
             {
-                
+
 
                 this.enviarcorreo("aescamilla@mrlucky.com.mx", lblNombre.Text, txtFolio.Text, "El usuario oprimio el boton guardar");
 
@@ -639,7 +639,7 @@ namespace queja
                 }
                 else
                 {
-                    string cve_queja = this.con.insert_queja_exportacion(text1, text2, text3, text4, selectedValue1, text5, text6, upper, text7, text8, text9, selectedValue3, shortDateString, "", 
+                    string cve_queja = this.con.insert_queja_exportacion(text1, text2, text3, text4, selectedValue1, text5, text6, upper, text7, text8, text9, selectedValue3, shortDateString, "",
                         selectedValue2, text10, text12, text13, text11, text14, textFact, textSufijo, textFechaEmb, textSemEmb);
                     SqlConnection connection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
                     connection.Open();
@@ -727,7 +727,7 @@ namespace queja
                                 valor = con.agrega_detalle_costo_factura(cve_queja, val1, Convert.ToDecimal(val2).ToString());
                         }
                     }
-                    
+
                     string str8;
                     try
                     {
@@ -755,7 +755,7 @@ namespace queja
                     connection.Close();
                     string cuerpo1 = str10 + "</table>";
 
-                    
+
 
 
                     if (!flag)
@@ -802,7 +802,7 @@ namespace queja
             }
         }
 
-        public void enviarcorreo(string correo, string responsable, string cve_queja, string cuerpo)
+        public void enviarcorreoLEGACY(string correo, string responsable, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
@@ -826,6 +826,109 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo(string correo, string responsable, string cve_queja, string cuerpo)
+        {
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Validar destinatario
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    throw new Exception("El correo del destinatario está vacío");
+                }
+
+                // Destinatario principal
+                message.To.Add(correo);
+
+                // Copia oculta
+                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + cve_queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = cuerpo;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP');",
+                    true
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('No fue enviado el correo electrónico');",
+                    true
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 
@@ -868,11 +971,11 @@ namespace queja
                 //}
                 //else
                 //{
-                    if (control.Text == "0" || control.Text == "")
-                        --count2;
+                if (control.Text == "0" || control.Text == "")
+                    --count2;
                 //}
-                    
-                
+
+
             }
             if (count2 < count1)
             {
@@ -964,7 +1067,7 @@ namespace queja
             this.uplDetalle.Update();
         }
 
-        public void enviarcorreo_error(string correo, string cve_queja, string cuerpo)
+        public void enviarcorreo_errorLEGACY(string correo, string cve_queja, string cuerpo)
         {
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
@@ -987,6 +1090,106 @@ namespace queja
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "Queja", "alert('No fue enviado el correo electrónico');", true);
+            }
+        }
+        public void enviarcorreo_error(string correo, string cve_queja, string cuerpo)
+        {
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Validar destinatario
+                if (string.IsNullOrWhiteSpace(correo))
+                {
+                    throw new Exception("El correo del destinatario está vacío");
+                }
+
+                // Destinatario principal
+                message.To.Add(correo);
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + cve_queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = cuerpo;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP');",
+                    true
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                ScriptManager.RegisterClientScriptBlock(
+                    (Page)this,
+                    typeof(Page),
+                    "Queja",
+                    "alert('No fue enviado el correo electrónico');",
+                    true
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 

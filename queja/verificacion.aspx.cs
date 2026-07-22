@@ -302,7 +302,7 @@ namespace queja
         {
         }
 
-        protected void correo(
+        protected void correoLEGACY(
           string queja,
           string producto,
           string problema,
@@ -336,6 +336,144 @@ namespace queja
             catch (Exception ex)
             {
                 this.Response.Write("<script>alert('No fue enviado el correo electronico')</script>");
+            }
+        }
+        protected void correo(
+    string queja,
+    string producto,
+    string problema,
+    string accion,
+    string responsable,
+    string cumplimiento,
+    string comentario,
+    string fecha)
+        {
+            string str1 = "http://189.206.160.206:81/quejas/";
+            string str2 = "http://gabira1:81/quejas/";
+
+            string str3 =
+                "<table border='2'>" +
+                "<tr>" +
+                "<td align='center'>" +
+                "<h2>Verificaci&oacute;n para Acci&oacute;n Correctiva</h2>" +
+                "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Producto: " + this.txtProducto.Text + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Queja no.: " + this.lblQueja.Text + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Problema: " + problema + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Acci&oacute;n: " + accion + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Responsable: " + responsable + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Cumplimiento: " + cumplimiento + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Comentario: " + comentario + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Fecha de verificaci&oacute;n: " + fecha + "</td>" +
+                "</tr>" +
+                "</table>" +
+                "<p>Entrar al sistema de quejas</p>" +
+                "<br />Enlace dentro de instalaciónes de Comercializadora GAB: " +
+                str2 +
+                "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " +
+                str1;
+
+            MailMessage message = new MailMessage();
+
+            try
+            {
+                // Destinatario principal
+                message.To.Add("msamano@mrlucky.com.mx");
+
+                // Copia oculta
+                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+
+                // Configuración del correo
+                message.Subject = "Queja no.: " + queja;
+                message.SubjectEncoding = Encoding.UTF8;
+
+                message.Body = str3;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+
+                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+
+                // Configuración SMTP
+                SmtpClient smtpClient = new SmtpClient();
+
+                smtpClient.Credentials = new NetworkCredential(
+                    "sistemas@mrlucky.com.mx",
+                    "sisgab"
+                );
+
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Host = "mail1.mrlucky.com.mx";
+                smtpClient.Timeout = 30000;
+
+                // Forzar TLS
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
+
+                // Validación del certificado
+                ServicePointManager.ServerCertificateValidationCallback =
+                    (sender, certificate, chain, sslPolicyErrors) =>
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            $"Certificate: {certificate?.Subject ?? "null"}, " +
+                            $"Issuer: {certificate?.Issuer ?? "null"}"
+                        );
+
+                        if (certificate != null &&
+                            certificate.Issuer != null &&
+                            certificate.Issuer.Contains("SSL.com"))
+                        {
+                            return true;
+                        }
+
+                        return sslPolicyErrors ==
+                               System.Net.Security.SslPolicyErrors.None;
+                    };
+
+                // Enviar correo
+                smtpClient.Send(message);
+            }
+            catch (SmtpException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error SMTP:\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
+                );
+
+                this.Response.Write(
+                    "<script>alert('Error al enviar el correo electrónico: " +
+                    "Error de conexión con el servidor SMTP')</script>"
+                );
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Error al enviar correo: {ex.Message}"
+                );
+
+                this.Response.Write(
+                    "<script>alert('No fue enviado el correo electrónico')</script>"
+                );
+            }
+            finally
+            {
+                message.Dispose();
             }
         }
 
