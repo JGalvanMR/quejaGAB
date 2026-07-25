@@ -16,18 +16,18 @@
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
 
-                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>; 
+                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>;
 
-                iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
+        iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
             }
 
-        function TimeoutPage(){
+        function TimeoutPage() {
             var str = getAbsolutePath();
-            if(str.indexOf("localhost") != -1)
+            if (str.indexOf("localhost") != -1)
                 location.href = str + "default.aspx";
-            if(str.indexOf("gabira1") != -1)
+            if (str.indexOf("gabira1") != -1)
                 location.href = str;
-            if(str.indexOf("189.206.160.206") != -1)
+            if (str.indexOf("189.206.160.206") != -1)
                 location.href = str;
         }
 
@@ -35,7 +35,7 @@
             var loc = window.location;
             var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
             return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-        }*/
+        }* /
 
         function getAbsolutePath() {
             var loc = window.location;
@@ -44,108 +44,112 @@
         }
 
         function analisis() {
-            /*var str = getAbsolutePath();
+            var str = getAbsolutePath();
             //alert(str);
             if (str.indexOf("gabira1") != -1) {
-                lan(); 
+                lan();
             }
             if (str.indexOf("189.206.160.206") != -1) {
                 web();
-            }*/
-            window.open("http://www.lucky.web:82/rechazos/quejas_dashboard.html", "_blank"); 
+            }
+            //window.open("http://www.lucky.web:82/rechazos/quejas_dashboard.html", "_blank");
 
         }
 
         function lan() {
             //window.location.href = "http://gabira1:81/estadisticas/default.htm";
-            window.open("http://gabira1:81/estadisticas/default.htm", "_blank");
+            //window.open("http://gabira1:81/estadisticas/default.htm", "_blank");
+            window.open("http://192.168.123.244:82/rechazos/quejas_dashboard.html", "_blank");
         }
 
         function web() {
-            window.open("http://189.206.160.206:81/estadisticas/default.htm", "_blank");
+            //window.open("http://189.206.160.206:81/estadisticas/default.htm", "_blank");
             //window.location.href = "http://189.206.160.206:81/estadisticas/default.htm";
+            window.open("http://189.206.160.206:82/rechazos/quejas_dashboard.html", "_blank");
         }
     </script>
     <style type="text/css">
-    body
-    {
-        background-image: url(imagenes/fondo_7.png);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-color: #464646;
+        body {
+            background-image: url(imagenes/fondo_7.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #464646;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <center><h1><strong class="">Quejas Clientes</strong></h1></center>
-                </div>
-                <form runat="server" id="frmLogin" class="form-horizontal">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-                    <br />
-                    <div class="form-group">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
                         <center>
-                            <img src="imagenes/Logo grupo U.png" height="300" width="250" alt="imagen"/>
+                            <h1><strong class="">Quejas Clientes</strong></h1>
                         </center>
                     </div>
-                    <div class="form-group form-group-lg">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" Style="text-transform: uppercase" placeholder="USUARIO"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtUsuario" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <form runat="server" id="frmLogin" class="form-horizontal">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+                        <br />
+                        <div class="form-group">
+                            <center>
+                                <img src="imagenes/Logo grupo U.png" height="300" width="250" alt="imagen" />
+                            </center>
                         </div>
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" Style="text-transform: uppercase" placeholder="CONTRASEÑA"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <asp:TextBox runat="server" ID="txtUsuario" CssClass="form-control" Style="text-transform: uppercase" placeholder="USUARIO"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvUsuario" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtUsuario" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <asp:DropDownList ID="ddlTipo" runat="server" CssClass="form-control">
-                                <asp:ListItem Value="0" Selected="True">PRODUCTO</asp:ListItem>
-                                <asp:ListItem Value="1">SERVICIO</asp:ListItem>
-                                <asp:ListItem Value="2">FUMIGACION</asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvTipo" runat="server" ErrorMessage="Debe elegir una opción" ControlToValidate="ddlTipo" ForeColor="Red" InitialValue="" ValidationGroup="grupo1">
-                            </asp:RequiredFieldValidator>
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" Style="text-transform: uppercase" placeholder="CONTRASEÑA"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Campo requerido" ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <div class="col-sm-offset-5 col-sm-10 col-xs-offset-4 col-xs-10">
-                          <asp:Button runat="server" ID="btnEntrar" Text="Entrar" 
-                                CssClass="btn btn-primary btn-lg" ValidationGroup="grupo1" onclick="btnEntrar_Click" />
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <asp:DropDownList ID="ddlTipo" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="0" Selected="True">PRODUCTO</asp:ListItem>
+                                    <asp:ListItem Value="1">SERVICIO</asp:ListItem>
+                                    <asp:ListItem Value="2">FUMIGACION</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="rfvTipo" runat="server" ErrorMessage="Debe elegir una opción" ControlToValidate="ddlTipo" ForeColor="Red" InitialValue="" ValidationGroup="grupo1">
+                                </asp:RequiredFieldValidator>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group form-group-lg">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-                                <ContentTemplate>
-                                    <asp:Label ID="lblDanger" CssClass="alert alert-danger col-sm-12" role="alert" Font-Bold="True" 
-                                        Text="Usuario no válido, intentelo nuevamente" 
-                                        runat="server" Visible = "False"/>
-                                </ContentTemplate>
-                                <Triggers>
-                                    <asp:AsyncPostBackTrigger ControlID="btnEntrar" EventName="Click" />
-                                </Triggers>
-                            </asp:UpdatePanel>
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-offset-5 col-sm-10 col-xs-offset-4 col-xs-10">
+                                <asp:Button runat="server" ID="btnEntrar" Text="Entrar"
+                                    CssClass="btn btn-primary btn-lg" ValidationGroup="grupo1" OnClick="btnEntrar_Click" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-10">
-                            <a onclick="analisis()" style="cursor:pointer"><img width="100"  src="imagenes/Analytics-128.png" class="img-rounded img-responsive" alt="Responsive image" /></a>
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:Label ID="lblDanger" CssClass="alert alert-danger col-sm-12" role="alert" Font-Bold="True"
+                                            Text="Usuario no válido, intentelo nuevamente"
+                                            runat="server" Visible="False" />
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnEntrar" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="col-md-2 col-md-offset-10">
+                                <a onclick="analisis()" style="cursor: pointer">
+                                    <img width="100" src="imagenes/Analytics-128.png" class="img-rounded img-responsive" alt="Responsive image" /></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

@@ -8,34 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/bootstrap.css" rel="Stylesheet" type="text/css" />
     <link href="css/jasny-bootstrap.css" rel="Stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <script src="Scripts/jquery-3.1.0.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.js" type="text/javascript"></script>
     <script src="Scripts/jasny-bootstrap.js" type="text/javascript"></script>
+
     <script type="text/javascript">
-    $(function () {
-        $("#dialog").dialog();
-    });
-    var iddleTimeout = null;
+        var iddleTimeout = null;
+        // ASP.NET Ajax automatically runs pageLoad() on page load AND after UpdatePanel postbacks
         function pageLoad() {
+            // Initialize jQuery UI Dialog safely
+            if ($("#dialog").length > 0) {
+                $("#dialog").dialog();
+            }
+
+            // Session Timeout Logic
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
 
-                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>; 
+            var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>;
 
-                iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
-            }
-
-        function TimeoutPage(){
+            iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
+        }
+        function TimeoutPage() {
             var str = getAbsolutePath();
-            if(str.indexOf("localhost") != -1)
+            if (str.indexOf("localhost") != -1)
                 location.href = str + "default.aspx";
-            if(str.indexOf("gabira1") != -1)
+            if (str.indexOf("gabira1") != -1)
                 location.href = str;
-            if(str.indexOf("189.206.160.206") != -1)
+            if (str.indexOf("189.206.160.206") != -1)
                 location.href = str;
         }
-
         function getAbsolutePath() {
             var loc = window.location;
             var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -43,16 +47,14 @@
         }
     </script>
     <style type="text/css">
-    body
-        {
+        body {
             background-image: url(imagenes/fondo_7.png);
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             background-color: #464646;
-            
-            }
+        }
     </style>
 </head>
 <body>
@@ -63,9 +65,11 @@
                 </asp:ScriptManager>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <center><h3><strong class="">Detalles Queja</strong></h3></center>
+                        <center>
+                            <h3><strong class="">Detalles Queja</strong></h3>
+                        </center>
                     </div>
-                    <div  class="panel-body">
+                    <div class="panel-body">
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="col-sm-12">
@@ -79,8 +83,8 @@
                                 </div>
                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                                     <div class="page-header">
-                                        <h1>
-                                            Queja: <asp:Label ID="lblQueja" runat="server" Text=""></asp:Label>
+                                        <h1>Queja:
+                                            <asp:Label ID="lblQueja" runat="server" Text=""></asp:Label>
                                             <small>
                                                 <asp:Label ID="lblCliente" runat="server" Text=""></asp:Label>
                                             </small>
@@ -90,8 +94,8 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-sm-offset-0 col-sm-8">
-                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas" 
-                                                CssClass="btn btn-primary" onclick="btnVolver_Click"  />
+                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas"
+                                                CssClass="btn btn-primary" OnClick="btnVolver_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -102,8 +106,8 @@
                                             <asp:UpdatePanel ID="upnMensaje" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <asp:Label ID="lblErrorArea" CssClass="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12" Font-Bold="True" role="alert"
-                                                        Text="La queja no tiene asignada un área, favor de editar la queja" 
-                                                        runat="server" Visible = "False"/>
+                                                        Text="La queja no tiene asignada un área, favor de editar la queja"
+                                                        runat="server" Visible="False" />
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
@@ -115,8 +119,8 @@
                                             <asp:UpdatePanel ID="upnNotaCredito2" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <asp:Label ID="lblNotaCredito" CssClass="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12" Font-Bold="True" role="alert"
-                                                        Text="La queja ya ha sido asignada para nota de credito, no se puede reasignar" 
-                                                        runat="server" Visible = "False"/>
+                                                        Text="La queja ya ha sido asignada para nota de credito, no se puede reasignar"
+                                                        runat="server" Visible="False" />
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
@@ -141,8 +145,8 @@
                                             <asp:UpdatePanel ID="upnNotaMp" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <asp:Label ID="lblNotaMp" CssClass="alert alert-warning col-lg-12 col-md-12 col-sm-12 col-xs-12" Font-Bold="True" role="alert"
-                                                        Text="Se localizaron productos con más de una materia prima como componente, favor de seleccionar por lo menos una de ellas para seguir con el proceso de la queja" 
-                                                        runat="server" Visible = "False"/>
+                                                        Text="Se localizaron productos con más de una materia prima como componente, favor de seleccionar por lo menos una de ellas para seguir con el proceso de la queja"
+                                                        runat="server" Visible="False" />
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
@@ -154,8 +158,8 @@
                                             <asp:UpdatePanel ID="upnSoporteAviso" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <asp:Label ID="lblSoporteAviso" CssClass="alert alert-info col-lg-12 col-md-12 col-sm-12 col-xs-12" Font-Bold="True" role="alert"
-                                                        Text="La queja requiere de un soporte(PDF) por motivo de Devoluci&oacute;n - Merma - Bonificaci&oacute;n" 
-                                                        runat="server" Visible = "False"/>
+                                                        Text="La queja requiere de un soporte(PDF) por motivo de Devoluci&oacute;n - Merma - Bonificaci&oacute;n"
+                                                        runat="server" Visible="False" />
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
                                         </div>
@@ -164,22 +168,22 @@
                                 <div class="row">
                                     <div class="col-sm-8 col-md-6">
                                         <div class="thumbnail">
-                                            <img src="imagenes/1473881847_magnifier.png" alt="Consulta"/>
+                                            <img src="imagenes/1473881847_magnifier.png" alt="Consulta" />
                                             <div class="caption">
                                                 <h3>Consulta de queja</h3>
                                                 <p>Consulta de los detalles de la queja</p>
                                                 <p>
-                                                <asp:UpdatePanel ID="uplConsulta" runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <asp:Button ID="btnConsulta" runat="server" CssClass="btn btn-primary" 
-                                                            Text="Entrar" onclick="btnConsulta_Click" Visible="False" />
-                                                        <asp:Button ID="btnEdicion" runat="server" CssClass="btn btn-primary" 
-                                                            Text="Entrar Editar" onclick="btnEdicion_Click" />
-                                                        <asp:Button ID="btnEditarPed" runat="server" CssClass="btn btn-primary" 
-                                                            Text="Editar Queja Pedido" onclick="btnEditarPed_Click" />
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                                    
+                                                    <asp:UpdatePanel ID="uplConsulta" runat="server" UpdateMode="Conditional">
+                                                        <ContentTemplate>
+                                                            <asp:Button ID="btnConsulta" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnConsulta_Click" Visible="False" />
+                                                            <asp:Button ID="btnEdicion" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar Editar" OnClick="btnEdicion_Click" />
+                                                            <asp:Button ID="btnEditarPed" runat="server" CssClass="btn btn-primary"
+                                                                Text="Editar Queja Pedido" OnClick="btnEditarPed_Click" />
+                                                        </ContentTemplate>
+                                                    </asp:UpdatePanel>
+
                                                 </p>
                                             </div>
                                         </div>
@@ -193,8 +197,8 @@
                                                 <p>
                                                     <asp:UpdatePanel ID="uplInvestigacion" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnInvestigacion" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnInvestigacion_Click" />
+                                                            <asp:Button ID="btnInvestigacion" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnInvestigacion_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -210,11 +214,11 @@
                                                 <p>
                                                     <asp:UpdatePanel ID="uplCausas" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnCausas" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnCausas_Click" />
+                                                            <asp:Button ID="btnCausas" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnCausas_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
-                                                    
+
                                                 </p>
                                             </div>
                                         </div>
@@ -228,8 +232,8 @@
                                                 <p>
                                                     <asp:UpdatePanel ID="uplAcciones" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnAcciones" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnAcciones_Click" />
+                                                            <asp:Button ID="btnAcciones" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnAcciones_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -245,8 +249,8 @@
                                                 <p>
                                                     <asp:UpdatePanel ID="uplVerificar" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnVerificar" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnVerificar_Click" />
+                                                            <asp:Button ID="btnVerificar" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnVerificar_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -262,8 +266,8 @@
                                                 <p>
                                                     <asp:UpdatePanel ID="uplConcluir" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnConcluir" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnConcluir_Click" />    
+                                                            <asp:Button ID="btnConcluir" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnConcluir_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -274,13 +278,13 @@
                                         <div class="thumbnail">
                                             <img src="imagenes/1475810288_Report.png" alt="Reporte" />
                                             <div class="caption">
-                                                <h3>Reporte de queja </h3> 
+                                                <h3>Reporte de queja </h3>
                                                 <p>Detalle completo de queja</p>
                                                 <p>
                                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnReporte" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnReporte_Click" />    
+                                                            <asp:Button ID="btnReporte" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnReporte_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -291,13 +295,13 @@
                                         <div class="thumbnail">
                                             <img src="imagenes/credit-note.png" alt="Reporte" />
                                             <div class="caption">
-                                                <h3>Notas de cr&eacute;dito</h3>                   
+                                                <h3>Notas de cr&eacute;dito</h3>
                                                 <p>Asignaci&oacute;n de nota de credito</p>
                                                 <p>
                                                     <asp:UpdatePanel ID="upnNotasCredito" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnNotaCredito" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" onclick="btnNotaCredito_Click" />    
+                                                            <asp:Button ID="btnNotaCredito" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnNotaCredito_Click" />
                                                         </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                 </p>
@@ -308,14 +312,14 @@
                                         <div class="thumbnail">
                                             <img src="imagenes/soporte.png" alt="Reporte" width='130' height='130' />
                                             <div class="caption">
-                                                <h3>Acta por Devoluci&oacute;n - Merma - Bonificaci&oacute;n</h3>                   
+                                                <h3>Acta por Devoluci&oacute;n - Merma - Bonificaci&oacute;n</h3>
                                                 <p>Adjuntar documento</p>
                                                 <p>
                                                     <asp:UpdatePanel ID="upnSoporte" runat="server" UpdateMode="Conditional">
                                                         <ContentTemplate>
-                                                            <asp:Button ID="btnSoporte" runat="server" CssClass="btn btn-primary" 
-                                                                Text="Entrar" OnClick="btnSoporte_Click" />    
-                                                            <asp:Button ID="btnPdf" runat="server" CssClass="btn btn-primary" 
+                                                            <asp:Button ID="btnSoporte" runat="server" CssClass="btn btn-primary"
+                                                                Text="Entrar" OnClick="btnSoporte_Click" />
+                                                            <asp:Button ID="btnPdf" runat="server" CssClass="btn btn-primary"
                                                                 Text="Ver PDF" OnClick="btnPdf_Click" />
                                                             <asp:HiddenField ID="hflSoporte" runat="server" Value="" />
                                                         </ContentTemplate>
@@ -343,13 +347,13 @@
                                             <div class="col-sm-12">
                                                 <asp:UpdatePanel ID="upnMensajes" runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <asp:Label ID="lblSuccess" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="Queja concluida satisfactoriamente" runat="server" Visible = "false" />
-                                                        <asp:Label ID="lblWarning" CssClass="alert alert-danger col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="" 
-                                                            runat="server" Visible = "False"/>
-                                                        <asp:Label ID="lblError" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True" 
-                                                            Text="No se cerró la queja, no se han concluido todas las acciones" runat="server" Visible = "false" />
+                                                        <asp:Label ID="lblSuccess" CssClass="alert alert-success col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="Queja concluida satisfactoriamente" runat="server" Visible="false" />
+                                                        <asp:Label ID="lblWarning" CssClass="alert alert-danger col-sm-12" role="alert" Font-Bold="True"
+                                                            Text=""
+                                                            runat="server" Visible="False" />
+                                                        <asp:Label ID="lblError" CssClass="alert alert-warning col-sm-12" role="alert" Font-Bold="True"
+                                                            Text="No se cerró la queja, no se han concluido todas las acciones" runat="server" Visible="false" />
                                                     </ContentTemplate>
                                                     <Triggers>
                                                         <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
@@ -358,7 +362,7 @@
                                                 <asp:UpdateProgress ID="UpdateProgress2" runat="server">
                                                     <ProgressTemplate>
                                                         <div class="alert alert-info">
-                                                          <strong>PROCESANDO...</strong>Se esta registrando la informaci&oacute;n
+                                                            <strong>PROCESANDO...</strong>Se esta registrando la informaci&oacute;n
                                                         </div>
                                                     </ProgressTemplate>
                                                 </asp:UpdateProgress>
@@ -368,9 +372,9 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <asp:Button ID="btnGuardar" runat="server" Text="Concluir" 
+                                <asp:Button ID="btnGuardar" runat="server" Text="Concluir"
                                     class="btn btn-primary" ValidationGroup="grupo1" OnClick="btnGuardar_Click" />
-                                <asp:Button ID="btnCerrar" runat="server" Text="Cerrar Ventana" class="btn btn-default" data-dismiss="modal"/>
+                                <asp:Button ID="btnCerrar" runat="server" Text="Cerrar Ventana" class="btn btn-default" data-dismiss="modal" />
                             </div>
                         </div>
                     </div>
@@ -378,7 +382,7 @@
 
             </form>
         </div>
-        
+
     </div>
 </body>
 </html>

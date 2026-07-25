@@ -494,7 +494,16 @@ namespace queja
                 this.Response.Redirect("reg_efectividad.aspx");
             }
             else
-                this.Response.Write("<script>alert('Faltan acciones por verificar');</script>");
+            {
+                // Fix: Use ScriptManager instead of Response.Write
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "alertFaltanAcciones",
+                    "alert('Faltan acciones por verificar');",
+                    true
+                );
+            }
         }
 
         protected void btnEdicion_Click(object sender, EventArgs e)
