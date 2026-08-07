@@ -94,7 +94,7 @@ namespace queja
                         dataTable1.Rows.Add(row.ItemArray);
                 }
             }
-            
+
             this.Session["quejas_page"] = (object)dataTable1;
             this.dtProductos.Columns.Add("nom_producto", typeof(string));
             this.dtProblemas.Columns.Add("pro_nombre", typeof(string));
@@ -176,7 +176,7 @@ namespace queja
                 this.Session["admin"] = (object)this.lblAdmin.Text;
                 //this.Response.Redirect("principalnew.aspx");
                 //if (this.Session["nombre"].ToString() == "ANGEL ESCAMILLA")
-                    
+
                 //else
                 this.Response.Redirect("principalnew.aspx");
             }
@@ -191,7 +191,7 @@ namespace queja
                 //    this.Response.Redirect("principalexpnew.aspx");
                 //else
                 this.Response.Redirect("principalexpnew.aspx");
-                
+
             }
             if (this.ddlQuejas.SelectedValue == "3")
             {
@@ -513,8 +513,8 @@ namespace queja
                 DataTable dataTable4 = dataTable2.Copy();
                 dataTable4.Clear();
 
-                if ((this.cmbProblema.SelectedValue.ToString() == "TODOS" || this.cmbProblema.SelectedValue.ToString() == "PROBLEMAS...") && 
-                    (this.cmbArea.SelectedValue.ToString() == "TODOS" || this.cmbArea.SelectedValue.ToString() == "AREAS...") && 
+                if ((this.cmbProblema.SelectedValue.ToString() == "TODOS" || this.cmbProblema.SelectedValue.ToString() == "PROBLEMAS...") &&
+                    (this.cmbArea.SelectedValue.ToString() == "TODOS" || this.cmbArea.SelectedValue.ToString() == "AREAS...") &&
                     (this.cmbVariedad.SelectedValue.ToString() == "TODOS" || this.cmbVariedad.SelectedValue.ToString() == "VARIEDADES..."))
                 {
                     foreach (DataRow dataRow in dataTable2.Select("nom_producto = '" + this.cmbProducto.SelectedValue.ToString() + "'"))
@@ -595,7 +595,7 @@ namespace queja
                 DataTable dataTable3 = new DataTable();
                 DataTable dataTable4 = dataTable2.Copy();
                 dataTable4.Clear();
-                
+
                 if ((this.cmbProducto.SelectedValue.ToString() != "TODOS" && this.cmbProducto.SelectedValue.ToString() != "PRODUCTOS...") &&
                     (this.cmbArea.SelectedValue.ToString() != "TODOS" && this.cmbArea.SelectedValue.ToString() != "AREAS...") &&
                     (this.cmbVariedad.SelectedValue.ToString() != "TODOS" && this.cmbVariedad.SelectedValue.ToString() != "VARIEDADES..."))//SI PRODUCTO SI AREA SI VARIEDAD
@@ -691,7 +691,7 @@ namespace queja
                     this.gvwQuejas.DataBind();
                     this.Session["quejas_page"] = (object)dataTable2;
                 }
-                
+
             }
             else
             {
@@ -706,7 +706,7 @@ namespace queja
                     foreach (DataRow dataRow in dataTable2.Select("pro_nombre = '" + this.cmbProblema.SelectedValue.ToString() + "'"))
                         dataTable4.Rows.Add(dataRow.ItemArray);
                 }
-                else if ((this.cmbProducto.SelectedValue.ToString() != "TODOS" && this.cmbProducto.SelectedValue.ToString() != "PRODUCTOS...") && 
+                else if ((this.cmbProducto.SelectedValue.ToString() != "TODOS" && this.cmbProducto.SelectedValue.ToString() != "PRODUCTOS...") &&
                     (this.cmbArea.SelectedValue.ToString() != "TODOS" && this.cmbArea.SelectedValue.ToString() != "AREAS...") &&
                     (this.cmbVariedad.SelectedValue.ToString() != "TODOS" && this.cmbVariedad.SelectedValue.ToString() != "VARIEDADES..."))//SI PRODUCTO SI AREA SI VARIEDAD
                 {
@@ -883,7 +883,7 @@ namespace queja
                     this.Session["quejas_page"] = (object)dataTable2;
                 }
 
-                
+
             }
             else
             {
@@ -1082,7 +1082,7 @@ namespace queja
                     this.gvwQuejas.DataBind();
                     this.Session["quejas_page"] = (object)dataTable2;
                 }
-                
+
             }
             else
             {

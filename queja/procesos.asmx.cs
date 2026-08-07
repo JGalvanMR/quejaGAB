@@ -318,6 +318,192 @@ namespace queja
         [WebMethod]
         public List<RowDatosOrden> CargarDatosOrden(string folio, string tipo_recibo)
         {
+            List<RowDatosOrden> lista = new List<RowDatosOrden>();
+
+            // 1. VALIDACIÓN DE RAÍZ: Si el folio no es un número válido, regresamos lista vacía inmediatamente.
+            // Nunca intentamos consultar la BD con datos basura.
+            int folioNum = 0;
+            if (!int.TryParse(folio, out folioNum))
+            {
+                return lista;
+            }
+
+            int fol_campo = 0;
+            string cadenaPrincipal = "Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout=240";
+
+            using (SqlConnection conn = new SqlConnection(cadenaPrincipal))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // Obtener folio de campo
+                    using (SqlCommand cmd = new SqlCommand("SELECT inicio_campo FROM Tb_folio_campo", conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                // Usamos TryParse aquí también por si alguien guardó texto en la BD
+                                int.TryParse(reader["inicio_campo"].ToString().Trim(), out fol_campo);
+                            }
+                        }
+                    } // El using se encarga de cerrar y disponer el reader y command automáticamente
+
+                    if (folioNum > fol_campo) // --- LÓGICA DE CAMPO ---
+                    {
+                        string responsableFlete = "";
+                        int flete_campo = 0;
+
+                        using (SqlCommand cmd = new SqlCommand("SELECT rpt_flete FROM tb_mstr_recepcion_pt WHERE rpt_recibo = @folio", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@folio", folioNum); // BUENA PRÁCTICA: Usar parámetros
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    string fleteStr = reader["rpt_flete"].ToString().Trim();
+                                    if (fleteStr != "S/F" && !string.IsNullOrEmpty(fleteStr))
+                                    {
+                                        int.TryParse(fleteStr, out flete_campo);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (flete_campo > 0) // Solo consultamos el MySQL si hay un flete válido
+                        {
+                            // MANEJO DE RAÍZ DE SERVIDORES EXTERNOS: Si el servidor MySQL cae, no rompemos todo,
+                            // simplemente el responsable quedará en blanco, pero el sistema sigue funcionando.
+                            try
+                            {
+                                using (MySqlConnection conexion = new MySqlConnection("Server=gab.mrlucky.com.mx;Database=campo; Uid=www1166;Pwd=taQ17Zm;"))
+                                {
+                                    conexion.Open();
+                                    using (MySqlCommand comando = new MySqlCommand("SELECT B.nom_responsable FROM tb_mstr_flete A JOIN tb_cat_responsables B ON A.id_responsable = B.id_responsable WHERE A.id_flete = @idFlete", conexion))
+                                    {
+                                        comando.Parameters.AddWithValue("@idFlete", flete_campo);
+                                        using (MySqlDataReader lector = comando.ExecuteReader())
+                                        {
+                                            if (lector.Read())
+                                            {
+                                                responsableFlete = lector["nom_responsable"].ToString().Trim();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception exMySql)
+                            {
+                                // Si falla MySQL, lo registramos (o mostramos en consola) pero NO rompemos el flujo principal.
+                                System.Diagnostics.Debug.WriteLine("Error al conectar a MySQL de fletes: " + exMySql.Message);
+                            }
+                        }
+
+                        lista.Add(new RowDatosOrden { Linea = flete_campo > 0 ? "CAMPO" : "", Responsable = responsableFlete });
+                    }
+                    else // --- LÓGICA DE PLANTA ---
+                    {
+                        if (tipo_recibo == "PTC") // Recepción de Aguilares
+                        {
+                            bool encontradoEnAguilares = false;
+
+                            // MANEJO DE RAÍZ DE SERVIDORES EXTERNOS: Servidor de Aguilares
+                            try
+                            {
+                                using (SqlConnection connAgui = new SqlConnection("Data Source=38.49.143.54\\SQL2017,2359; Initial Catalog=GAB_Empaque; Connect Timeout=130; User ID=uerp; Password=mocoro1$; MultipleActiveResultSets=True;"))
+                                {
+                                    connAgui.Open();
+                                    using (SqlCommand commAgui = new SqlCommand("SELECT ordp_linea, ordp_responsable FROM tb_mstr_ordenes_prod WHERE ordp_folio = @folio", connAgui))
+                                    {
+                                        commAgui.Parameters.AddWithValue("@folio", folioNum);
+                                        using (SqlDataReader readAgui = commAgui.ExecuteReader())
+                                        {
+                                            if (readAgui.HasRows)
+                                            {
+                                                encontradoEnAguilares = true;
+                                                while (readAgui.Read())
+                                                {
+                                                    lista.Add(new RowDatosOrden
+                                                    {
+                                                        Linea = readAgui.GetValue(0).ToString().Trim(),
+                                                        Responsable = readAgui.GetValue(1).ToString().Trim()
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception exAgui)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Error al conectar a servidor de Aguilares: " + exAgui.Message);
+                            }
+
+                            // Si no encontró en Aguilares (o si el servidor de Aguilares cayó), busca en la BD principal
+                            if (!encontradoEnAguilares)
+                            {
+                                using (SqlCommand cmd = new SqlCommand("SELECT rpt_evaluador FROM tb_mstr_recepcion_pt WHERE rpt_recibo = @folio", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@folio", folioNum);
+                                    using (SqlDataReader reader = cmd.ExecuteReader())
+                                    {
+                                        if (reader.HasRows)
+                                        {
+                                            while (reader.Read())
+                                            {
+                                                lista.Add(new RowDatosOrden
+                                                {
+                                                    Linea = "",
+                                                    Responsable = reader.GetValue(0).ToString().Trim()
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else // Planta normal
+                        {
+                            using (SqlCommand cmd = new SqlCommand("SELECT ordp_linea, ordp_responsable FROM tb_mstr_ordenes_prod WHERE ordp_folio = @folio", conn))
+                            {
+                                cmd.Parameters.AddWithValue("@folio", folioNum);
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.HasRows)
+                                    {
+                                        while (reader.Read())
+                                        {
+                                            lista.Add(new RowDatosOrden
+                                            {
+                                                Linea = reader.GetValue(0).ToString().Trim(),
+                                                Responsable = reader.GetValue(1).ToString().Trim()
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception exPrincipal)
+                {
+                    // MANEJO DE RAÍZ DEL CATCH PRINCIPAL:
+                    // NUNCA metemos el error en la lista de datos.
+                    // Lo registramos para que el programador lo vea en la ventana de "Salida" (Output) de Visual Studio.
+                    System.Diagnostics.Debug.WriteLine("ERROR CRÍTICO EN CargarDatosOrden: " + exPrincipal.Message);
+
+                    // Si algo falla en la base de datos principal, la lista simplemente vuelve vacía.
+                    // El JavaScript recibirá un arreglo vacío y no pondrá nada en los cuadros de texto.
+                    // Esto es correcto: si falla la consulta, es mejor no inventar datos.
+                }
+            }
+
+            return lista;
+        }
+        public List<RowDatosOrden> CargarDatosOrdenLEGACY(string folio, string tipo_recibo)
+        {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("ordp_linea", typeof(string));
             dataTable.Columns.Add("ordp_responsable", typeof(string));
@@ -949,7 +1135,8 @@ namespace queja
             {
                 //this.enviarcorreo_error(nom_realiza, "NUEVO FOLIO: " + folio, cuerpo);
                 conn.Close();
-                return str1;
+                //return str1;
+                return "ERROR_SQL: " + ex.Message;
             }
         }
 

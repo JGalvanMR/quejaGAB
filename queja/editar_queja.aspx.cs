@@ -21,7 +21,7 @@ namespace queja
         private DataTable dtOrdenes = new DataTable();
         private DataTable dtDatos = new DataTable();
         private DataTable dtSucursales = new DataTable();
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,21 +82,21 @@ namespace queja
             this.txtCantRech.Text = this.dtDetQueja.Rows[0]["qud_cantrecha"].ToString();
             this.txtCantReci.Text = this.dtDetQueja.Rows[0]["qud_cantreci"].ToString();
             this.txtUnidad.Text = this.dtDetQueja.Rows[0]["qud_unidad"].ToString();
-            
-            this.chkDevolucion.Checked = (this.dtDetQueja.Rows[0]["qud_devolucion"].ToString() == "1") ? true : false ;
-            
+
+            this.chkDevolucion.Checked = (this.dtDetQueja.Rows[0]["qud_devolucion"].ToString() == "1") ? true : false;
+
             this.ddlMoneda.SelectedValue = this.dtDetQueja.Rows[0]["qud_moneda"].ToString() == "PESOS" ? "PESOS" : "DOLARES";
             this.ddlProblema.SelectedValue = this.dtDetQueja.Rows[0]["qud_problema"].ToString();
             this.txtCajasProducidas.Text = this.dtDetQueja.Rows[0]["qud_cjsprod"].ToString();
             this.txtPorcentaje.Text = this.dtDetQueja.Rows[0]["qud_porcen"].ToString();
-            
+
             this.chkMerma.Checked = (this.dtDetQueja.Rows[0]["qud_merma"].ToString() == "1") ? true : false;
 
             string Dev = this.dtDetQueja.Rows[0]["qud_devolucion"].ToString();
             string Mer = this.dtDetQueja.Rows[0]["qud_merma"].ToString();
             string Bon = this.dtDetQueja.Rows[0]["qud_bonificacion"].ToString();
 
-            this.Session["ptcptp"] = this.dtDetQueja.Rows[0]["qud_ptcptp"].ToString(); 
+            this.Session["ptcptp"] = this.dtDetQueja.Rows[0]["qud_ptcptp"].ToString();
 
             if (Dev == "1")
             {
@@ -110,7 +110,7 @@ namespace queja
             {
                 rbtList.SelectedValue = "BON";
             }
-            
+
             string carpeta = "~/fotos_ant/";
             carpeta = Server.MapPath(carpeta);
             var existe = Directory.Exists(carpeta);

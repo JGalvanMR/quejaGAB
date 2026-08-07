@@ -536,6 +536,9 @@
     <Compile Include="soporte.aspx.designer.cs">
       <DependentUpon>soporte.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubirArchivos.ashx.cs">
+      <DependentUpon>SubirArchivos.ashx</DependentUpon>
+    </Compile>
     <Compile Include="tarima.aspx.cs">
       <DependentUpon>tarima.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -598,6 +601,7 @@
     <None Include="imagenes\Thumbs.db" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="SubirArchivos.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fuentes\" />

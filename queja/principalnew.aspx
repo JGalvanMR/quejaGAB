@@ -21,18 +21,18 @@
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
 
-                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>; 
+            var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>;
 
-                //iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
-            }
+            //iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
+        }
 
-        function TimeoutPage(){
+        function TimeoutPage() {
             var str = getAbsolutePath();
-            if(str.indexOf("localhost") != -1)
+            if (str.indexOf("localhost") != -1)
                 location.href = str + "default.aspx";
-            if(str.indexOf("gabira1") != -1)
+            if (str.indexOf("gabira1") != -1)
                 location.href = str;
-            if(str.indexOf("189.206.160.206") != -1)
+            if (str.indexOf("189.206.160.206") != -1)
                 location.href = str;
         }
 
@@ -42,21 +42,20 @@
             return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
         }
 
-        
 
-        
+
+
     </script>
     <style type="text/css">
-        .hiddencol
-        {
+        .hiddencol {
             display: none;
         }
-        .tamano
-        {
+
+        .tamano {
             resize: none;
         }
-        body
-        {
+
+        body {
             background-image: url(imagenes/fondo_7.png);
             background-position: center center;
             background-repeat: no-repeat;
@@ -64,12 +63,10 @@
             background-size: cover;
             background-color: #464646;
         }
-        .nover
-        {
-            display:none;
-            }
-        
 
+        .nover {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +75,9 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <center><h3><strong>Descripci&oacute;n Queja</strong></h3></center>
+                        <center>
+                            <h3><strong>Descripci&oacute;n Queja</strong></h3>
+                        </center>
                     </div>
                     <div class="panel-body">
                         <form runat="server" class="form-horizontal" enctype="multipart/form-data">
@@ -96,118 +95,118 @@
                                             <asp:Label ID="lblAdmin" runat="server" Text="" CssClass="cols-sm-3 label label-success"></asp:Label>
                                         </div>
                                     </div>
-									<div class="row">
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-8">
-												<asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas" 
-													CssClass="btn btn-primary" OnClick="btnVolver_Click" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtFolio" class="col-sm-2 control-label">Folio:</label>
-											<div class="col-sm-9">
-                                                <input type="text" id="txtFolio" class="form-control" style="text-transform: uppercase" placeholder="Folio" readonly="readonly" />
-											</div>
-										</div>
-									</div>
                                     <div class="row">
-										<div class="form-group">
-											<label for="txtSemana" class="col-sm-2 control-label">Semana:</label>
-											<div class="col-sm-9">
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-8">
+                                                <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas"
+                                                    CssClass="btn btn-primary" OnClick="btnVolver_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtFolio" class="col-sm-2 control-label">Folio:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="txtFolio" class="form-control" style="text-transform: uppercase" placeholder="Folio" readonly="readonly" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtSemana" class="col-sm-2 control-label">Semana:</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" id="txtSemana" class="form-control" style="text-transform: uppercase" placeholder="Semana" readonly="readonly" />
-											</div>
-										</div>
+                                            </div>
+                                        </div>
                                     </div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtMes" class="col-sm-2 control-label">Mes:</label>
-											<div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtMes" class="col-sm-2 control-label">Mes:</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" id="txtMes" class="form-control" style="text-transform: uppercase" placeholder="Mes" readonly="readonly" />
-											</div>
-										</div>
+                                            </div>
+                                        </div>
                                     </div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtFecha" class="col-sm-2 control-label">Fecha:</label>
-											<div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtFecha" class="col-sm-2 control-label">Fecha:</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" id="txtFecha" class="form-control" style="text-transform: uppercase" placeholder="Fecha" readonly="readonly" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="ddlCliente" class="col-sm-2 control-label">Cliente:</label>
-											<div class="col-sm-9">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="ddlCliente" class="col-sm-2 control-label">Cliente:</label>
+                                            <div class="col-sm-9">
                                                 <select id="ddlCliente" class="form-control" onchange="CargarSucursales()">
                                                 </select>
-                                                <span id="errorCliente" style="color:red; display:none;">Debe seleccionar un cliente</span>
+                                                <span id="errorCliente" style="color: red; display: none;">Debe seleccionar un cliente</span>
                                                 <input type="hidden" id="txtClienteNom" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="ddlSucursales" class="col-sm-2 control-label">Sucursal:</label>
-											<div class="col-sm-9">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="ddlSucursales" class="col-sm-2 control-label">Sucursal:</label>
+                                            <div class="col-sm-9">
                                                 <select id="ddlSucursales" class="form-control" onchange="SucursalNombre()">
                                                     <%--<option value="0">SELECCIONAR...</option>--%>
                                                 </select>
-                                                <span id="errorSucursal" style="color:red; display:none;">Debe seleccionar una sucursal</span>
+                                                <span id="errorSucursal" style="color: red; display: none;">Debe seleccionar una sucursal</span>
                                                 <input type="hidden" id="txtSucursalNom" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtReporto" class="col-sm-2 control-label">Report&oacute;:</label>
-											<div class="col-sm-9">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtReporto" class="col-sm-2 control-label">Report&oacute;:</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" id="txtReporto" class="form-control" style="text-transform: uppercase" placeholder="Reporto" />
-                                                <span id="errorReporto" style="color:red; display:none;">Campo requerido</span>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="ddlTipo" class="col-sm-2 control-label">Tipo:</label>
-											<div class="col-sm-9">
+                                                <span id="errorReporto" style="color: red; display: none;">Campo requerido</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="ddlTipo" class="col-sm-2 control-label">Tipo:</label>
+                                            <div class="col-sm-9">
                                                 <select id="ddlTipo" class="form-control" onchange="SeleccionaMoneda()">
                                                     <option value="">ELEGIR OPCION...</option>
                                                     <option value="N">NACIONAL</option>
                                                     <option value="E">EXPORTACION</option>
                                                 </select>
-                                                <span id="errorTipo" style="color:red; display:none;">Debe seleccionar un tipo</span>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<div class="col-sm-12">
-												<p class="bg-primary text-center"><strong>Descripci&oacute;n del producto</strong></p>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtOrdenProd" class="col-sm-2 control-label">Orden de prod:</label>
-											<div class="col-sm-9">
+                                                <span id="errorTipo" style="color: red; display: none;">Debe seleccionar un tipo</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <p class="bg-primary text-center"><strong>Descripci&oacute;n del producto</strong></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtOrdenProd" class="col-sm-2 control-label">Orden de prod:</label>
+                                            <div class="col-sm-9">
                                                 <input type="text" id="txtOrdenProd" class="form-control" style="text-transform: uppercase" placeholder="ORDEN DE PRODUCCION" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<div class="col-sm-12">
-												<center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <center>
                                                     <button type="button" id="btnBuscaOrden" class="btn btn-primary" onclick="CargarOrdenProduccion()">Buscar</button>
-												</center>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<div class="col-sm-offset-0 col-sm-12">
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-0 col-sm-12">
                                                 <table id="tablaOrdenProd" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                         <tr>
@@ -227,7 +226,7 @@
                                                     </thead>
                                                     <tbody></tbody>
                                                 </table>
-												<%--<asp:UpdatePanel ID="upnOrden" runat="server">
+                                                <%--<asp:UpdatePanel ID="upnOrden" runat="server">
 													<ContentTemplate>
 														<asp:GridView ID="gvwOrden" runat="server" AutoGenerateColumns="false" 
 															Width="100%" CssClass="table table-striped table-bordered table-hover" 
@@ -261,15 +260,15 @@
 														</div>
 													</ProgressTemplate>
 												</asp:UpdateProgress>--%>
-											</div>
-										</div>
-									</div>
-									<div class="row">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txt_clave" class="col-sm-2 control-label">Clave</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="txt_clave" class="form-control" style="text-transform: uppercase" placeholder="CLAVE" readonly="readonly" />
-                                                <span id="errorClave" style="color:red; display:none;">Debe ingresar una orden de produccion y un producto del listado</span>
+                                                <span id="errorClave" style="color: red; display: none;">Debe ingresar una orden de produccion y un producto del listado</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -299,7 +298,7 @@
                                         <div class="form-group">
                                             <label for="txt_nomprov" class="col-sm-2 control-label">Nom Proveedor</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txt_nomprov" class="form-control" style="text-transform:uppercase" placeholder="PROVEEDOR" readonly="readonly" />
+                                                <input type="text" id="txt_nomprov" class="form-control" style="text-transform: uppercase" placeholder="PROVEEDOR" readonly="readonly" />
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -311,42 +310,42 @@
                                         <div class="form-group">
                                             <label for="txt_nomrch" class="col-sm-2 control-label">Nombre Rancho</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txt_nomrch" class="form-control" style="text-transform:uppercase" placeholder="Rancho" readonly="readonly" />
+                                                <input type="text" id="txt_nomrch" class="form-control" style="text-transform: uppercase" placeholder="Rancho" readonly="readonly" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="txt_cvetbl" class="col-sm-2 control-label">Clave Tabla</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txt_cvetbl" class="form-control" style="text-transform:uppercase" placeholder="Clave Tabla" readonly="readonly" />
+                                                <input type="text" id="txt_cvetbl" class="form-control" style="text-transform: uppercase" placeholder="Clave Tabla" readonly="readonly" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="txt_nomtbl" class="col-sm-2 control-label">Nombre Tabla</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txt_nomtbl" class="form-control" style="text-transform:uppercase" placeholder="Nombre Tabla" readonly="readonly" />
+                                                <input type="text" id="txt_nomtbl" class="form-control" style="text-transform: uppercase" placeholder="Nombre Tabla" readonly="readonly" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="txtTipo" class="col-sm-2 control-label">Tipo</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txtTipo" class="form-control" style="text-transform:uppercase" placeholder="Tipo" readonly="readonly" />
+                                                <input type="text" id="txtTipo" class="form-control" style="text-transform: uppercase" placeholder="Tipo" readonly="readonly" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="txtVariedad" class="col-sm-2 control-label">Variedad</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txtVariedad" class="form-control" style="text-transform:uppercase" placeholder="Variedad" readonly="readonly" />
+                                                <input type="text" id="txtVariedad" class="form-control" style="text-transform: uppercase" placeholder="Variedad" readonly="readonly" />
                                             </div>
                                         </div>
-										<asp:UpdatePanel ID="upnRegistro" runat="server" UpdateMode="Conditional">
-											<ContentTemplate>
-											</ContentTemplate>
-											<%--<Triggers>
+                                        <asp:UpdatePanel ID="upnRegistro" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                            </ContentTemplate>
+                                            <%--<Triggers>
 													<asp:AsyncPostBackTrigger ControlID="gvwOrden" EventName="RowCommand" />
 											</Triggers>--%>
-										</asp:UpdatePanel>
-									</div>
-									<div class="row">
+                                        </asp:UpdatePanel>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtRespLinea" class="col-sm-2 control-label">Resp L&iacute;nea</label>
                                             <div class="col-sm-9">
@@ -359,71 +358,72 @@
                                                 <input type="text" id="txtArea" class="form-control" style="text-transform: uppercase" placeholder="Area" readonly="readonly" />
                                             </div>
                                         </div>
-										<asp:UpdatePanel  ID="upnDatos" runat="server" UpdateMode="Conditional">
-											<ContentTemplate>
-												<div class="form-group">
-													<asp:HiddenField ID="txtRespLinea2" runat="server" />
-												</div>
-												<div class="form-group">
-														<asp:HiddenField ID="txtArea2" runat="server" />
-												</div>
-											</ContentTemplate>
-											<%--<Triggers>
+                                        <asp:UpdatePanel ID="upnDatos" runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <div class="form-group">
+                                                    <asp:HiddenField ID="txtRespLinea2" runat="server" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:HiddenField ID="txtArea2" runat="server" />
+                                                </div>
+                                            </ContentTemplate>
+                                            <%--<Triggers>
 												<asp:AsyncPostBackTrigger ControlID="btnBuscaOrden" />
 											</Triggers>--%>
-										</asp:UpdatePanel>
-									</div>
-									<div class="row">
+                                        </asp:UpdatePanel>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtCantReci" class="col-sm-2 control-label">Cant Recibida</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txtCantReci" class="form-control" style="text-transform:uppercase" placeholder="Cantidad Recibida" onkeyup="VerificaProdRecibidas()" />
+                                                <input type="text" id="txtCantReci" class="form-control" style="text-transform: uppercase" placeholder="Cantidad Recibida" onkeyup="VerificaProdRecibidas()" />
                                             </div>
-                                        </div>											
-											<%--div class="col-sm-9">
+                                        </div>
+                                        <%--div class="col-sm-9">
 												<asp:RequiredFieldValidator ID="rfvCantReci" unat="server" ErrorMessage="Campo requerido"  ForeColor="Red" ValidationGroup="grupo1"></asp:RequiredFieldValidator>
 												<asp:RegularExpressionValidator ID="revCantReci" unat="server" ErrorMessage="Solo números" ValidationExpression="^[0-9]*\.?[0-9]+$"  ForeColor="Red" ValidationGroup="grupo1"></asp:RegularExpressionValidator>
 											</di--%>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtCantRech" class="col-sm-2 control-label">Cant Rechazada</label>
                                             <div class="col-sm-9">
-                                                <input type="number" id="txtCantRech" class="form-control" style="text-transform:uppercase" placeholder="Cantidad Rechazada" max="1000" min="1" onkeyup="CalcularPorcentaje()"/>
+                                                <input type="number" id="txtCantRech" class="form-control" style="text-transform: uppercase" placeholder="Cantidad Rechazada" max="1000" min="1" onkeyup="CalcularPorcentaje()" />
                                             </div>
                                         </div>
-<%--										<asp:RequiredFieldValidator ID="rfvCantRech" unat="server" ErrorMessage="Campo requerido" ControlToValidate="txtCantRech" ForeColor="Red" ValidationGroup="grupo1"></asp:RequiredFieldValidator>
+                                        <%--										<asp:RequiredFieldValidator ID="rfvCantRech" unat="server" ErrorMessage="Campo requerido" ControlToValidate="txtCantRech" ForeColor="Red" ValidationGroup="grupo1"></asp:RequiredFieldValidator>
 										<asp:RegularExpressionValidator ID="revCantRech" unat="server" ErrorMessage="Solo números" ValidationExpression="^[0-9]*\.?[0-9]+$" ControlToValidate="txtCantRech" ForeColor="Red" ValidationGroup="grupo1"></asp:RegularExpressionValidator>
---%>									</div>
-									<div class="row">
+                                        --%>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtCajasProducidas" class="col-sm-2 control-label">Cajas Prod.</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="txtCajasProducidas" class="form-control" style="text-transform: uppercase" placeholder="Cajas Producidas" readonly="readonly" />
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtPorcentaje" class="col-sm-2 control-label">% Rechazo</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="txtPorcentaje" class="form-control" style="text-transform: uppercase" placeholder="Porcentaje Rechazado" readonly="readonly" />
-                                                <span id="errorPorcentaje" style="color:red; display:none;">Debe ingresar las cajas recibidas y rechazadas y el porcentaje debe ser mayor a cero</span>
+                                                <span id="errorPorcentaje" style="color: red; display: none;">Debe ingresar las cajas recibidas y rechazadas y el porcentaje debe ser mayor a cero</span>
                                             </div>
                                             <div class="spinner-border" role="status">
-												<span class="sr-only">Loading...</span>
-											</div>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtUnidad" class="col-sm-2 control-label">Unidad</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="txtUnidad" class="form-control" style="text-transform: uppercase" placeholder="Unidada" value="CAJA" readonly="readonly" />
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="ddlLista" class="col-sm-2 control-label">Tipo:</label>
                                             <div class="col-sm-9">
@@ -434,11 +434,11 @@
                                                     <option value="BON">BONIFICACION</option>
                                                     <option value="NA">NO APLICA</option>
                                                 </select>
-                                                <span id="errorLista" style="color:red; display:none;">Debe seleccionar el tipo de queja</span>
+                                                <span id="errorLista" style="color: red; display: none;">Debe seleccionar el tipo de queja</span>
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="ddlMoneda" class="col-sm-2 control-label">Moneda</label>
                                             <div class="col-sm-9">
@@ -448,60 +448,61 @@
                                                     <option value="DOLARES">DOLARES</option>
                                                     <%-- Este se cambia segun si es nacional o exportacion la queja --%>
                                                 </select>
-                                                <span id="errorMoneda" style="color:red; display:none;">Debe seleccionar la moneda</span>
+                                                <span id="errorMoneda" style="color: red; display: none;">Debe seleccionar la moneda</span>
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="ddlProblema" class="col-sm-2 control-label">Problema</label>
                                             <div class="col-sm-9">
                                                 <select id="ddlProblema" class="form-control">
                                                 </select>
-                                                <span id="errorProblema" style="color:red; display:none;">Debe seleccionar el problema</span>
+                                                <span id="errorProblema" style="color: red; display: none;">Debe seleccionar el problema</span>
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="txtPedido" class="col-sm-2 control-label">Pedido</label>
                                             <div class="col-sm-9">
-                                                <input type="text" id="txtFactPed" /> 
-                                                <input type="text" id="txtPedido" class="form-control" style="text-transform:uppercase" placeholder="Pedido" maxlength="10" /> 
-                                                <span id="errorPedido" style="color:red; display:none;">Debe ingresar el pedido</span>
+                                                <input type="text" id="txtFactPed" />
+                                                <input type="text" id="txtPedido" class="form-control" style="text-transform: uppercase" placeholder="Pedido" maxlength="10" />
+                                                <span id="errorPedido" style="color: red; display: none;">Debe ingresar el pedido</span>
                                             </div>
                                         </div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtObservaciones" class="col-sm-2 control-label">Observaciones</label>
-											<div class="col-sm-9">
-                                                <input  type="text" id="txtObservaciones" class="form-control" style="text-transform: uppercase" placeholder="Observaciones" maxlength="200" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="txtCosto" class="col-sm-2 control-label">Costo</label>
-											<div class="col-sm-9">
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtObservaciones" class="col-sm-2 control-label">Observaciones</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="txtObservaciones" class="form-control" style="text-transform: uppercase" placeholder="Observaciones" maxlength="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtCosto" class="col-sm-2 control-label">Costo</label>
+                                            <div class="col-sm-9">
                                                 <input type="number" id="txtCosto" class="form-control" style="text-transform: uppercase" placeholder="Costo" value="0" step="0.01" />
-                                               <span id="errorCosto" style="color:red; display:none">Debe ingresar el costo</span>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group">
-											<label for="chkConsumidor" class="col-sm-2 control-label">¿Consumidor?</label>
-											<div class="col-sm-2">
+                                                <span id="errorCosto" style="color: red; display: none">Debe ingresar el costo</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="chkConsumidor" class="col-sm-2 control-label">¿Consumidor?</label>
+                                            <div class="col-sm-2">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" id="chkConsumidor"> Si
+                                                        <input type="checkbox" id="chkConsumidor">
+                                                        Si
                                                     </label>
                                                 </div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group">
                                             <label for="fluArchivo1" class="col-sm-2 control-label text-right">Archivo 1</label>
                                             <div class="col-sm-9">
@@ -514,7 +515,7 @@
                                         <div class="form-group">
                                             <label for="fluArchivo2" class="col-sm-2 control-label text-right">Archivo 2</label>
                                             <div class="col-sm-9">
-                                                <input type="file" id="fluArchivo2" class="form-control"/>
+                                                <input type="file" id="fluArchivo2" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -523,36 +524,38 @@
                                         <div class="form-group">
                                             <label for="fluArchivo3" class="col-sm-2 control-label text-right">Archivo 3</label>
                                             <div class="col-sm-9">
-                                                <input type="file" id="fluArchivo3" class="form-control"/>
-                                                <span id="errorArchivos" style="display:none; color:red;">Debe agregar por lo menos un archivo para poder registrar la queja</span>
-                                                <span id="errorExtensiones" style="display:none; color:red;">Solo puede agregar archivos JPG, JPEG, PDF y PNG</span>
-                                                <span id="errorSize" style="display:none; color:red;">El tama&ntilde;o de los archivos no puede ser mayor a 4Mb</span>
+                                                <input type="file" id="fluArchivo3" class="form-control" />
+                                                <span id="errorArchivos" style="display: none; color: red;">Debe agregar por lo menos un archivo para poder registrar la queja</span>
+                                                <span id="errorExtensiones" style="display: none; color: red;">Solo puede agregar archivos JPG, JPEG, PDF y PNG</span>
+                                                <span id="errorSize" style="display: none; color: red;">El tama&ntilde;o de los archivos no puede ser mayor a 4Mb</span>
                                             </div>
                                         </div>
                                     </div>
-									<div class="row">
-										<div class="form-group">
-											<div class="col-sm-12">
-												<center>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <center>
                                                     <button type="button" id="btnGuardar" class="btn btn-primary" onclick="GuardarQueja()">Guardar</button>
-												</center>
-											</div>
-										</div>
-									</div>
-                                    
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-sm-3">
-                                                <label class="col-sm-1 label label-success"><div id="lblVerifica">0</div></label>
+                                                <label class="col-sm-1 label label-success">
+                                                    <div id="lblVerifica">0</div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
@@ -659,7 +662,7 @@
                 let combo = $('#ddlCliente');
                 combo.empty();
                 //combo.append('<option value="">SELECCIONAR CLIENTE...</option>');
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     combo.append($('<option>', {
                         value: item.Id,
                         text: item.Nombre
@@ -681,7 +684,7 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({clave: $("#ddlCliente").val(), cedis: $("#<%=lblCedis.ClientID%>").html()}),
+            data: JSON.stringify({ clave: $("#ddlCliente").val(), cedis: $("#<%=lblCedis.ClientID%>").html() }),
             dataType: 'json',
             success: function (data6) {
                 //alert(data5.d);
@@ -691,7 +694,7 @@
                 let combo = $('#ddlSucursales');
                 combo.empty();
                 //combo.append('<option value="">SELECCIONAR CLIENTE...</option>');
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     combo.append($('<option>', {
                         value: item.Id,
                         text: item.Nombre
@@ -699,7 +702,7 @@
                 });
                 let selectedText = $("#ddlCliente option:selected").text();
                 $("#txtClienteNom").val(selectedText);
-                
+
             },
             error: function (data6, success, error) {
                 console.error(data6.responseText);
@@ -709,29 +712,25 @@
         return false;
     }
 
-    function SucursalNombre()
-    {
+    function SucursalNombre() {
         let selectedText = $("#ddlSucursales option:selected").text();
         $("#txtSucursalNom").val(selectedText);
     }
 
-    function SeleccionaMoneda()
-    {
+    function SeleccionaMoneda() {
         let selectedTipo = $("#ddlTipo option:selected").val();
         //alert(selectedTipo);
-        if(selectedTipo == "N")
+        if (selectedTipo == "N")
             $("#ddlMoneda").val("PESOS");
-        else if(selectedTipo == "E")
+        else if (selectedTipo == "E")
             $("#ddlMoneda").val("DOLARES")
         else
-            $("#ddlMoneda").val('');    
+            $("#ddlMoneda").val('');
     }
 
-    function CargarOrdenProduccion()
-    {
-    
-        if($("#txtOrdenProd").val() == '')
-        {
+    function CargarOrdenProduccion() {
+
+        if ($("#txtOrdenProd").val() == '') {
             alert("Debe ingresar el folio de la orden de produccion");
             return;
         }
@@ -741,7 +740,7 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({folio: $("#txtOrdenProd").val()}),
+            data: JSON.stringify({ folio: $("#txtOrdenProd").val() }),
             dataType: 'json',
             success: function (data7) {
                 //alert(data5.d);
@@ -751,23 +750,23 @@
                 let tbody = $("#tablaOrdenProd tbody");
                 tbody.empty();
                 let tip;
-                $.each(ordenProd, function(index, orden){
+                $.each(ordenProd, function (index, orden) {
                     tip = orden.Tipo;
                     let row = '<tr>' +
                         '<td><button type="button" class="btnSeleccionar btn btn-primary" ' +
-                            'data-clave="' + orden.Clave + '" ' +
-                            'data-nombre="' + orden.Nombre + '" ' +
-                            'data-fecha="' + orden.Fecha + '" ' +
-                            'data-fechacad="' + orden.FechaCad + '" ' +
-                            'data-tipo="' + orden.Tipo + '" ' +
-                            'data-prov="' + orden.Prov + '" ' +
-                            'data-provnom="' + orden.ProvNom + '" ' +
-                            'data-ranch="' + orden.Ranch + '" ' +
-                            'data-ranchnom="' + orden.RanchNom + '" ' +
-                            'data-tabla="' + orden.Tabla + '" ' +
-                            'data-tablanom="' + orden.TablaNom + '" ' +
-                            'data-lote="' + orden.Lote + '" ' +
-                            '>' + orden.Clave + '</button></td>' +
+                        'data-clave="' + orden.Clave + '" ' +
+                        'data-nombre="' + orden.Nombre + '" ' +
+                        'data-fecha="' + orden.Fecha + '" ' +
+                        'data-fechacad="' + orden.FechaCad + '" ' +
+                        'data-tipo="' + orden.Tipo + '" ' +
+                        'data-prov="' + orden.Prov + '" ' +
+                        'data-provnom="' + orden.ProvNom + '" ' +
+                        'data-ranch="' + orden.Ranch + '" ' +
+                        'data-ranchnom="' + orden.RanchNom + '" ' +
+                        'data-tabla="' + orden.Tabla + '" ' +
+                        'data-tablanom="' + orden.TablaNom + '" ' +
+                        'data-lote="' + orden.Lote + '" ' +
+                        '>' + orden.Clave + '</button></td>' +
                         '<td>' + orden.Nombre + '</td>' +
                         '<td>' + orden.Fecha + '</td>' +
                         '<td>' + orden.FechaCad + '</td>' +
@@ -779,11 +778,11 @@
                         '<td class="hiddencol">' + orden.Tabla + '</td>' +
                         '<td class="hiddencol">' + orden.TablaNom + '</td>' +
                         '<td class="hiddencol">' + orden.Lote + '</td>'
-                        '</tr>';
+                    '</tr>';
                     tbody.append(row);
                 });
                 CargarDatosOrden(tip);
-                
+
             },
             error: function (data7, success, error) {
                 console.error(data7.responseText);
@@ -793,7 +792,7 @@
         return false;
     }
 
-    $(document).on('click', '.btnSeleccionar', function(){
+    $(document).on('click', '.btnSeleccionar', function () {
         let clave = $(this).data('clave');
         let producto = $(this).data('nombre');
         let fecha = $(this).data('fecha');
@@ -821,19 +820,19 @@
         CargarVariedad(tipo);
         CargarCajasProducidas(tipo);
     });
-    
+
     function CargarDatosOrden(tipo) {
         var pageUrl = "procesos.asmx/CargarDatosOrden";
         $.ajax({
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({folio: $("#txtOrdenProd").val(), tipo_recibo: tipo}),
+            data: JSON.stringify({ folio: $("#txtOrdenProd").val(), tipo_recibo: tipo }),
             dataType: 'json',
             success: function (data8) {
                 let items = data8.d;
                 console.log(items);
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     $("#txtRespLinea").val(item.Responsable);
                     $("#txtArea").val(item.Linea);
                 });
@@ -851,12 +850,12 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({folio: $("#txtOrdenProd").val(), prod: $("#txt_clave").val(),  tipo: tipo}),
+            data: JSON.stringify({ folio: $("#txtOrdenProd").val(), prod: $("#txt_clave").val(), tipo: tipo }),
             dataType: 'json',
             success: function (data9) {
                 let items = data9.d;
                 console.log(items);
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     $("#txtVariedad").val(item.Variedad);
                 });
             },
@@ -873,12 +872,12 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({folio: $("#txtOrdenProd").val(), prod: $("#txt_clave").val(),  tar: '', tipo: tipo}),
+            data: JSON.stringify({ folio: $("#txtOrdenProd").val(), prod: $("#txt_clave").val(), tar: '', tipo: tipo }),
             dataType: 'json',
             success: function (data10) {
                 let items = data10.d;
                 console.log(items);
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     $("#txtCajasProducidas").val(item.Producidas);
                 });
             },
@@ -889,28 +888,24 @@
         return false;
     }
 
-    function VerificaProdRecibidas()
-    {
-        
+    function VerificaProdRecibidas() {
+
         let cajasprod = parseFloat($("#txtCajasProducidas").val());
         let cajasreci = parseFloat($("#txtCantReci").val());
 
         //alert(cajasreci);
-        if(cajasreci == "")
-        {
+        if (cajasreci == "") {
             alert('Ingresar las cajas recibidas');
             $("#txtCajasRecibidas").val('0');
             return;
         }
 
-        if(cajasreci == 0)
-        {
+        if (cajasreci == 0) {
             alert('Ingresar las cajas recibidas');
             return;
         }
 
-        if(cajasreci > cajasprod)
-        {
+        if (cajasreci > cajasprod) {
             alert('Las cajas recibidas no puede ser mayores a las producidas');
             $("#txtCantReci").val('0');
             $("#txtCantRech").val('0');
@@ -919,27 +914,23 @@
         //alert("sale");
     }
 
-    function CalcularPorcentaje()
-    {
+    function CalcularPorcentaje() {
         let cajasprod = parseFloat($("#txtCajasProducidas").val());
         let cajasreci = parseFloat($("#txtCantReci").val());
         let cajasrech = parseFloat($("#txtCantRech").val());
 
-        if(cajasreci == "")
-        {
+        if (cajasreci == "") {
             alert('Ingresar las cajas recibidas');
             $("#txtCajasRecibidas").val('0');
             return;
         }
-        if(cajasreci == 0)
-        {
+        if (cajasreci == 0) {
             alert('Ingresar las cajas recibidas')
             return;
         }
 
 
-        if(cajasrech > cajasreci)
-        {
+        if (cajasrech > cajasreci) {
             alert('Las cajas rechazadas no puede ser mayor a las recibidas');
             $("#txtCantRech").val('0');
             return;
@@ -947,12 +938,12 @@
 
         porcentaje = (cajasrech * 100) / cajasprod;
 
-        if(isNaN(porcentaje))
+        if (isNaN(porcentaje))
             $("#txtPorcentaje").val('0');
         else
             $("#txtPorcentaje").val(porcentaje.toFixed(2));
 
-        
+
     }
 
     function CargarProblemas() {
@@ -971,7 +962,7 @@
                 let combo = $('#ddlProblema');
                 combo.empty();
                 //combo.append('<option value="">SELECCIONAR CLIENTE...</option>');
-                $.each(items, function(index, item){
+                $.each(items, function (index, item) {
                     combo.append($('<option>', {
                         value: item.Clave,
                         text: item.Nombre
@@ -986,50 +977,48 @@
         return false;
     }
 
-    document.getElementById("txtCosto").addEventListener("input", function(){
+    document.getElementById("txtCosto").addEventListener("input", function () {
         const valor = this.value;
         let valorF = parseFloat(valor);
-        if(valor.includes('.')){
+        if (valor.includes('.')) {
             const partes = valor.split('.');
-            if(partes[1].length > 2)
+            if (partes[1].length > 2)
                 $("#txtCosto").val(valorF.toFixed(2))
         }
         //alert(valor);
-//        if(valor == '')
-//        {
-//            $("#txtCosto").val('0');
-//        }
+        //        if(valor == '')
+        //        {
+        //            $("#txtCosto").val('0');
+        //        }
     });
 
     document.querySelectorAll("input[type=text]").forEach(input => {
-        input.addEventListener("keydown", function(e){
-            if(e.key === "Enter"){
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
                 e.preventDefault();
             }
         });
     });
 
     document.querySelectorAll("input[type=number]").forEach(input => {
-        input.addEventListener("keydown", function(e){
-            if(e.key === "Enter"){
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
                 e.preventDefault();
             }
         });
     });
 
-    
 
-    function GuardarQueja()
-    {
+
+    function GuardarQueja() {
         //alert(ValidarControles());
-        if(parseFloat(ValidarControles()) > 0)
-        {
+        if (parseFloat(ValidarControles()) > 0) {
             Swal.fire({
-                    title: "Quejas",
-                    text: "Faltan campos requeridos",
-                    icon: "error"
-                });
-				return;
+                title: "Quejas",
+                text: "Faltan campos requeridos",
+                icon: "error"
+            });
+            return;
         }
         let folio = $("#txtFolio").val();
         let semana = $("#txtSemana").val(); //que_semana
@@ -1062,7 +1051,7 @@
         let cantreci = $("#txtCantReci").val();
         let unidad = $("#txtUnidad").val();
         let devolucion = "0";
-        if($("#ddlLista").val() === "DEV"){
+        if ($("#ddlLista").val() === "DEV") {
             devolucion = "1";
         }
         let moneda = $("#ddlMoneda").val();
@@ -1078,19 +1067,19 @@
         let cjsprod = $("#txtCajasProducidas").val();
         let porcen = $("#txtPorcentaje").val();
         let merma = "0";
-        if($("#ddlLista").val() === "MER"){
+        if ($("#ddlLista").val() === "MER") {
             merma = "1"
         }
         let bonificacion = "0";
-        if($("#ddlLista").val() === "BON"){
+        if ($("#ddlLista").val() === "BON") {
             bonificacion = "1";
         }
         let rechazo = $("#txtCantRech").val();
         let noaplica = "0";
-        if($("#ddlLista").val() === "NA"){
+        if ($("#ddlLista").val() === "NA") {
             noaplica = "1";
-        }           
-        
+        }
+
         let nombre = $("#<%=lblNombre.ClientID%>").html();
         let problemanom = $("#ddlProblema option:selected").text();
 
@@ -1110,7 +1099,7 @@
                     text: "El folio ingresado en el pedido no existe",
                     icon: "error"
                 });
-				return;
+                return;
         }
 
         let valores = val_ped_fac.split("*");
@@ -1128,27 +1117,28 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({folio: folio, semana: semana, fecha: fecha,  mes: mes, cliprim: cliprim, cliente: cliente, sucursal: sucursal, reporto: reporto, recibio: recibio, cedis: cedis, usuario: usuario, 
+            data: JSON.stringify({
+                folio: folio, semana: semana, fecha: fecha, mes: mes, cliprim: cliprim, cliente: cliente, sucursal: sucursal, reporto: reporto, recibio: recibio, cedis: cedis, usuario: usuario,
                 tipo: tipo, subclifolio: subclifolio, pedido: pedido, observaciones: observaciones, costo: costo, consumidor: consumidor, producto: producto, problema: problema, ordprod: ordprod, area: area,
                 responsable: responsable, cantrecha: cantrecha, cantreci: cantreci, unidad: unidad, devolucion: devolucion, moneda: moneda, cveprov: cveprov, cverch: cverch, cvetbl: cvetbl, variedad: variedad,
                 lote: lote, nomprod: nomprod, fechacad: fechacad, ptcptp: ptcptp, cjsprod: cjsprod, porcen: porcen, merma: merma, bonificacion: bonificacion, rechazo: rechazo, noaplica: noaplica,
-                nombre: nombre, problemanom: problemanom }),
+                nombre: nombre, problemanom: problemanom
+            }),
             dataType: 'json',
             success: function (data12) {
                 console.log(data12.d);
 
-                if(data12.d == "NOPED")
-                {
+                if (data12.d == "NOPED") {
                     $("#txtFolio").val(folio);
                     Swal.fire({
-                    title: "Quejas",
-                    text: "El folio ingresado en el pedido no existe",
-                    icon: "error"
-                     });
-				    return;
-                    
+                        title: "Quejas",
+                        text: "El folio ingresado en el pedido no existe",
+                        icon: "error"
+                    });
+                    return;
+
                 }
-                else { 
+                else {
                     $("#txtFolio").val(data12.d);
                     //alert("Queja Guardada");
                     SubirArchivos();
@@ -1157,9 +1147,9 @@
                         text: "Datos guardados",
                         icon: "success"
                     });
-				    $("#btnGuardar").prop("disabled", true);
-                }   
-                
+                    $("#btnGuardar").prop("disabled", true);
+                }
+
             },
             error: function (data12, success, error) {
                 alert("Error: " + error);
@@ -1171,15 +1161,14 @@
 
     }
 
-    function ValidarPedido(pedido, expnal, clave, producto)
-    {
+    function ValidarPedido(pedido, expnal, clave, producto) {
         var pageUrl = "procesos.asmx/ValidarIngresoPedido";
         var ret = "";
         $.ajax({
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             url: pageUrl,
-            data: JSON.stringify({pedido : pedido, expnal : expnal, clave : clave, producto : producto}),
+            data: JSON.stringify({ pedido: pedido, expnal: expnal, clave: clave, producto: producto }),
             dataType: 'json',
             success: function (data12) {
                 //ret = data12.d;
@@ -1195,23 +1184,23 @@
         return "0";
     }
 
-    function SubirArchivos(){
+    function SubirArchivosLEGACY() {
         let archivo1 = $("#fluArchivo1")[0].files[0]; //.get(0).files;
         let archivo2 = $("#fluArchivo2")[0].files[0]; //.get(0).files;
         let archivo3 = $("#fluArchivo3")[0].files[0]; //.get(0).files;
         let formData = new FormData();
-        
+
         //let archivo1new = "1_" + $("#txtFolio").val() + ".pdf";
-        
+
         let archivo1Ext = $("#fluArchivo1").get(0).files;
         let archivo2Ext = $("#fluArchivo2").get(0).files;
         let archivo3Ext = $("#fluArchivo3").get(0).files;
 
-        if(archivo1){
+        if (archivo1) {
             let archivo1new = "";
             let Name1 = archivo1Ext[0].name.toLowerCase();
             let Ext1 = Name1.substring(Name1.lastIndexOf('.'));
-            if(Ext1 === ".png")
+            if (Ext1 === ".png")
                 archivo1new = "1_" + $("#txtFolio").val() + ".png";
             else if (Ext1 === ".jpg")
                 archivo1new = "1_" + $("#txtFolio").val() + ".jpg";
@@ -1221,11 +1210,11 @@
                 archivo1new = "1_" + $("#txtFolio").val() + ".pdf";
             formData.append("archivo1", archivo1, archivo1new);
         }
-        if(archivo2){
+        if (archivo2) {
             let archivo2new = "";
             let Name2 = archivo2Ext[0].name.toLowerCase();
             let Ext2 = Name2.substring(Name2.lastIndexOf('.'));
-            if(Ext2 === ".png")
+            if (Ext2 === ".png")
                 archivo2new = "2_" + $("#txtFolio").val() + ".png";
             else if (Ext2 === ".jpg")
                 archivo2new = "2_" + $("#txtFolio").val() + ".jpg";
@@ -1235,40 +1224,106 @@
                 archivo2new = "2_" + $("#txtFolio").val() + ".pdf";
             formData.append("archivo2", archivo2, archivo2new);
         }
-        if(archivo3){
+        if (archivo3) {
             let archivo3new = "";
             let Name3 = archivo3Ext[0].name.toLowerCase();
             let Ext3 = Name3.substring(Name3.lastIndexOf('.'));
-            if(Ext3 === ".png")
+            if (Ext3 === ".png")
                 archivo3new = "3_" + $("#txtFolio").val() + ".png";
             else if (Ext3 === ".jpg")
                 archivo3new = "3_" + $("#txtFolio").val() + ".jpg";
             else if (Ext3 === ".jpeg")
-                archivo3new = "3_" + $("#txtFolio").val() + ".jpeg"; 
+                archivo3new = "3_" + $("#txtFolio").val() + ".jpeg";
             else
                 archivo3new = "3_" + $("#txtFolio").val() + ".pdf";
             formData.append("archivo3", archivo3, archivo3new);
         }
-            
+
         $.ajax({
             url: "procesos.asmx/SubirArchivos",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
-            success: function(resp){
+            success: function (resp) {
                 /*Swal.fire({
                     title: "Quejas",
                     text: "Archivos subidos",
                     icon: "success"
                 });*/
             },
-            error: function (xhr, status, error){
+            error: function (xhr, status, error) {
                 console.error(xhr.responseText);
                 alert("Error al subir imagenes");
             }
         })
 
+    }
+
+    function SubirArchivos() {
+        let archivo1 = $("#fluArchivo1")[0].files[0];
+        let archivo2 = $("#fluArchivo2")[0].files[0];
+        let archivo3 = $("#fluArchivo3")[0].files[0];
+
+        let formData = new FormData();
+        let folio = $("#txtFolio").val(); // Obtenemos el folio
+
+        let archivo1Ext = $("#fluArchivo1").get(0).files;
+        let archivo2Ext = $("#fluArchivo2").get(0).files;
+        let archivo3Ext = $("#fluArchivo3").get(0).files;
+
+        if (archivo1) {
+            let archivo1new = "";
+            let Name1 = archivo1Ext[0].name.toLowerCase();
+            let Ext1 = Name1.substring(Name1.lastIndexOf('.'));
+            if (Ext1 === ".png") archivo1new = "1_" + folio + ".png";
+            else if (Ext1 === ".jpg") archivo1new = "1_" + folio + ".jpg";
+            else if (Ext1 === ".jpeg") archivo1new = "1_" + folio + ".jpeg";
+            else archivo1new = "1_" + folio + ".pdf";
+
+            formData.append("archivo1", archivo1, archivo1new);
+        }
+        if (archivo2) {
+            let archivo2new = "";
+            let Name2 = archivo2Ext[0].name.toLowerCase();
+            let Ext2 = Name2.substring(Name2.lastIndexOf('.'));
+            if (Ext2 === ".png") archivo2new = "2_" + folio + ".png";
+            else if (Ext2 === ".jpg") archivo2new = "2_" + folio + ".jpg";
+            else if (Ext2 === ".jpeg") archivo2new = "2_" + folio + ".jpeg";
+            else archivo2new = "2_" + folio + ".pdf";
+
+            formData.append("archivo2", archivo2, archivo2new);
+        }
+        if (archivo3) {
+            let archivo3new = "";
+            let Name3 = archivo3Ext[0].name.toLowerCase();
+            let Ext3 = Name3.substring(Name3.lastIndexOf('.'));
+            if (Ext3 === ".png") archivo3new = "3_" + folio + ".png";
+            else if (Ext3 === ".jpg") archivo3new = "3_" + folio + ".jpg";
+            else if (Ext3 === ".jpeg") archivo3new = "3_" + folio + ".jpeg";
+            else archivo3new = "3_" + folio + ".pdf";
+
+            formData.append("archivo3", archivo3, archivo3new);
+        }
+
+        // LE MANDAMOS EL FOLIO COMO TEXTO PARA QUE SEPÁ EN QUÉ CARPETA GUARDARLO
+        formData.append("folio", folio);
+
+        $.ajax({
+            url: "SubirArchivos.ashx", // <--- EL CAMBIO CRÍTICO AQUÍ
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (resp) {
+                console.log("Respuesta del servidor al subir archivos: " + resp);
+                // Aquí puedes poner tu SweetAlert de éxito si todo salió bien
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                alert("Error al subir imagenes");
+            }
+        });
     }
 
     window.onload = function () {
@@ -1280,12 +1335,11 @@
         CargarProblemas();
     };
 
-    function ValidarControles()
-    {
+    function ValidarControles() {
         let i = 0;
         let Cliente = $("#ddlCliente").val();
-		console.log("Cliente: ", Cliente);
-        if(Cliente === "" || Cliente === "SELECCIONAR CLIENTE..."){
+        console.log("Cliente: ", Cliente);
+        if (Cliente === "" || Cliente === "SELECCIONAR CLIENTE...") {
             i++;
             $("#errorCliente").show();
             //e.preventDefault();
@@ -1293,7 +1347,7 @@
             $("#errorCliente").hide();
         }
         let Sucursal = $("#ddlSucursales").val();
-        if(Sucursal === ""){
+        if (Sucursal === "") {
             i++;
             $("#errorSucursal").show();
             //e.preventDefault();
@@ -1301,7 +1355,7 @@
             $("#errorSucursal").hide();
         }
         let Reporto = $("#txtReporto").val();
-        if(Reporto === ""){
+        if (Reporto === "") {
             i++;
             $("#errorReporto").show();
             //e.preventDefault();
@@ -1309,7 +1363,7 @@
             $("#errorReporto").hide();
         }
         let Tipo = $("#ddlTipo").val();
-        if(Tipo === ""){
+        if (Tipo === "") {
             i++;
             $("#errorTipo").show();
             //e.preventDefault();
@@ -1317,7 +1371,7 @@
             $("#errorTipo").hide();
         }
         let Clave = $("#txt_clave").val();
-        if(Clave === "") {
+        if (Clave === "") {
             i++;
             $("#errorClave").show();
             //e.preventDefault();
@@ -1325,14 +1379,14 @@
             $("#errorClave").hide();
         }
         let Porcentaje = $("#txtPorcentaje").val();
-        if(Porcentaje === "") {
+        if (Porcentaje === "") {
             i++;
             $("#errorPorentaje").show();
             //e.preventDefault();
         } else {
             $("#errorPorcentaje").hide();
         }
-        if(Porcentaje === "") {
+        if (Porcentaje === "") {
             i++;
             $("#errorPorcentaje").show();
             //e.preventDefault();
@@ -1340,7 +1394,7 @@
             $("#errorPorcentaje").hide();
         }
         let Lista = $("#ddlLista").val();
-        if(Lista === "") {
+        if (Lista === "") {
             i++;
             $("#errorLista").show();
             //e.preventDefault();
@@ -1348,7 +1402,7 @@
             $("#errorLista").hide();
         }
         let Moneda = $("#ddlMoneda").val();
-        if(Moneda === "") {
+        if (Moneda === "") {
             i++;
             $("#errorMoneda").show();
             //e.preventDefault();
@@ -1356,7 +1410,7 @@
             $("#errorMoneda").hide()
         }
         let Problema = $("#ddlProblema").val();
-        if(Problema === "") {
+        if (Problema === "") {
             i++;
             $("#errorProblema").show();
             //e.preventDefault();
@@ -1365,9 +1419,8 @@
         }
         let Pedido = $("#txtPedido").val();
         //console.log("Pedido: ", Pedido)
-        if($("#ddlLista").val() !== "NA")
-        {
-            if(Pedido === "") {
+        if ($("#ddlLista").val() !== "NA") {
+            if (Pedido === "") {
                 //console.log("Pedido 2: ", Pedido);
                 i++;
                 $("#errorPedido").show();
@@ -1380,13 +1433,13 @@
             $("#errorPedido").hide();
         }
 
-        
-        let j= 0;
+
+        let j = 0;
         let archivo1 = $("#fluArchivo1").get(0).files;
         let archivo2 = $("#fluArchivo2").get(0).files;
         let archivo3 = $("#fluArchivo3").get(0).files;
         //VALIDACION SI NINGUNO DE LOS INPUT FILE TIENE CARGADO UN ARCHIVO
-        if(archivo1.length === 0 && archivo2.length === 0 && archivo3.length === 0){
+        if (archivo1.length === 0 && archivo2.length === 0 && archivo3.length === 0) {
             i++;
             $("#errorArchivos").show();
         }
@@ -1396,12 +1449,12 @@
         //VERIFICAR EXTENCIONES PERMITIDAS
         const extPermitidas = ['.jpg', '.jpeg', '.png', '.pdf'];
         let maxSizeBytes = 4 * 1024 * 1024;
-        
-        if(archivo1.length > 0){
+
+        if (archivo1.length > 0) {
             let nombreFile = archivo1[0].name.toLowerCase();
             let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
             console.log(extension);
-            if(!extPermitidas.includes(extension)){
+            if (!extPermitidas.includes(extension)) {
                 //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
                 $("#errorExtensiones").show();
                 i++;
@@ -1409,17 +1462,17 @@
             else
                 $("#errorExtensiones").hide();
 
-            if(archivo1[0].size > maxSizeBytes){
+            if (archivo1[0].size > maxSizeBytes) {
                 $("#errorSize").show();
             }
-            else 
+            else
                 $("#errorSize").hide();
 
         }
-        if(archivo2.length > 0){
+        if (archivo2.length > 0) {
             let nombreFile = archivo2[0].name.toLowerCase();
             let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
-            if(!extPermitidas.includes(extension)){
+            if (!extPermitidas.includes(extension)) {
                 //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
                 $("#errorExtenciones").show();
                 i++;
@@ -1428,24 +1481,24 @@
                 $("#errorExtensiones").hide();
             }
 
-            if(archivo2[0].size > maxSizeBytes){
+            if (archivo2[0].size > maxSizeBytes) {
                 $("#errorSize").show();
             }
-            else 
+            else
                 $("#errorSize").hide();
         }
-        if(archivo3.length > 0){
+        if (archivo3.length > 0) {
             let nombreFile = archivo3[0].name.toLowerCase();
             let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
-            if(!extPermitidas.includes(extension)){
+            if (!extPermitidas.includes(extension)) {
                 //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
                 $("#errorExtensiones").show();
                 i++;
             }
-            else 
+            else
                 $("#errorExtensiones").hide();
 
-            if(archivo3[0].size > maxSizeBytes){
+            if (archivo3[0].size > maxSizeBytes) {
                 $("#errorSize").show();
             }
             else
@@ -1454,8 +1507,8 @@
 
 
 
-        
-            
+
+
 
 
         /*let Costo = parseFloat($("#txtCosto").val());
@@ -1468,7 +1521,7 @@
         }*/
         return i;
     }
-    
-    
+
+
 </script>
 </html>
