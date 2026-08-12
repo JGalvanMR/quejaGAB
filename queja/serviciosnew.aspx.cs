@@ -652,7 +652,7 @@ namespace queja
             Dns.GetHostEntry(Dns.GetHostName());
             MailMessage message = new MailMessage();
             message.To.Add(correo);
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja no.: " + cve_queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = cuerpo;
@@ -660,7 +660,7 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -689,7 +689,7 @@ namespace queja
                 message.To.Add(correo);
 
                 // Copia oculta
-                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+                message.Bcc.Add("jgalvan@mrlucky.com.mx");
 
                 // Configuración del correo
                 message.Subject = "Queja no.: " + cve_queja;
@@ -706,7 +706,7 @@ namespace queja
 
                 smtpClient.Credentials = new NetworkCredential(
                     "sistemas@mrlucky.com.mx",
-                    "sisgab"
+                    "Sistem@s2026$"
                 );
 
                 smtpClient.Port = 587;

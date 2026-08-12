@@ -148,7 +148,7 @@ namespace queja
             message.To.Add("msamano@mrlucky.com.mx");
             foreach (DataRow row in (InternalDataCollectionBase)this.dtCorreos.Rows)
                 message.CC.Add(row["correo"].ToString());
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja no.: " + queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = str3;
@@ -156,7 +156,7 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -218,7 +218,7 @@ namespace queja
                 }
 
                 // Copia oculta
-                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+                message.Bcc.Add("jgalvan@mrlucky.com.mx");
 
                 // Configuración del correo
                 message.Subject = "Queja no.: " + queja;
@@ -235,7 +235,7 @@ namespace queja
 
                 smtpClient.Credentials = new NetworkCredential(
                     "sistemas@mrlucky.com.mx",
-                    "sisgab"
+                    "Sistem@s2026$"
                 );
 
                 smtpClient.Port = 587;

@@ -317,7 +317,7 @@ namespace queja
             string str3 = "<table border='2'><tr><td align='center'><h2>Verificaci&oacute;n para Acci&oacute;n Correctiva</h2></td></tr><tr><td>Producto: " + this.txtProducto.Text + "</td></tr><tr><td>Queja no.: " + this.lblQueja.Text + "</td></tr><tr><td>Problema: " + problema + "</td></tr><tr><td>Acci&oacute;n: " + accion + "</td></tr><tr><td>Responsable: " + responsable + "</td></tr><tr><td>Cumplimiento: " + cumplimiento + "</td></tr><tr><td>Comentario: " + comentario + "</td></tr><tr><td>Fecha de verificaci&oacute;n: " + fecha + "</td></tr></table><p>Entrar al sistema de quejas</p><br />Enlace dentro de instalaciónes de Comercializadora GAB: " + str2 + "<br />Enlace fuera de instalaciónes de Comercializadora GAB: " + str1;
             MailMessage message = new MailMessage();
             message.To.Add("msamano@mrlucky.com.mx");
-            message.Bcc.Add("aescamilla@mrlucky.com.mx");
+            message.Bcc.Add("jgalvan@mrlucky.com.mx");
             message.Subject = "Queja no.: " + queja;
             message.SubjectEncoding = Encoding.UTF8;
             message.Body = str3;
@@ -325,7 +325,7 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -397,7 +397,7 @@ namespace queja
                 message.To.Add("msamano@mrlucky.com.mx");
 
                 // Copia oculta
-                message.Bcc.Add("aescamilla@mrlucky.com.mx");
+                message.Bcc.Add("jgalvan@mrlucky.com.mx");
 
                 // Configuración del correo
                 message.Subject = "Queja no.: " + queja;
@@ -414,7 +414,7 @@ namespace queja
 
                 smtpClient.Credentials = new NetworkCredential(
                     "sistemas@mrlucky.com.mx",
-                    "sisgab"
+                    "Sistem@s2026$"
                 );
 
                 smtpClient.Port = 587;

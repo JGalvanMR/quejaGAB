@@ -159,7 +159,7 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -196,7 +196,7 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemas@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "sisgab");
+            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemas", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
@@ -253,7 +253,7 @@ namespace queja
 
             // Configuración del Cliente SMTP
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = new NetworkCredential("sistemas@mrlucky.com.mx", "sisgab");
+            smtpClient.Credentials = new NetworkCredential("sistemas@mrlucky.com.mx", "Sistem@s2026$");
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
             smtpClient.Host = "mail1.mrlucky.com.mx";
