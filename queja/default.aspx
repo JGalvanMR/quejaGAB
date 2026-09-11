@@ -11,7 +11,7 @@
     <script src="Scripts/jquery-3.1.0.js" type="text/javascript"></script>
     <script src="Scripts/bootstrap.js" type="text/javascript"></script>
     <script type="text/javascript">
-        /*var iddleTimeout = null;
+        var iddleTimeout = null;
         function pageLoad() {
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
@@ -35,7 +35,7 @@
             var loc = window.location;
             var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
             return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-        }* /
+        }
 
         function getAbsolutePath() {
             var loc = window.location;

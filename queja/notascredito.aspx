@@ -17,25 +17,25 @@
     <script src="jqueryui/jquery-ui.js" type="text/javascript"></script>
     <script type="text/javascript">
         $().ready(function () {
-            
+
         })
         var iddleTimeout = null;
         function pageLoad() {
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
 
-                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>; 
+            var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>;
 
-                iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
-            }
+            iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
+        }
 
-        function TimeoutPage(){
+        function TimeoutPage() {
             var str = getAbsolutePath();
-            if(str.indexOf("localhost") != -1)
+            if (str.indexOf("localhost") != -1)
                 location.href = str + "default.aspx";
-            if(str.indexOf("gabira1") != -1)
+            if (str.indexOf("gabira1") != -1)
                 location.href = str;
-            if(str.indexOf("189.206.160.206") != -1)
+            if (str.indexOf("189.206.160.206") != -1)
                 location.href = str;
         }
 
@@ -46,8 +46,7 @@
         }
     </script>
     <style type="text/css">
-        body
-        {
+        body {
             background-image: url(imagenes/fondo_7.png);
             background-position: center center;
             background-repeat: no-repeat;
@@ -63,7 +62,9 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <center><h3><strong>Asignar para Notas de Credito</strong></h3></center>
+                        <center>
+                            <h3><strong>Asignar para Notas de Credito</strong></h3>
+                        </center>
                     </div>
                     <div class="panel-body">
                         <form id="form1" runat="server" class="form-horizontal" enctype="multipart/form-data">
@@ -85,7 +86,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-8">
-                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas" 
+                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas"
                                                 CssClass="btn btn-primary" />
                                         </div>
                                     </div>
@@ -93,21 +94,21 @@
                                     <div class="form-group">
                                         <asp:UpdatePanel ID="uplDetalle" runat="server" UpdateMode="Conditional">
                                             <ContentTemplate>
-                                                <asp:GridView ID="grvDetalle" runat="server" AutoGenerateColumns="false" 
-                                                    Width="100%" CssClass="table table-bordered table-hover" 
-                                                    EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" >
+                                                <asp:GridView ID="grvDetalle" runat="server" AutoGenerateColumns="false"
+                                                    Width="100%" CssClass="table table-bordered table-hover"
+                                                    EmptyDataText="No hay registros para mostrar" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center">
                                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                     <Columns>
-                                                        <asp:BoundField HeaderText="queja" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_folio"/>                                                        
-                                                        <asp:BoundField HeaderText="id_producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="id_producto"/>
-                                                        <asp:BoundField HeaderText="nom_producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="nom_producto"/>
-                                                        <asp:BoundField HeaderText="rejected" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="rejected"/>
-                                                        <asp:BoundField HeaderText="que_cliente" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_cliente"/>
-                                                        <asp:BoundField HeaderText="que_recibio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="que_recibio"/>
-                                                        <asp:BoundField HeaderText="resp_nombre" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="resp_nombre"/>
-                                                        <asp:BoundField HeaderText="qud_pedido" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_pedido"/>
-                                                        <asp:BoundField HeaderText="resp_tipo" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="resp_tipo"/>
-                                                        <asp:BoundField HeaderText="que_tipo" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_tipo"/>
+                                                        <asp:BoundField HeaderText="queja" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_folio" />
+                                                        <asp:BoundField HeaderText="id_producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="id_producto" />
+                                                        <asp:BoundField HeaderText="nom_producto" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="nom_producto" />
+                                                        <asp:BoundField HeaderText="rejected" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="rejected" />
+                                                        <asp:BoundField HeaderText="que_cliente" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_cliente" />
+                                                        <asp:BoundField HeaderText="que_recibio" HeaderStyle-CssClass="hiddencol" ItemStyle-CssClass="hiddencol" DataField="que_recibio" />
+                                                        <asp:BoundField HeaderText="resp_nombre" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="resp_nombre" />
+                                                        <asp:BoundField HeaderText="qud_pedido" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="qud_pedido" />
+                                                        <asp:BoundField HeaderText="resp_tipo" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="resp_tipo" />
+                                                        <asp:BoundField HeaderText="que_tipo" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" DataField="que_tipo" />
                                                         <asp:CheckBoxField HeaderText="NC" HeaderStyle-CssClass="visible-lg visible-md visible-sm visible-xs" ItemStyle-CssClass="visible-lg visible-md visible-sm visible-xs" />
                                                     </Columns>
                                                 </asp:GridView>
