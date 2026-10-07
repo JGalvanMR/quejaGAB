@@ -64,7 +64,7 @@ namespace queja
             }
             else
             {
-                SqlConnection connection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+                SqlConnection connection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
                 connection.Open();
                 SqlCommand sqlCommand;
                 foreach (GridViewRow row in grvDetalle.Rows)

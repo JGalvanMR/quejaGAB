@@ -30,7 +30,7 @@ namespace queja
             if (flag1 || flag2)
             {
                 this.Response.Write("<script>alert('Hay palabras no validas en los campos');</script>");
-            }//"Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240"
+            }//"Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240"
             else
             {
 
@@ -99,7 +99,7 @@ namespace queja
             message.Body = str;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -144,14 +144,14 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 // Usar el correo completo como usuario
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 

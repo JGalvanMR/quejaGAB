@@ -65,7 +65,7 @@ namespace queja
 
             if (!Page.IsPostBack)
             {
-                SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+                SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
                 sqlConnection.Open();
                 SqlDataAdapter adapter1 = new SqlDataAdapter("select RTRIM(prod_clave) AS prod_clave, RTRIM(REPLACE(prod_nombre, '''', '*')) AS prod_nombre from tb_cat_producto where prod_tipo in ('PTC', 'PTP') and prod_nombre <> '' ORDER BY prod_nombre", sqlConnection);
                 DataSet ds = new DataSet();
@@ -183,7 +183,7 @@ namespace queja
             //this.txtActual.Value = str4;
             //this.txtSiguiente.Value = str3;
             //this.udpMeses.Update();
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             SqlCommand sqlCommand = new SqlCommand();
             //int num1;
             //string str5;

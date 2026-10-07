@@ -62,7 +62,7 @@ namespace queja
 
             if (!Page.IsPostBack)
             {
-                SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+                SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
                 conn.Open();
                 SqlCommand cmnd;
                 string qry = "select lin_clave, lin_nombre FROM tb_cat_linea where lin_clave >= '01' AND lin_clave <= '23' ORDER BY lin_nombre";
@@ -91,7 +91,7 @@ namespace queja
             //reporte_tablas_3();
             ////ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "loadMe", "$('#loadMe').modal();", true);
 
-            //SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            //SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             //SqlDataAdapter adapter;
             //DataSet dsDatos = new DataSet();
 
@@ -359,7 +359,7 @@ namespace queja
         {
             //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "loadMe", "$('#loadMe').modal();", true);
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             SqlDataAdapter adapter;
             DataSet dsDatos = new DataSet();
 
@@ -1318,7 +1318,7 @@ namespace queja
 
         public void reporte_tablas_2()
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             SqlDataAdapter adapter;
             DataSet dsDatos = new DataSet();
 
@@ -2096,7 +2096,7 @@ namespace queja
 
         public DataTable rechazo_variedad_datos(string vari, string prob, string fecha1)
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             SqlDataAdapter adapter;
             DataSet dsDatos = new DataSet();
 

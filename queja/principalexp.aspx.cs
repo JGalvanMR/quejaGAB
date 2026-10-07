@@ -641,7 +641,7 @@ namespace queja
                 {
                     string cve_queja = this.con.insert_queja_exportacion(text1, text2, text3, text4, selectedValue1, text5, text6, upper, text7, text8, text9, selectedValue3, shortDateString, "",
                         selectedValue2, text10, text12, text13, text11, text14, textFact, textSufijo, textFechaEmb, textSemEmb);
-                    SqlConnection connection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+                    SqlConnection connection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
                     connection.Open();
                     string str3 = "0";
                     string str4 = "<table border='1'>";
@@ -813,7 +813,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -854,13 +854,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 
@@ -1077,7 +1077,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -1115,13 +1115,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 

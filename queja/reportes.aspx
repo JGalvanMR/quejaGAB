@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/bootstrap.css" rel="Stylesheet" type="text/css" />
     <link href="css/jasny-bootstrap.css" rel="Stylesheet" type="text/css" />
@@ -33,18 +33,18 @@
             if (iddleTimeout != null)
                 clearTimeout(iddleTimeout);
 
-                var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>; 
+            var millisecTimeout = <%= int.Parse(System.Configuration.ConfigurationManager.AppSettings["SessionTimeout"]) * 60 * 1000 %>;
 
-                iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
-            }
+            iddleTimeout = setTimeout("TimeoutPage()", millisecTimeout);
+        }
 
-        function TimeoutPage(){
+        function TimeoutPage() {
             var str = getAbsolutePath();
-            if(str.indexOf("localhost") != -1)
+            if (str.indexOf("localhost") != -1)
                 location.href = str + "default.aspx";
-            if(str.indexOf("gabira1") != -1)
+            if (str.indexOf("gabira1") != -1)
                 location.href = str;
-            if(str.indexOf("189.206.160.206") != -1)
+            if (str.indexOf("189.206.160.206") != -1)
                 location.href = str;
         }
 
@@ -55,16 +55,14 @@
         }
     </script>
     <style type="text/css">
-    body
-        {
+        body {
             background-image: url(imagenes/fondo_7.png);
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             background-color: #464646;
-            
-            }
+        }
     </style>
 </head>
 <body>
@@ -73,12 +71,14 @@
             <form id="frmPrincipal" runat="server">
                 <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true">
                 </asp:ScriptManager>
-                
+
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <center><h3><strong class="">Detalles Queja</strong></h3></center>
+                        <center>
+                            <h3><strong class="">Detalles Queja</strong></h3>
+                        </center>
                     </div>
-                    <div  class="panel-body">
+                    <div class="panel-body">
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="row">
@@ -96,8 +96,8 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <div class="col-sm-offset-0 col-sm-8">
-                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas" 
-                                                CssClass="btn btn-primary" onclick="btnVolver_Click"  />
+                                            <asp:Button runat="server" ID="btnVolver" Text="Regresar a quejas"
+                                                CssClass="btn btn-primary" OnClick="btnVolver_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -110,8 +110,8 @@
                                                 <h3>Reporte de quejas por semana</h3>
                                                 <p>Detalle de las quejas recibidas por CEDIS</p>
                                                 <p>
-                                                    <asp:Button ID="btnCedis" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnCedis_Click" />
+                                                    <asp:Button ID="btnCedis" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnCedis_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -123,8 +123,8 @@
                                                 <h3>Reporte de quejas por semana</h3>
                                                 <p>Detalle de las quejas recibidas por área</p>
                                                 <p>
-                                                    <asp:Button ID="btnArea" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnArea_Click" />
+                                                    <asp:Button ID="btnArea" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnArea_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -136,8 +136,8 @@
                                                 <h3>Reporte de cajas por mes</h3>
                                                 <p>Detalle de la cantidad de cajas rechazadas por mes</p>
                                                 <p>
-                                                    <asp:Button ID="btnMes" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnMes_Click" />    
+                                                    <asp:Button ID="btnMes" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnMes_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -149,30 +149,30 @@
                                                 <h3>Reporte de cajas por semana</h3>
                                                 <p>Detalle de la cantidad de cajas rechazadas por semana</p>
                                                 <p>
-                                                    <asp:Button ID="btnSemana" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnSemana_Click"  />    
+                                                    <asp:Button ID="btnSemana" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnSemana_Click" />
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-8 col-md-12">
                                         <div class="thumbnail">
-                                            <img src="imagenes/Excel.png" alt="Reporte" height="150" width="150"/>
+                                            <img src="imagenes/Excel.png" alt="Reporte" height="150" width="150" />
                                             <div class="caption">
                                                 <h3>Reporte General Excel</h3>
                                                 <p>Reporte detallado de quejas</p>
                                                 <p>
-                                                    <asp:Button ID="btnGeneral" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Generar Reporte" onclick="btnGeneral_Click"  />    
-                                                        <asp:Button runat="server" ID="Button1" Text="Report" 
-                                                            CssClass="btn btn-primary" onclick="Button1_Click1"  Visible="False" />
+                                                    <asp:Button ID="btnGeneral" runat="server" CssClass="btn btn-primary"
+                                                        Text="Generar Reporte" OnClick="btnGeneral_Click" />
+                                                    <asp:Button runat="server" ID="Button1" Text="Report"
+                                                        CssClass="btn btn-primary" OnClick="Button1_Click1" Visible="False" />
                                                 </p>
                                                 <p class="form-inline">
                                                     Fechas:
-                                                    <asp:TextBox ID="txtFechaInicio" MaxLength="10" runat="server" data-provide="datepicker" 
+                                                    <asp:TextBox ID="txtFechaInicio" MaxLength="10" runat="server" data-provide="datepicker"
                                                         CssClass="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                                     De:
-                                                    <asp:TextBox ID="txtFechaFin" MaxLength="10" runat="server" data-provide="datepicker" 
+                                                    <asp:TextBox ID="txtFechaFin" MaxLength="10" runat="server" data-provide="datepicker"
                                                         CssClass="form-control" Style="text-transform: uppercase"></asp:TextBox>
                                                 </p>
                                             </div>
@@ -185,8 +185,8 @@
                                                 <h3>Reporte de rechazo</h3>
                                                 <p>Detalle de cajas rechazadas</p>
                                                 <p>
-                                                    <asp:Button ID="btnGraficas" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnGraficas_Click"  />    
+                                                    <asp:Button ID="btnGraficas" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnGraficas_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -198,8 +198,8 @@
                                                 <h3>Reporte de Cajas Producidas</h3>
                                                 <p>Detalle de cajas producidas vs rechazadas Producto Terminado</p>
                                                 <p>
-                                                    <asp:Button ID="btnCajasProducidas" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnCajasProducidas_Click"  />    
+                                                    <asp:Button ID="btnCajasProducidas" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnCajasProducidas_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -211,8 +211,8 @@
                                                 <h3>Reporte por Producto</h3>
                                                 <p>Detalle de cajas rechazadas por producto</p>
                                                 <p>
-                                                    <asp:Button ID="btnProducto" runat="server" CssClass="btn btn-primary" 
-                                                        Text="Entrar" onclick="btnProducto_Click"   />    
+                                                    <asp:Button ID="btnProducto" runat="server" CssClass="btn btn-primary"
+                                                        Text="Entrar" OnClick="btnProducto_Click" />
                                                 </p>
                                             </div>
                                         </div>
@@ -224,7 +224,7 @@
                 </div>
             </form>
         </div>
-        
+
     </div>
 </body>
 </html>

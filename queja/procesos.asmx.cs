@@ -34,7 +34,7 @@ namespace queja
         [WebMethod]
         public string FolioQueja()
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             cmd = conn.CreateCommand();
@@ -59,7 +59,7 @@ namespace queja
         [WebMethod]
         public int Semana()
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             cmd = conn.CreateCommand();
@@ -89,7 +89,7 @@ namespace queja
         [WebMethod]
         public int SemanaEmb(string fecha)
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             cmd = conn.CreateCommand();
@@ -143,7 +143,7 @@ namespace queja
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("CliCod", typeof(string));
             dataTable.Columns.Add("CliRSocial", typeof(string));
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -188,7 +188,7 @@ namespace queja
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Id", typeof(string));
             dataTable.Columns.Add("Nombre", typeof(string));
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -244,7 +244,7 @@ namespace queja
             dataTable.Columns.Add("tipo", typeof(string));
             dataTable.Columns.Add("lote", typeof(string));
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -329,7 +329,7 @@ namespace queja
             }
 
             int fol_campo = 0;
-            string cadenaPrincipal = "Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout=240";
+            string cadenaPrincipal = "Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout=240";
 
             using (SqlConnection conn = new SqlConnection(cadenaPrincipal))
             {
@@ -508,7 +508,7 @@ namespace queja
             dataTable.Columns.Add("ordp_linea", typeof(string));
             dataTable.Columns.Add("ordp_responsable", typeof(string));
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -753,7 +753,7 @@ namespace queja
         public string variedad_recepcion_pt(string rec)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -783,7 +783,7 @@ namespace queja
         public string variedad_busca_eti_final(string fol, string prod)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -813,7 +813,7 @@ namespace queja
         public string variedad_busca_prod_odp(string fol, string rec)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -843,7 +843,7 @@ namespace queja
         public string variedad_recepcion_mp(string rec)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -873,7 +873,7 @@ namespace queja
         public string variedad_prod_ode_tipo(string rec)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -903,7 +903,7 @@ namespace queja
         public string variedad_recepcion_esparrago(string rec)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -933,7 +933,7 @@ namespace queja
         public string cajas_producidas_folio(string rec, string pro)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -963,7 +963,7 @@ namespace queja
         public string cajas_producidas_folio2(string rec, string pro, string tar)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -996,7 +996,7 @@ namespace queja
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("pro_clave", typeof(string));
             dataTable.Columns.Add("pro_nombre", typeof(string));
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -1078,7 +1078,7 @@ namespace queja
 
             }
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             try
             {
                 conn.Open();
@@ -1156,7 +1156,7 @@ namespace queja
             fechaemb = fecha_embarque(pedido, tipo, usuario);
             sememb = SemanaEmb(FechaEm).ToString();
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             try
             {
                 conn.Open();
@@ -1234,7 +1234,7 @@ namespace queja
 
         public string AgregaDetalleCostoFactura(string folio, string factura, string costo)
         {
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             com = conn.CreateCommand();
@@ -1269,7 +1269,7 @@ namespace queja
         {
             string str = "";
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand cmd;
             SqlDataReader reader;
@@ -1375,7 +1375,7 @@ namespace queja
         {
             //buscar en facturas
             string cnte = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             SqlDataReader read;
@@ -1467,7 +1467,7 @@ namespace queja
         public string fecha_embarque(string folio, string tipo, string clave)
         {
             string str = "";
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             SqlDataReader read;
@@ -1620,7 +1620,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -1658,7 +1658,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -1683,7 +1683,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "sipgab");
             smtpClient.Port = 587;
@@ -1750,13 +1750,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 
@@ -1858,13 +1858,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 
@@ -1938,13 +1938,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 
@@ -2005,7 +2005,7 @@ namespace queja
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("NoTrailer", typeof(string));
             dataTable.Columns.Add("PdnFolio", typeof(string));
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             SqlDataReader read;
@@ -2062,7 +2062,7 @@ namespace queja
             dataTable2.Columns.Add("CNTE", typeof(string));//cnte
             dataTable2.Columns.Add("Fact", typeof(string));//fact
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             SqlDataReader read;
@@ -2255,7 +2255,7 @@ namespace queja
             dataTable.Columns.Add("porcentaje", typeof(string));
             dataTable.Columns.Add("rechazadas", typeof(string));
 
-            SqlConnection conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             conn.Open();
             SqlCommand com;
             SqlDataReader read;

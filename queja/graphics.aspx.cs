@@ -27,7 +27,7 @@ namespace queja
         public static string facturadas_siguiente(string nombre, string mes, string rech)
         {
 
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             sqlConnection.Open();
             //DataSet ds = new DataSet();
             //SqlDataAdapter adapter1 = new SqlDataAdapter("select RTRIM(prod_clave) AS prod_clave, RTRIM(REPLACE(prod_nombre, '''', '*')) AS prod_nombre from tb_cat_producto where prod_tipo in ('PTC', 'PTP') and prod_nombre <> '' ORDER BY prod_nombre", sqlConnection);
@@ -140,7 +140,7 @@ namespace queja
         [WebMethod]
         public static string facturadas_actual(string nombre, string mes, string rech)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             sqlConnection.Open();
 
             //DataSet ds = new DataSet();
@@ -252,7 +252,7 @@ namespace queja
         [WebMethod]
         public static string facturadas_anterior(string nombre, string mes, string rech)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             sqlConnection.Open();
 
             graphics dg = new graphics();

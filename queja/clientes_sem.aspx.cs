@@ -16,7 +16,7 @@ namespace queja
     {
         private conectasql con = new conectasql();
         private DataTable dtQuejas = new DataTable();
-        private SqlConnection conex = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+        private SqlConnection conex = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
         private SqlCommand comand = new SqlCommand();
         private DataTable dtExcel = new DataTable();
         private SqlDataAdapter adapter;
@@ -355,7 +355,7 @@ namespace queja
                 dataTable.Rows.Add((object)num1, (object)"0", (object)"0", (object)"0", (object)"0", (object)"0", (object)"0");
                 ++num1;
             }
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
             SqlCommand sqlCommand = new SqlCommand();
             sqlConnection.Open();
             SqlCommand command = sqlConnection.CreateCommand();
@@ -1057,7 +1057,7 @@ namespace queja
 
         protected void btnCedis_Click(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
             SqlCommand sqlCommand = new SqlCommand();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("SEMANA", typeof(string));
@@ -3519,7 +3519,7 @@ namespace queja
                 dataTable1.Rows.Add((object)num1, (object)"0", (object)"0", (object)"0", (object)"0", (object)"0", (object)"0", (object)"0");
                 ++num1;
             }
-            SqlConnection sqlConnection = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$");
             SqlCommand sqlCommand = new SqlCommand();
             sqlConnection.Open();
             SqlCommand command = sqlConnection.CreateCommand();

@@ -21,11 +21,11 @@ namespace queja
         SqlCommand comUERP;
         SqlDataReader readUERP;
 
-        string cad = "Data Source=192.168.123.6,1433; GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240";
+        string cad = "Data Source=189.206.160.206,2352; GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240";
 
         public void Conexion()
         {
-            this.conn = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            this.conn = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
         }
 
         public void Abrir()
@@ -8199,7 +8199,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "sipgab");
             smtpClient.Port = 587;
@@ -8224,7 +8224,7 @@ namespace queja
             message.Body = cuerpo;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -8256,14 +8256,14 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 // Usar el correo completo como usuario
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "sipgab"
                 );
 
@@ -8336,14 +8336,14 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 // Usar el correo completo como usuario
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 

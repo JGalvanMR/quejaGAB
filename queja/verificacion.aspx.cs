@@ -323,7 +323,7 @@ namespace queja
             message.Body = str3;
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
-            message.From = new MailAddress("sistemas@mrlucky.com.mx");
+            message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
             smtpClient.Port = 587;
@@ -407,13 +407,13 @@ namespace queja
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = true;
 
-                message.From = new MailAddress("sistemas@mrlucky.com.mx");
+                message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
                 // Configuración SMTP
                 SmtpClient smtpClient = new SmtpClient();
 
                 smtpClient.Credentials = new NetworkCredential(
-                    "sistemas@mrlucky.com.mx",
+                    "sistemasgab@mrlucky.com.mx",
                     "Sistem@s2026$"
                 );
 

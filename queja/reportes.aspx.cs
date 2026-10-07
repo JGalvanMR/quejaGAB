@@ -21,7 +21,7 @@ namespace queja
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.conex = new SqlConnection("Data Source=192.168.123.6,1433;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
+            this.conex = new SqlConnection("Data Source=189.206.160.206,2352;Initial Catalog=GAB_Irapuato;Persist Security Info=True;User ID=sa;Password=Gabira2026$; Connect Timeout = 240");
             this.lblClave.Text = this.Session["clave"].ToString();
             this.lblNombre.Text = this.Session["nombre"].ToString();
             this.lblCedis.Text = this.Session["cedis"].ToString();
@@ -322,7 +322,7 @@ namespace queja
 
                 //}
             }
-            
+
         }
 
         public string mes(string m)
