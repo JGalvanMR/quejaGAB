@@ -21,8 +21,8 @@ namespace queja // ¡Cambia esto por el namespace real de tu proyecto!
                     return;
                 }
 
-                // 2. Definir la ruta física donde se guardarán (ej: C:\...\imagenes\quejas\13540\)
-                string rutaCarpeta = context.Server.MapPath("~/imagenes/quejas/" + folio + "/");
+                // 2. Las pantallas de consulta, análisis y asignación leen de ~/fotos_ant/ ({n}_{folio}.ext)
+                string rutaCarpeta = context.Server.MapPath("~/fotos_ant/");
 
                 // Crear la carpeta si no existe
                 if (!Directory.Exists(rutaCarpeta))
@@ -41,7 +41,7 @@ namespace queja // ¡Cambia esto por el namespace real de tu proyecto!
                 if (archivo1 != null && archivo1.ContentLength > 0)
                 {
                     // archivo1.FileName YA TIENE el nombre que le pusiste en JS (ej: 1_13540.jpg)
-                    string ruta1 = Path.Combine(rutaCarpeta, archivo1.FileName);
+                    string ruta1 = Path.Combine(rutaCarpeta, Path.GetFileName(archivo1.FileName));
                     archivo1.SaveAs(ruta1);
                     archivosGuardados++;
                 }
@@ -49,7 +49,7 @@ namespace queja // ¡Cambia esto por el namespace real de tu proyecto!
                 // 5. Guardar Archivo 2
                 if (archivo2 != null && archivo2.ContentLength > 0)
                 {
-                    string ruta2 = Path.Combine(rutaCarpeta, archivo2.FileName);
+                    string ruta2 = Path.Combine(rutaCarpeta, Path.GetFileName(archivo2.FileName));
                     archivo2.SaveAs(ruta2);
                     archivosGuardados++;
                 }
@@ -57,7 +57,7 @@ namespace queja // ¡Cambia esto por el namespace real de tu proyecto!
                 // 6. Guardar Archivo 3
                 if (archivo3 != null && archivo3.ContentLength > 0)
                 {
-                    string ruta3 = Path.Combine(rutaCarpeta, archivo3.FileName);
+                    string ruta3 = Path.Combine(rutaCarpeta, Path.GetFileName(archivo3.FileName));
                     archivo3.SaveAs(ruta3);
                     archivosGuardados++;
                 }

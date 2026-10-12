@@ -1317,11 +1317,21 @@
             processData: false,
             success: function (resp) {
                 console.log("Respuesta del servidor al subir archivos: " + resp);
-                // Aquí puedes poner tu SweetAlert de éxito si todo salió bien
+                if (String(resp).trim() !== "OK") {
+                    Swal.fire({
+                        title: "Quejas",
+                        text: "La queja se guardó pero las fotos no se pudieron subir (" + resp + "). Avise a Sistemas con el folio " + folio + ".",
+                        icon: "error"
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 console.error(xhr.responseText);
-                alert("Error al subir imagenes");
+                Swal.fire({
+                    title: "Quejas",
+                    text: "La queja se guardó pero las fotos no se pudieron subir. Avise a Sistemas con el folio " + folio + ".",
+                    icon: "error"
+                });
             }
         });
     }
@@ -1450,60 +1460,33 @@
         const extPermitidas = ['.jpg', '.jpeg', '.png', '.pdf'];
         let maxSizeBytes = 4 * 1024 * 1024;
 
-        if (archivo1.length > 0) {
-            let nombreFile = archivo1[0].name.toLowerCase();
+        // Cada archivo se valida por separado, pero los avisos se acumulan para que uno válido no oculte el error de otro
+        let extInvalida = false;
+        let sizeInvalido = false;
+        [archivo1, archivo2, archivo3].forEach(function (archivos) {
+            if (archivos.length === 0)
+                return;
+            let nombreFile = archivos[0].name.toLowerCase();
             let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
-            console.log(extension);
-            if (!extPermitidas.includes(extension)) {
-                //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
-                $("#errorExtensiones").show();
-                i++;
-            }
-            else
-                $("#errorExtensiones").hide();
+            if (!extPermitidas.includes(extension))
+                extInvalida = true;
+            if (archivos[0].size > maxSizeBytes)
+                sizeInvalido = true;
+        });
 
-            if (archivo1[0].size > maxSizeBytes) {
-                $("#errorSize").show();
-            }
-            else
-                $("#errorSize").hide();
-
+        if (extInvalida) {
+            $("#errorExtensiones").show();
+            i++;
         }
-        if (archivo2.length > 0) {
-            let nombreFile = archivo2[0].name.toLowerCase();
-            let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
-            if (!extPermitidas.includes(extension)) {
-                //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
-                $("#errorExtenciones").show();
-                i++;
-            }
-            else {
-                $("#errorExtensiones").hide();
-            }
+        else
+            $("#errorExtensiones").hide();
 
-            if (archivo2[0].size > maxSizeBytes) {
-                $("#errorSize").show();
-            }
-            else
-                $("#errorSize").hide();
+        if (sizeInvalido) {
+            $("#errorSize").show();
+            i++;
         }
-        if (archivo3.length > 0) {
-            let nombreFile = archivo3[0].name.toLowerCase();
-            let extension = nombreFile.substring(nombreFile.lastIndexOf('.'));
-            if (!extPermitidas.includes(extension)) {
-                //ERROR DE TIPO DE ARCHIVO NO PERMITIDO
-                $("#errorExtensiones").show();
-                i++;
-            }
-            else
-                $("#errorExtensiones").hide();
-
-            if (archivo3[0].size > maxSizeBytes) {
-                $("#errorSize").show();
-            }
-            else
-                $("#errorSize").hide();
-        }
+        else
+            $("#errorSize").hide();
 
 
 
