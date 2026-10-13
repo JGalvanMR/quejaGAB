@@ -82,13 +82,13 @@ namespace queja
                 this.dtDetQuejaPed = this.con.consulta_productos_exp(this.folio);
                 this.grvDetalle.DataSource = (object)this.dtDetQuejaPed;
                 this.grvDetalle.DataBind();
-                string str = UrlFoto(1, this.folio);
+                string str = FotosQueja.Url(this.Server, 1, this.folio);
                 this.img1.ImageUrl = str;
-                this.img2.ImageUrl = UrlFoto(2, this.folio);
-                this.img3.ImageUrl = UrlFoto(3, this.folio);
+                this.img2.ImageUrl = FotosQueja.Url(this.Server, 2, this.folio);
+                this.img3.ImageUrl = FotosQueja.Url(this.Server, 3, this.folio);
                 this.Image1.ImageUrl = str;
-                this.Image2.ImageUrl = UrlFoto(2, this.folio);
-                this.Image3.ImageUrl = UrlFoto(3, this.folio);
+                this.Image2.ImageUrl = FotosQueja.Url(this.Server, 2, this.folio);
+                this.Image3.ImageUrl = FotosQueja.Url(this.Server, 3, this.folio);
             }
             TextBox txtFecha = this.txtFecha;
             DateTime dateTime = DateTime.Now;
@@ -97,18 +97,6 @@ namespace queja
             txtFecha.Text = str1;
 
             //<!-- asp:Timer ID="Timer1" runat="server" Interval="3000" ontick="Timer1_Tick"></asp:Timer -->
-        }
-
-        // El alta por lote conserva la extensión original (.jpg, .jpeg, .png); el alta por pedido siempre guarda .jpg
-        private string UrlFoto(int numero, string folio)
-        {
-            string carpeta = this.Server.MapPath("~/fotos_ant/");
-            foreach (string ext in new[] { ".jpg", ".jpeg", ".png" })
-            {
-                if (File.Exists(Path.Combine(carpeta, numero + "_" + folio + ext)))
-                    return "fotos_ant/" + numero + "_" + folio + ext;
-            }
-            return "fotos_ant/" + numero + "_" + folio + ".jpg";
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

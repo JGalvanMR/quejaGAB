@@ -76,25 +76,13 @@ namespace queja
                     this.file3.Text = listItem.ToString();
                 ++num;
             }
-            string str = UrlFoto(1, valor);
+            string str = FotosQueja.Url(this.Server, 1, valor);
             this.img1.ImageUrl = str;
-            this.img2.ImageUrl = UrlFoto(2, valor);
-            this.img3.ImageUrl = UrlFoto(3, valor);
+            this.img2.ImageUrl = FotosQueja.Url(this.Server, 2, valor);
+            this.img3.ImageUrl = FotosQueja.Url(this.Server, 3, valor);
             this.Image1.ImageUrl = str;
-            this.Image2.ImageUrl = UrlFoto(2, valor);
-            this.Image3.ImageUrl = UrlFoto(3, valor);
-        }
-
-        // El alta por lote conserva la extensión original (.jpg, .jpeg, .png); el alta por pedido siempre guarda .jpg
-        private string UrlFoto(int numero, string folio)
-        {
-            string carpeta = this.Server.MapPath("~/fotos_ant/");
-            foreach (string ext in new[] { ".jpg", ".jpeg", ".png" })
-            {
-                if (File.Exists(Path.Combine(carpeta, numero + "_" + folio + ext)))
-                    return "fotos_ant/" + numero + "_" + folio + ext;
-            }
-            return "fotos_ant/" + numero + "_" + folio + ".jpg";
+            this.Image2.ImageUrl = FotosQueja.Url(this.Server, 2, valor);
+            this.Image3.ImageUrl = FotosQueja.Url(this.Server, 3, valor);
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)

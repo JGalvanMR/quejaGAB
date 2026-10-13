@@ -536,6 +536,7 @@
     <Compile Include="soporte.aspx.designer.cs">
       <DependentUpon>soporte.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FotosQueja.cs" />
     <Compile Include="SubirArchivos.ashx.cs">
       <DependentUpon>SubirArchivos.ashx</DependentUpon>
     </Compile>

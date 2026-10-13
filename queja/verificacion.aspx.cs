@@ -66,12 +66,12 @@ namespace queja
                     this.btnFile3.Text = listItem.ToString();
                 ++num;
             }
-            this.img1.ImageUrl = "fotos_ant/1_" + this.lblQueja.Text + ".jpg";
-            this.img2.ImageUrl = "fotos_ant/2_" + this.lblQueja.Text + ".jpg";
-            this.img3.ImageUrl = "fotos_ant/3_" + this.lblQueja.Text + ".jpg";
-            this.Image1.ImageUrl = "fotos_ant/1_" + this.lblQueja.Text + ".jpg";
-            this.Image2.ImageUrl = "fotos_ant/2_" + this.lblQueja.Text + ".jpg";
-            this.Image3.ImageUrl = "fotos_ant/3_" + this.lblQueja.Text + ".jpg";
+            this.img1.ImageUrl = FotosQueja.Url(this.Server, 1, this.lblQueja.Text);
+            this.img2.ImageUrl = FotosQueja.Url(this.Server, 2, this.lblQueja.Text);
+            this.img3.ImageUrl = FotosQueja.Url(this.Server, 3, this.lblQueja.Text);
+            this.Image1.ImageUrl = FotosQueja.Url(this.Server, 1, this.lblQueja.Text);
+            this.Image2.ImageUrl = FotosQueja.Url(this.Server, 2, this.lblQueja.Text);
+            this.Image3.ImageUrl = FotosQueja.Url(this.Server, 3, this.lblQueja.Text);
             this.ddlCumplimiento.Enabled = false;
             this.txtComentario.Enabled = false;
         }

@@ -148,69 +148,12 @@ namespace queja
                 ++num;
             }
 
-            foreach (ListItem listItem in listItemListImage)
-            {
-                if (listItem.ToString().Contains("1_"))
-                {
-                    if (listItem.ToString().Contains(".jpg"))
-                    {
-                        string str2 = "fotos_ant/1_" + str1 + ".jpg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    else if (listItem.ToString().Contains(".jpeg"))
-                    {
-                        string str2 = "fotos_ant/1_" + str1 + ".jpeg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    else
-                    {
-                        string str2 = "fotos_ant/1_" + str1 + ".png";
-                        this.img1.ImageUrl = str2;
-                    }
-                }
-                if (listItem.ToString().Contains("2_"))
-                {
-                    if (listItem.ToString().Contains(".jpg"))
-                    {
-                        string str2 = "fotos_ant/2_" + str1 + ".jpg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    else if (listItem.ToString().Contains(".jpeg"))
-                    {
-                        string str2 = "fotos_ant/2_" + str1 + ".jpeg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    else
-                    {
-                        string str2 = "fotos_ant/2_" + str1 + ".png";
-                        this.img1.ImageUrl = str2;
-                    }
-                }
-                if (listItem.ToString().Contains("3_"))
-                {
-                    if (listItem.ToString().Contains(".jpg"))
-                    {
-                        string str2 = "fotos_ant/3_" + str1 + ".jpg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    if (listItem.ToString().Contains(".jpeg"))
-                    {
-                        string str2 = "fotos_ant/3_" + str1 + ".jpeg";
-                        this.img1.ImageUrl = str2;
-                    }
-                    else
-                    {
-                        string str2 = "fotos_ant/3_" + str1 + ".png";
-                        this.img1.ImageUrl = str2;
-                    }
-                }
-                //    this.file1.Text = listItem.ToString();
-                //if (num == 2)
-                //    this.file2.Text = listItem.ToString();
-                //if (num == 3)
-                //    this.file3.Text = listItem.ToString();
-                //++num;
-            }
+            this.img1.ImageUrl = FotosQueja.Url(this.Server, 1, str1);
+            this.img2.ImageUrl = FotosQueja.Url(this.Server, 2, str1);
+            this.img3.ImageUrl = FotosQueja.Url(this.Server, 3, str1);
+            this.Image1.ImageUrl = this.img1.ImageUrl;
+            this.Image2.ImageUrl = this.img2.ImageUrl;
+            this.Image3.ImageUrl = this.img3.ImageUrl;
 
             //string str2 = "fotos_ant/1_" + str1 + ".jpg";
             //this.img1.ImageUrl = str2;
