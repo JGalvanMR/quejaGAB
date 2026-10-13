@@ -1114,6 +1114,7 @@
         //console.log(tieneFilas);
         if (tieneFilas == false) {
             //console.log("entra");
+            i++;
             $("#errorProductos").show();
         } else {
             $("#errorProductos").hide();
