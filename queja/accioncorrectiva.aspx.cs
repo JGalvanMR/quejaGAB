@@ -158,14 +158,9 @@ namespace queja
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.Host = "mail1.mrlucky.com.mx";
             try
             {
-                smtpClient.Send(message);
+                CorreoGraph.Enviar(message);
             }
             catch (Exception ex)
             {
@@ -195,14 +190,9 @@ namespace queja
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.Host = "mail1.mrlucky.com.mx";
             try
             {
-                smtpClient.Send(message);
+                CorreoGraph.Enviar(message);
             }
             catch (Exception ex)
             {
@@ -251,49 +241,9 @@ namespace queja
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
-            // Configuración del Cliente SMTP
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = new NetworkCredential("sistemasgab@mrlucky.com.mx", "Sistem@s2026$");
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.Host = "mail1.mrlucky.com.mx";
-            smtpClient.Timeout = 30000;
-
-            // Forzar protocolos TLS (3072 = Tls12, 768 = Tls11, 192 = Tls)
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
-
-            // Validación de certificados SSL (soporte Mono/Ubuntu)
-            ServicePointManager.ServerCertificateValidationCallback =
-                (sender, certificate, chain, sslPolicyErrors) =>
-                {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"Certificate: {certificate?.Subject ?? "null"}, Issuer: {certificate?.Issuer ?? "null"}");
-
-                    if (certificate != null && certificate.Issuer.Contains("SSL.com"))
-                    {
-                        return true;
-                    }
-
-                    return sslPolicyErrors == System.Net.Security.SslPolicyErrors.None;
-                };
-
             try
             {
-                smtpClient.Send(message);
-            }
-            catch (SmtpException ex)
-            {
-                // Log específico para errores SMTP
-                string errorDetalle = $"Error SMTP:\n" +
-                    $"Message: {ex.Message}\n" +
-                    $"Inner: {ex.InnerException?.Message ?? "N/A"}\n" +
-                    $"StatusCode: {ex.StatusCode}\n" +
-                    $"Host: {smtpClient.Host}\n" +
-                    $"Port: {smtpClient.Port}\n" +
-                    $"SSL: {smtpClient.EnableSsl}";
-
-                System.Diagnostics.Debug.WriteLine(errorDetalle);
-                ScriptManager.RegisterClientScriptBlock((Page)this, typeof(Page), "QuejaAccion", "alert('No fue enviado el correo electrónico.');", true);
+                CorreoGraph.Enviar(message);
             }
             catch (Exception ex)
             {
@@ -305,7 +255,6 @@ namespace queja
             {
                 // Liberación garantizada de recursos
                 message.Dispose();
-                smtpClient.Dispose();
             }
         }
 

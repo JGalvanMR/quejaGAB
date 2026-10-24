@@ -201,14 +201,9 @@ namespace queja
             message.BodyEncoding = Encoding.UTF8;
             message.IsBodyHtml = true;
             message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Credentials = (ICredentialsByHost)new NetworkCredential("sistemasgab", "Sistem@s2026$");
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.Host = "mail1.mrlucky.com.mx";
             try
             {
-                smtpClient.Send(message);
+                CorreoGraph.Enviar(message);
             }
             catch (Exception ex)
             {
@@ -291,57 +286,7 @@ namespace queja
 
                 message.From = new MailAddress("sistemasgab@mrlucky.com.mx");
 
-                // Configuración SMTP
-                SmtpClient smtpClient = new SmtpClient();
-
-                smtpClient.Credentials = new NetworkCredential(
-                    "sistemasgab@mrlucky.com.mx",
-                    "Sistem@s2026$"
-                );
-
-                smtpClient.Port = 587;
-                smtpClient.EnableSsl = true;
-                smtpClient.Host = "mail1.mrlucky.com.mx";
-                smtpClient.Timeout = 30000;
-
-                // Forzar TLS
-                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072 | (SecurityProtocolType)768 | (SecurityProtocolType)192;
-
-                // Validación del certificado
-                ServicePointManager.ServerCertificateValidationCallback =
-                    (sender, certificate, chain, sslPolicyErrors) =>
-                    {
-                        System.Diagnostics.Debug.WriteLine(
-                            $"Certificate: {certificate?.Subject ?? "null"}, " +
-                            $"Issuer: {certificate?.Issuer ?? "null"}"
-                        );
-
-                        if (certificate != null &&
-                            certificate.Issuer != null &&
-                            certificate.Issuer.Contains("SSL.com"))
-                        {
-                            return true;
-                        }
-
-                        return sslPolicyErrors ==
-                               System.Net.Security.SslPolicyErrors.None;
-                    };
-
-                // Enviar correo
-                smtpClient.Send(message);
-            }
-            catch (SmtpException ex)
-            {
-                System.Diagnostics.Debug.WriteLine(
-                    $"Error SMTP:\n" +
-                    $"Message: {ex.Message}\n" +
-                    $"Inner: {ex.InnerException?.Message ?? "N/A"}"
-                );
-
-                this.Response.Write(
-                    "<script>alert('Error al enviar el correo electrónico: " +
-                    "Error de conexión con el servidor SMTP')</script>"
-                );
+                CorreoGraph.Enviar(message);
             }
             catch (Exception ex)
             {
