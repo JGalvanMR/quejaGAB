@@ -22,6 +22,69 @@ namespace queja
 
         public static void Enviar(MailMessage mensaje)
         {
+            try
+            {
+                EnviarInterno(mensaje);
+            }
+            catch (Exception ex)
+            {
+                RegistrarError(mensaje, ex);
+                throw;
+            }
+        }
+
+        // Los errores quedan en Graph.LogRuta, o en App_Data/correo_graph.log (ASP.NET no sirve App_Data por HTTP).
+        // Nunca se registra el secreto ni el cuerpo del mensaje. Si no se puede escribir, se intenta en la carpeta temporal.
+        private static void RegistrarError(MailMessage mensaje, Exception ex)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] Error al enviar correo por Graph");
+            if (mensaje != null)
+            {
+                sb.AppendLine("  De: " + (mensaje.From != null ? mensaje.From.Address : "(sin remitente)"));
+                sb.AppendLine("  Para: " + string.Join("; ", Direcciones(mensaje.To)));
+                sb.AppendLine("  Asunto: " + mensaje.Subject);
+            }
+            for (Exception e = ex; e != null; e = e.InnerException)
+                sb.AppendLine("  " + e.GetType().Name + ": " + e.Message);
+            sb.AppendLine();
+
+            string ruta = Config("Graph.LogRuta");
+            if (string.IsNullOrEmpty(ruta))
+                ruta = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data"), "correo_graph.log");
+
+            lock (_lock)
+            {
+                foreach (string destino in new[] { ruta, Path.Combine(Path.GetTempPath(), "correo_graph.log") })
+                {
+                    try
+                    {
+                        string dir = Path.GetDirectoryName(destino);
+                        if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+                        var fi = new FileInfo(destino);
+                        if (fi.Exists && fi.Length > 5 * 1024 * 1024)
+                        {
+                            File.Delete(destino + ".old");
+                            File.Move(destino, destino + ".old");
+                        }
+                        File.AppendAllText(destino, sb.ToString(), Encoding.UTF8);
+                        return;
+                    }
+                    catch
+                    {
+                        // Probar el siguiente destino; registrar el error nunca debe romper el flujo.
+                    }
+                }
+            }
+        }
+
+        private static IEnumerable<string> Direcciones(MailAddressCollection lista)
+        {
+            foreach (MailAddress d in lista) yield return d.Address;
+        }
+
+        private static void EnviarInterno(MailMessage mensaje)
+        {
             if (mensaje == null) throw new ArgumentNullException("mensaje");
 
             // Graph exige TLS 1.2 (3072); en .NET 4.0 el valor existe solo con 4.5+ instalado en el servidor.
